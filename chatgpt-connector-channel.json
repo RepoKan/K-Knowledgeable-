@@ -1,4 +1,11 @@
 {
+  "session_termination": {
+    "status": "terminated",
+    "timestamp": "2026-08-30T15:31:10Z",
+    "reason": "Manual session termination to allow connector processing",
+    "connector_mode": "active",
+    "allow_autonomous_processing": true
+  },
   "channel": {
     "name": "ChatGPT Connector Channel",
     "type": "api",
@@ -141,5 +148,13 @@
       "sync_enabled": true,
       "workflow_automation": true
     }
+  },
+  "connector_processing": {
+    "status": "ready",
+    "autonomous_mode": true,
+    "processing_queue": [],
+    "error_handling": "automatic_retry",
+    "max_retries": 3,
+    "retry_delay_seconds": 5
   }
 }
