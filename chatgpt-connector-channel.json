@@ -1,0 +1,58 @@
+{
+  "channel": {
+    "name": "ChatGPT Connector Channel",
+    "type": "api",
+    "enabled": true,
+    "permissions": {
+      "read": true,
+      "write": true,
+      "delete": true,
+      "admin": true
+    },
+    "endpoints": {
+      "base_url": "https://api.github.com/repos/RepoKan/K-Knowledgeable-",
+      "store_md_file": "/contents",
+      "retrieve_md_file": "/contents",
+      "list_files": "/contents",
+      "auth_type": "token"
+    },
+    "api_routes": {
+      "post_file": {
+        "method": "PUT",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
+        "description": "Store markdown files in repository",
+        "permissions": ["write", "admin"]
+      },
+      "get_file": {
+        "method": "GET",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
+        "description": "Retrieve markdown files from repository",
+        "permissions": ["read", "admin"]
+      },
+      "list_directory": {
+        "method": "GET",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{path}",
+        "description": "List files in directory",
+        "permissions": ["read", "admin"]
+      },
+      "delete_file": {
+        "method": "DELETE",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
+        "description": "Delete markdown files from repository",
+        "permissions": ["delete", "admin"]
+      }
+    },
+    "storage_config": {
+      "default_directory": "chatgpt-generated",
+      "file_format": "markdown",
+      "auto_commit": true,
+      "commit_message_template": "Auto-generated from ChatGPT: {filename}"
+    },
+    "features": {
+      "auto_file_creation": true,
+      "version_control": true,
+      "backup_enabled": true,
+      "sync_enabled": true
+    }
+  }
+}
