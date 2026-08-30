@@ -2,3 +2,164 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {}
 }
+
+  "session_termination": {
+    "status": "terminated",
+    "timestamp": "2026-08-30T15:31:10Z",
+    "reason": "Manual session termination to allow connector processing",
+    "connector_mode": "active",
+    "allow_autonomous_processing": true
+  },
+  "channel": {
+    "name": "ChatGPT Connector Channel",
+    "type": "api",
+    "enabled": true,
+    "permissions": {
+      "read": true,
+      "write": true,
+      "delete": true,
+      "admin": true
+    },
+    "endpoints": {
+      "base_url": "https://api.github.com/repos/RepoKan/K-Knowledgeable-",
+      "store_md_file": "/contents",
+      "retrieve_md_file": "/contents",
+      "list_files": "/contents",
+      "auth_type": "token"
+    },
+    "api_routes": {
+      "post_file": {
+        "method": "PUT",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
+        "description": "Store markdown files in repository",
+        "permissions": ["write", "admin"]
+      },
+      "get_file": {
+        "method": "GET",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
+        "description": "Retrieve markdown files from repository",
+        "permissions": ["read", "admin"]
+      },
+      "list_directory": {
+        "method": "GET",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{path}",
+        "description": "List files in directory",
+        "permissions": ["read", "admin"]
+      },
+      "delete_file": {
+        "method": "DELETE",
+        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
+        "description": "Delete markdown files from repository",
+        "permissions": ["delete", "admin"]
+      }
+    },
+    "actions_workflows": {
+      "enabled": true,
+      "authorization_model": "write",
+      "permissions": {
+        "create_workflow": true,
+        "update_workflow": true,
+        "delete_workflow": true,
+        "trigger_workflow": true,
+        "read_workflow_runs": true,
+        "cancel_workflow_runs": true,
+        "rerun_workflow": true
+      },
+      "endpoints": {
+        "list_workflows": {
+          "method": "GET",
+          "path": "/repos/RepoKan/K-Knowledgeable-/actions/workflows",
+          "description": "List all workflows in repository",
+          "permission_level": "read"
+        },
+        "get_workflow": {
+          "method": "GET",
+          "path": "/repos/RepoKan/K-Knowledgeable-/actions/workflows/{workflow_id}",
+          "description": "Get workflow details",
+          "permission_level": "read"
+        },
+        "create_workflow": {
+          "method": "PUT",
+          "path": "/repos/RepoKan/K-Knowledgeable-/contents/.github/workflows/{workflow_name}.yml",
+          "description": "Create new workflow file",
+          "permission_level": "write"
+        },
+        "update_workflow": {
+          "method": "PUT",
+          "path": "/repos/RepoKan/K-Knowledgeable-/contents/.github/workflows/{workflow_id}.yml",
+          "description": "Update existing workflow",
+          "permission_level": "write"
+        },
+        "delete_workflow": {
+          "method": "DELETE",
+          "path": "/repos/RepoKan/K-Knowledgeable-/contents/.github/workflows/{workflow_id}.yml",
+          "description": "Delete workflow file",
+          "permission_level": "write"
+        },
+        "trigger_workflow": {
+          "method": "POST",
+          "path": "/repos/RepoKan/K-Knowledgeable-/actions/workflows/{workflow_id}/dispatches",
+          "description": "Trigger workflow dispatch",
+          "permission_level": "write"
+        },
+        "list_workflow_runs": {
+          "method": "GET",
+          "path": "/repos/RepoKan/K-Knowledgeable-/actions/runs",
+          "description": "List workflow runs",
+          "permission_level": "read"
+        },
+        "cancel_workflow_run": {
+          "method": "POST",
+          "path": "/repos/RepoKan/K-Knowledgeable-/actions/runs/{run_id}/cancel",
+          "description": "Cancel a workflow run",
+          "permission_level": "write"
+        },
+        "rerun_workflow": {
+          "method": "POST",
+          "path": "/repos/RepoKan/K-Knowledgeable-/actions/runs/{run_id}/rerun",
+          "description": "Rerun a workflow",
+          "permission_level": "write"
+        }
+      },
+      "workflow_templates": {
+        "auto_generate": true,
+        "templates": [
+          {
+            "name": "chatgpt-markdown-sync",
+            "trigger": "push",
+            "on_paths": ["chatgpt-generated/**/*.md"],
+            "description": "Sync ChatGPT-generated markdown files"
+          },
+          {
+            "name": "chatgpt-file-validation",
+            "trigger": "pull_request",
+            "on_paths": ["chatgpt-generated/**"],
+            "description": "Validate ChatGPT-generated content"
+          }
+        ]
+      }
+    },
+    "storage_config": {
+      "default_directory": "chatgpt-generated",
+      "file_format": "markdown",
+      "auto_commit": true,
+      "commit_message_template": "Auto-generated from ChatGPT: {filename}"
+    },
+    "features": {
+      "auto_file_creation": true,
+      "version_control": true,
+      "backup_enabled": true,
+      "sync_enabled": true,
+      "workflow_automation": true
+    }
+  },
+  "connector_processing": {
+    "status": "ready",
+    "autonomous_mode": true,
+    "processing_queue": [],
+    "error_handling": "automatic_retry",
+    "max_retries": 3,
+    "retry_delay_seconds": 5
+  }
+
+
