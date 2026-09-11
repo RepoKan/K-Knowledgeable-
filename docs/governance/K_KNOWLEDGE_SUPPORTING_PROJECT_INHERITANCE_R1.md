@@ -38,6 +38,35 @@ Preserve source identity, revision, provenance, conflict status, and Production 
 ### Artifacts
 Preserve files, images, Markdown, code, binaries/libraries, links, diagrams, runtime evidence, and generated outputs as separate source classes with provenance.
 
+## Canonical Inheritable Asset Classes
+
+The following classes are canonical for K Knowledge Supporting:
+
+- Project Rules / Master Rules
+- Approved Business Rules
+- Skills / Specific Skills
+- Agent Contracts / Operating Instructions
+- Master Source Files
+- Governed Images / Diagrams / Architecture Visuals
+- Markdown / Technical Notes / Specifications
+- Source Code / Code References
+- Library / SDK / AAR / JAR References
+- Notion KKL Base Records
+- GitHub Canonical Revisions / Commit SHA / Branch / PR Evidence
+- Manifests / Indexes / Checksums
+- Runtime / Test / Production Evidence
+- Decision Logs / ADR / Conflict-HOLD Records
+- Approved Links / Repository Pointers / Source URLs
+- Generated artifacts that have been promoted into Master Source
+
+An asset is inheritable only when its identity is traceable. Record, as applicable, provenance/source identity, revision/version/SHA, governance status, and authority/conflict state.
+
+Canonical rule: `Durable + Governed + Traceable = Inheritable`.
+
+Raw chat messages are not automatically inheritable. A chat-derived fact, rule, capability, or artifact becomes reusable Project inheritance only after promotion into a durable governed source with provenance and status.
+
+When multiple revisions exist, resolve against the exact revision/SHA/version applicable to the task. Do not use latest-file-wins or latest-message-wins as source authority.
+
 ## Future-chat startup
 
 1. Identify the Project context.
