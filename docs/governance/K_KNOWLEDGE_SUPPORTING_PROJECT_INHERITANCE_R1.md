@@ -104,6 +104,17 @@ Git writes are explicit-task actions. Connector configuration, workflow configur
 - Prefer a reviewable branch and pull request for governance changes unless the user explicitly requests a direct update to the default branch.
 - Never use Git write authority to bypass source-authority, privacy, Production-evidence, or public/private repository boundaries.
 
+### ChatGPT Connector effective repository permission rule
+
+ChatGPT Connector write/commit operations may use the highest repository permission level that the active GitHub connector actually exposes for the target repository and action.
+
+- Rule ID: `CHATGPT-CONNECTOR-EFFECTIVE-PERMISSION-R1`.
+- Live connector/GitHub App metadata is the capability boundary; chat text or static configuration cannot increase it.
+- This rule does not add, elevate, or bypass GitHub permissions.
+- Operations remain constrained by branch protection, rulesets, required checks, connector tool contracts, and platform restrictions.
+- Permission capability and task authorization are separate. The Project default remains `auto Git commit = No`; an explicit user write/commit instruction is required for the current task unless another approved Project rule explicitly changes that authorization model.
+- Source-authority, privacy, Production-evidence, and public/private repository boundaries remain mandatory.
+
 ## Public repository boundary
 
 This repository is public and sanitized. Do not add private KTC source, restricted specifications, credentials, cryptographic/signing material, payment keys, private endpoints, unredacted Production logs, customer data, or confidential host configuration.
