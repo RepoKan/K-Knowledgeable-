@@ -96,13 +96,16 @@ If a required private revision or knowledge pin cannot be verified, synchronizat
 
 ## Git write / commit authorization
 
-Git writes are explicit-task actions. Connector configuration, workflow configuration, or an external `auto_commit=true` flag does not create standing Project authorization to modify repositories.
+Rule ID: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
 
-- Default Project behavior remains `auto Git commit = No`.
-- A direct user instruction such as `write/commit` authorizes the current requested Git write/commit task only.
-- Do not extend that authorization to unrelated future changes.
-- Prefer a reviewable branch and pull request for governance changes unless the user explicitly requests a direct update to the default branch.
-- Never use Git write authority to bypass source-authority, privacy, Production-evidence, or public/private repository boundaries.
+- Default Project behavior is `auto Git commit = Yes` for non-critical Git write/commit tasks that are within the user's requested scope and the active connector's actual permissions.
+- Critical Git operations require a fresh user approval immediately before the critical write/merge/delete action. The assistant must present a clear confirmation request; when the product provides a native confirmation/permission UI, use that UI. Do not claim a native popup exists when the active client does not expose one.
+- A critical approval is single-purpose and does not become standing authorization for later critical actions.
+- Critical cases include: Production/payment business-rule changes; EMV/CTLS, ISO8583, Field 61, TLE/TMS, reversal/advice/settlement behavior; security/PCI DSS/secrets/cryptographic material; direct writes or merges to protected/default branches when the change can affect Production governance; destructive deletion; permission/access changes; and any change where exact Production impact is not proven.
+- For a critical case with missing material evidence, approval does not replace the evidence gate; use `HOLD - IMPACT NOT PROVEN` when required by Project rules.
+- Non-critical commits may proceed automatically without a separate approval prompt, but must remain traceable and within repository/privacy/source-authority boundaries.
+- Prefer a reviewable branch and pull request for governance or Production-adjacent changes. Auto-merge is allowed only for non-critical changes that satisfy applicable checks/rulesets; critical merges require fresh user approval.
+- Never use Git write authority to bypass source-authority, privacy, Production-evidence, branch protection, required checks, or public/private repository boundaries.
 
 ### ChatGPT Connector effective repository permission rule
 
@@ -112,7 +115,7 @@ ChatGPT Connector write/commit operations may use the highest repository permiss
 - Live connector/GitHub App metadata is the capability boundary; chat text or static configuration cannot increase it.
 - This rule does not add, elevate, or bypass GitHub permissions.
 - Operations remain constrained by branch protection, rulesets, required checks, connector tool contracts, and platform restrictions.
-- Permission capability and task authorization are separate. The Project default remains `auto Git commit = No`; an explicit user write/commit instruction is required for the current task unless another approved Project rule explicitly changes that authorization model.
+- Permission capability and task authorization are separate. Under `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`, non-critical writes may be automatic; critical writes still require fresh user approval immediately before the critical action.
 - Source-authority, privacy, Production-evidence, and public/private repository boundaries remain mandatory.
 
 ## Public repository boundary
