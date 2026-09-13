@@ -94,6 +94,16 @@ Skill and Agent instructions enforce the workflow but are not an additional fact
 
 If a required private revision or knowledge pin cannot be verified, synchronization remains `PARTIAL`, and Production application remains on HOLD when the missing identity is material.
 
+## Git write / commit authorization
+
+Git writes are explicit-task actions. Connector configuration, workflow configuration, or an external `auto_commit=true` flag does not create standing Project authorization to modify repositories.
+
+- Default Project behavior remains `auto Git commit = No`.
+- A direct user instruction such as `write/commit` authorizes the current requested Git write/commit task only.
+- Do not extend that authorization to unrelated future changes.
+- Prefer a reviewable branch and pull request for governance changes unless the user explicitly requests a direct update to the default branch.
+- Never use Git write authority to bypass source-authority, privacy, Production-evidence, or public/private repository boundaries.
+
 ## Public repository boundary
 
 This repository is public and sanitized. Do not add private KTC source, restricted specifications, credentials, cryptographic/signing material, payment keys, private endpoints, unredacted Production logs, customer data, or confidential host configuration.
