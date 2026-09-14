@@ -1,0 +1,43 @@
+{
+  "project": "K Knowledge Supporting",
+  "repository": "RepoKan/K-Knowledgeable-",
+  "root_path": "knowledge-supporting/",
+  "storage_priority": [
+    "GitHub for supported text/knowledge artifacts",
+    "persistent ChatGPT Library fallback",
+    "local/runtime storage fallback"
+  ],
+  "repository_visibility": "public",
+  "created": [
+    {
+      "path": "knowledge-supporting/README.md",
+      "commit": "ce0fa75bc386e9827db84b417432e76b964cd8f0"
+    },
+    {
+      "path": "knowledge-supporting/knowledge-base/K_Knowledge_Supporting_Project_Knowledge_Snapshot_2026-08-30.txt",
+      "commit": "03b650c705a3d9e9bf374d70dafa9d29d9502312"
+    },
+    {
+      "path": "knowledge-supporting/weekly-archives/SUNMI_Weekly_Run_Command_Info_ACTIVE.txt",
+      "commit": "13dc19ac9746d14eb14e000154623086107c5a04"
+    }
+  ],
+  "pending_text": [
+    "SUNMI_Payment_Systems_News_2026-06-29_1630_ICT.txt",
+    "SUNMI Weekly Report.txt"
+  ],
+  "restricted_or_requires_review": [
+    "SUNMI_Weekly_Reference_Knowledge_Revision_Control_2026-08-30.txt - direct write was blocked by platform safety checks; not bypassed"
+  ],
+  "pending_binary_media": [
+    "K_Knowledge_Supporting_Transfer_2026-08-30.zip",
+    "Deep Research Backing Conversation for session None.pdf",
+    "SUNMI_High_Risk_Source_Code_Checklist_Addendum.pdf",
+    "SUNMI_High_Risk_Source_Code_Checklist_Official_2026-08-17.pdf",
+    "SUNMI_High_Risk_Source_Code_Checklist_Official_2026-08-17_Checklist.pdf",
+    "skill.zip",
+    "updated_weekly_task_rules_dashboard.png"
+  ],
+  "binary_note": "Current GitHub connector write path supports UTF-8 text through the contents API. Binary artifacts require a supported GitHub binary route such as Git LFS or release assets, or a user-approved manual upload flow.",
+  "safety_note": "Do not publish secrets or private credentials to this public repository."
+}
