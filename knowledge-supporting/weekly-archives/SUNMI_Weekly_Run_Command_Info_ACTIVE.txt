@@ -1,0 +1,77 @@
+TH lang
+SUNMI Weekly Report Command Info - ACTIVE
+
+Updated At: 2026-08-17 11:35 ICT
+Time Zone: Asia/Bangkok
+Task Name: SUNMI Weekly Report
+Schedule: Every Sunday 16:30 ICT
+Current Status in this historical file: ACTIVE
+
+Purpose:
+Generate a compact weekly SUNMI Payment Systems News report for Android EDC/POS development in low-usage mode.
+
+Coverage Rule:
+- Coverage window is the last completed Monday 00:00 through Sunday 16:30 ICT.
+- Title duration must exactly match the computed coverage window.
+- Title format: SUNMI Payment Systems News [Weekly <YYYY-MM-DD> - <YYYY-MM-DD 16:30 ICT>]
+- For manual runs after Sunday 16:30 ICT, use the most recent completed Sunday 16:30.
+- For manual runs before Sunday 16:30 ICT, use the previous completed Sunday 16:30.
+
+Required Metadata:
+- Generated Date
+- Coverage Period: Last Monday - Sunday 16:30 Thai Time
+- Coverage Window
+- Schedule Time: Sunday 16:30 ICT
+- Time Zone: Asia/Bangkok
+- Pinned Topic Check: Passed - current heading set applied
+- Source Verification Rule: SUNMI official sources first
+- Retention Rule: 1 year with FIFO cleanup when supported
+- Archive Format: UTF-8 Text File
+- Usage Mode: Low-usage compact weekly run
+
+Allowed Headings:
+- Weekly Hi light
+- SUNMI Development News
+- SUNMI Lib Update
+- Officially SUNMI Verified
+- Officially SUNMI Unverified
+- Incident Response Guideline
+- Ranking
+- Checklist
+- Text Archive
+
+Blocked / Retired Headings:
+- Executive Quick Direction
+- EDC Work Concentration
+- Hardware Impact
+- Development Action Plan
+- SUNMI Development Brief
+- PDF Archive
+
+Archive Rule:
+- Create exactly one UTF-8 .txt report archive when file creation is supported.
+- Filename pattern: SUNMI_Payment_Systems_News_<coverage-end-date>_1630_ICT.txt
+- The <coverage-end-date> must be the computed Sunday coverage-end date.
+- Do not create PDF, DOCX, HTML, image, screenshot, or scheduled retry archive.
+
+Storage Override 2026-09-14:
+- GitHub `RepoKan/K-Knowledgeable-` under `knowledge-supporting/` is first-priority persistent storage for supported text/knowledge artifacts.
+- Persistent ChatGPT Library is fallback when GitHub is unavailable or unsuitable.
+- `/mnt/data/...` is temporary runtime storage only.
+
+Official Source Memory Rule:
+- Use SUNMI official sources first.
+- Priority sources include SUNMI Developer Center, Payment SDK/API documentation, SDKLib/OSLib/TMSLib/APILib, Payment Solution, TMS/MDM/RKI documentation, P3/P2/T Series documentation, and SDK/API release notes.
+- Non-official sources belong under Officially SUNMI Unverified when official sources are unavailable or insufficient.
+
+Validation Gate:
+1. Response starts exactly with TH lang.
+2. Title equals SUNMI Payment Systems News [Weekly <computed duration>].
+3. Coverage Window equals computed Monday-Sunday 16:30 ICT.
+4. Schedule Time exists and equals Sunday 16:30 ICT.
+5. No retired headings are used.
+6. No PDF wording/toolchain/retry task is used.
+7. Text archive filename uses coverageEnd date + 1630_ICT.
+8. GitHub storage is attempted first for supported text artifacts.
+9. Text Archive section states runtime path and persistent storage status.
+10. Official SUNMI verified sources are captured for future source registry use.
