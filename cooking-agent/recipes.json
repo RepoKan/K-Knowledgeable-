@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Lemon Chickpea Couscous",
+    "description": "Bright couscous with chickpeas, herbs, and lemon.",
+    "cuisine": "Mediterranean",
+    "minutes": 25,
+    "tags": ["vegetarian", "quick", "one-pot"],
+    "ingredients": [
+      "1 cup couscous",
+      "1 can chickpeas, drained",
+      "1 lemon",
+      "1 cup vegetable broth",
+      "2 tablespoons olive oil",
+      "1/4 cup parsley"
+    ]
+  },
+  {
+    "name": "Miso Mushroom Ramen",
+    "description": "Umami-rich ramen with mushrooms, greens, and a soft egg.",
+    "cuisine": "Japanese-inspired",
+    "minutes": 30,
+    "tags": ["vegetarian", "comfort food", "weeknight"],
+    "ingredients": [
+      "2 portions ramen noodles",
+      "2 tablespoons white miso",
+      "200 g mushrooms",
+      "2 eggs",
+      "2 cups vegetable broth",
+      "1 cup baby spinach",
+      "2 green onions"
+    ]
+  },
+  {
+    "name": "Coconut Lime Chicken",
+    "description": "Tender chicken simmered in coconut milk with lime and ginger.",
+    "cuisine": "Southeast Asian-inspired",
+    "minutes": 35,
+    "tags": ["gluten-free", "high-protein", "weeknight"],
+    "ingredients": [
+      "500 g chicken thighs",
+      "1 can coconut milk",
+      "2 limes",
+      "1 tablespoon grated ginger",
+      "2 cloves garlic",
+      "1 red bell pepper",
+      "1/4 cup cilantro"
+    ]
+  }
+]
