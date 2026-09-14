@@ -1,0 +1,71 @@
+TH lang
+# K Knowledge Supporting - Project Transfer Knowledge Snapshot
+
+Generated At: 2026-08-30 21:08 ICT
+Source Project Context: K SUNMI Knowledge Base / K Knowledge Support conversation context
+Target Project Name: K Knowledge Supporting
+Transfer Mode: Raw data package + knowledge-base snapshot
+
+## Scope
+This transfer package contains accessible project media/source files currently available in the active runtime, plus a consolidated knowledge-base snapshot derived from the visible conversation and uploaded project references. It does not contain hidden model reasoning or unavailable private workspace data.
+
+## Storage Policy Accepted
+- Historical snapshot: Google Drive was first-priority storage at the time this snapshot was created.
+- Current override (2026-09-14): GitHub `RepoKan/K-Knowledgeable-` under `knowledge-supporting/` is first-priority long-term text/knowledge storage.
+- Local runtime/project storage is fallback only when persistent storage is unavailable.
+- Runtime `/mnt/data/...` and sandbox links are temporary download copies.
+- Raw data storage is allowed by the user for project files.
+
+## Google Drive Folder Baseline Previously Created
+- Root folder: K SUNMI Knowledge Base
+- Root folder ID: 1v1A0IrA0UVvaIYKw1fzRsWCcK4y4KfuK
+- Project Environment Storage ID: 1JkOR4pDEVi6SxqpUaWmWf6x4hy42vhFs
+- Raw Data folder ID: 14BbTwYuNzMVX249V88f592FAPCpkQJ5z
+
+## Target Transfer Project
+- Target project label requested by user: K Knowledge Supporting
+- Current GitHub destination: `RepoKan/K-Knowledgeable-/knowledge-supporting/`
+- Original local package path: /mnt/data/K_Knowledge_Supporting_Transfer_2026-08-30
+
+## SUNMI Weekly Task Local Rules
+- Weekly report must start exactly with `TH lang`.
+- Coverage uses Asia/Bangkok time, last completed Monday 00:00 through Sunday 16:30 ICT.
+- Weekly report title format: SUNMI Payment Systems News [Weekly <YYYY-MM-DD> - <YYYY-MM-DD 16:30 ICT>].
+- Weekly report output must never generate PDF.
+- Weekly archive is exactly one UTF-8 `.txt` file when supported.
+- Archive filename pattern: SUNMI_Payment_Systems_News_<coverage-end-date>_1630_ICT.txt.
+- GitHub is current first-priority long-term text/knowledge storage when available.
+- Runtime/sandbox link has target access window of 7 days, then recreate from persistent storage.
+- Knowledge base must be revision-layered: never delete old knowledge; append new revisions.
+- Duplicate filtering uses prior archives and the Deep Research baseline.
+
+## Registered Task-local Agents / Tools
+- Official SUNMI Source Verification Agent: enabled.
+- GitHub Storage Agent: enabled for supported text artifacts.
+- Deep Research Reference Baseline Agent: enabled.
+- Duplicate Filtering Agent: enabled.
+- Revision Knowledge Agent: enabled.
+- Text Archive Agent: enabled.
+- Runtime Download Copy Agent: enabled but temporary.
+- Persistent Library Storage Agent: fallback when GitHub is unavailable or unsuitable.
+- Download Link Policy Agent: registered.
+- Plugin Management Agent: registered support/discovery only for this task.
+- PDF Agent: disabled inside weekly workflow.
+- Documents Agent: conditional only when explicitly requested.
+- Create Image Agent: conditional only when explicitly requested.
+- NetSuite AI Companion: not used for SUNMI Weekly Report unless explicitly requested.
+
+## High-risk SUNMI Reference Baseline
+- Core high-risk domains: Payment SDK/EMV/PinPad/Security, OS & Security Bulletin, Printer SDK, ECR/Device Connection SDK, APK install/update, RKI/Key Injection.
+- Baseline action order: PayLib/SPHS/EMV split -> RKI/key state -> ROM/security baseline -> APK signing/ABI/install -> ECR idempotency -> Printer lifecycle/layout.
+- ECR becomes High when it can trigger financial transactions directly.
+- Printer becomes High when payment completion, reversal decision, or merchant evidence depends on print callback.
+
+## Presentation File Search / Review Rules
+- Use presentation file content first.
+- Check text overlap, element out of bounds, spacing, slide rendering, and visual consistency.
+- External research must be labeled separately.
+- Weekly SUNMI Report still remains compact text + UTF-8 .txt only; no presentation archive.
+
+## Sensitive Data Boundary
+Raw data storage is allowed, but secrets such as API keys, passwords, private keys, tokens, keystore passwords, and certificate secrets should not be published to this public repository unless separately explicitly approved and intentionally publishable or encrypted.
