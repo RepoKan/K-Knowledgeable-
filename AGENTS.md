@@ -2,7 +2,20 @@
 
 ## Master rule
 
-Use `KTC-PAYMENT-MASTER-R1` as the sanitized governance baseline for KTC payment inspection workflows.
+Use `KKS-PROJECT-INHERITANCE-R1` as the Project bootstrap contract and `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1` as the Project-wide chat/permission inheritance rule. Use `KTC-PAYMENT-MASTER-R1` as the sanitized governance baseline for KTC payment inspection workflows.
+
+## Project-wide chat scope
+
+Every work chat, thread, or chat box inside **K Knowledge Supporting** is a governance sibling in the same Project.
+
+- Inherit the same Project governance, capability routing, source-authority rules, and baseline permission envelope.
+- Project-wide standing non-critical permissions may be reused across Project chats without duplicate grant when the required tool or connector is actually available.
+- A permission expressly limited to one chat, action, repository/branch, file, or execution remains limited to that scope.
+- Fresh/action-specific approval still applies where the governing rule requires it, including critical Git write/merge/delete, Production/payment/security changes, destructive operations, and permission/access changes.
+- Do not infer technical access from logical Project membership. A chat may not automatically expose historical messages, uploads, mounted files, connector sessions, or external accounts from another chat.
+- Effective executable permission is the intersection of Project-wide user authorization, action-specific approval rules, current tool/connector availability, external permissions, branch/ruleset/check constraints, and platform safety/privacy/source-authority requirements.
+
+See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
 
 ## Source synchronization
 
@@ -13,6 +26,13 @@ Treat the following as synchronized operational sources by revision and provenan
 3. Private GitHub Android + Knowledge Master pair
 
 The exact Production source and approved evidence retain authority according to the master source-precedence rule. Skill and agent instructions enforce the process; they do not become authoritative Production evidence themselves.
+
+## Git authorization
+
+- Project default: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
+- Kotlin/Android RCA exception: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1` — `auto Git commit = No`; commit, push, and merge require explicit authorization covering action, target repository/branch, and scope.
+- Critical operations retain fresh, single-purpose approval immediately before the critical action even when Project-wide baseline permissions exist.
+- Never use Project-wide inheritance to bypass branch protection, rulesets, required checks, external repository permissions, or Production evidence gates.
 
 ## Public repository boundary
 
