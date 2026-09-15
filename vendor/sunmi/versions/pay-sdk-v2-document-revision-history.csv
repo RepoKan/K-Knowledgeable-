@@ -1,0 +1,129 @@
+doc_version,release_date,appropriate_sdk_version
+3.0.0,2017/11/30,SunmiPaySDKService1.0.1
+3.0.1,2018/1/22,SunmiPaySDKService1.0.3/SunmiPayHardwareService3.0.44
+3.0.2,2018/2/23,SunmiPaySDKService1.0.4/SunmiPayHardwareService3.0.44
+3.0.3,2018/3/21,SunmiPaySDKService1.0.6/SunmiPayHardwareService3.1.2
+3.0.4,2018/4/12,SunmiPaySDKService1.0.6/SunmiPayHardwareService3.1.2
+3.0.5,2018/5/3,SunmiPayHardwareService_v3.2.07
+3.0.6,2018/5/18,SunmiPayHardwareService_v3.2.07
+3.0.7,2018/6/5,SunmiPayHardwareService_v3.2.07
+3.0.8,2018/8/16,SunmiPayHardwareService_v3.2.18
+3.0.9,2018/8/31,SunmiPayHardwareService_v3.2.19
+3.1.0,2018/9/21,SunmiPayHardwareService_v3.2.19
+3.2.0,2018/10/12,SunmiPayHardwareService_v3.2.20
+3.2.1,2018/10/22,SunmiPayHardwareService_v3.2.20
+3.2.2,2018/10/24,SunmiPayHardwareService_v3.3.0
+3.2.3,2018/11/01,SunmiPayHardwareService_v3.3.0
+3.2.4,2018/11/02,SunmiPayHardwareService_v3.3.0
+3.2.5,2018/11/05,SunmiPayHardwareService_v3.3.0
+3.2.6,2018/11/07,SunmiPayHardwareService_v3.3.0
+3.2.7,2018/11/15,SunmiPayHardwareService_v3.3.0
+3.2.8,2018/11/16,SunmiPayHardwareService_v3.3.0
+3.2.9,2018/11/19,SunmiPayHardwareService_v3.3.0
+3.2.10,2018/11/22,SunmiPayHardwareService_v3.3.0
+3.2.11,2018/11/24,SunmiPayHardwareService_v3.3.0
+3.2.12,2018/11/29,SunmiPayHardwareService_v3.3.0
+3.2.13,2018/12/04,SunmiPayHardwareService_v3.3.0
+3.2.14,2018/12/08,SunmiPayHardwareService_v3.3.0
+3.2.15,2018/12/12,SunmiPayHardwareService_v3.3.0
+3.2.16,2018/12/13,SunmiPayHardwareService_v3.3.0
+3.2.17,2019/01/07,SunmiPayHardwareService_v3.3.16
+3.2.18,2019/01/17,SunmiPayHardwareService_v3.3.17
+3.2.19,2019/01/21,SunmiPayHardwareService_v3.3.17
+3.2.20,2019/03/18,SunmiPayHardwareService_v3.3.28
+3.2.21,2019/03/19,SunmiPayHardwareService_v3.3.29
+3.2.22,2019/04/10,SunmiPayHardwareService_v3.3.32
+3.2.23,2019/05/29,SunmiPayHardwareService_v3.3.40
+3.2.24,2019/07/06,SunmiPayHardwareService_v3.3.46
+3.2.25,2019/07/30,SunmiPayHardwareService_v3.3.48
+3.3.26,2019/09/16,SunmiPayHardwareService_v3.3.52
+3.2.27,2019/10/15,SunmiPayHardwareService_v3.3.53
+3.2.28,2019/10/28,SunmiPayHardwareService_v3.3.55
+3.2.29,2019/11/29,SunmiPayHardwareService_v3.3.58
+3.2.30,2020/02/19,SunmiPayHardwareService_v3.3.62
+3.2.31,2020/02/24,SunmiPayHardwareService_v3.3.64
+3.2.32,2020/04/22,SunmiPayHardwareService_v3.3.66
+3.2.33,2020/05/22,SunmiPayHardwareService_v3.3.74
+3.2.34,2020/06/02,SunmiPayHardwareService_v3.3.76
+3.2.35,2020/06/04,SunmiPayHardwareService_v3.3.77
+3.2.36,2020/06/16,SunmiPayHardwareService_v3.3.80
+3.2.37,2020/06/17,SunmiPayHardwareService_v3.3.81
+3.2.38,2020/07/03,--
+3.2.39,2020/07/06,SunmiPayHardwareService_v3.3.86
+3.2.40,2020/09/11,SunmiPayHardwareService_v3.3.95
+3.2.41,2020/11/06,SunmiPayHardwareService_v3.3.95
+3.3.42,2020/11/11,SunmiPayHardwareService_v3.3.96
+3.2.43,2020/12/16,SunmiPayHardwareService_v3.3.98
+3.2.44,2020/12/29,SunmiPayHardwareService_v3.3.99
+3.2.46,2021/02/04,SunmiPayHardwareService_v3.3.102
+3.2.47,2021/04/28,SunmiPayHardwareService_v3.3.112
+3.2.48,2021/07/27,SunmiPayHardwareService_v3.3.126
+3.2.49,2021/08/30,SunmiPayHardwareService_v3.3.136
+3.2.50,2021/09/16,SunmiPayHardwareService_v3.3.137
+3.2.51,2021/10/21,SunmiPayHardwareService_v3.3.137
+3.2.52,2021/11/11,SunmiPayHardwareService_v3.3.149
+3.2.53,2021/12/23,SunmiPayHardwareService_v3.3.160
+3.2.54,2022/01/25,SunmiPayHardwareService_v3.3.166
+3.2.55,2022/03/08,SunmiPayHardwareService_v3.3.170
+3.2.56,2022/04/08,SunmiPayHardwareService_v3.3.170
+3.2.57,2022/05/07,SunmiPayHardwareService_v3.3.178
+3.2.58,2022/07/07,SunmiPayHardwareService_v3.3.191
+3.2.59,2022/08/17,SunmiPayHardwareService_v3.3.191
+3.2.60,2022/10/20,SunmiPayHardwareService_v3.3.215
+3.2.61,2022/11/09,SunmiPayHardwareService_v3.3.215
+3.2.62,2022/11/10,SunmiPayHardwareService_v3.3.225
+3.2.63,2022/11/25,SunmiPayHardwareService_v3.3.228
+3.2.64,2022/12/20,SunmiPayHardwareService_v3.3.232
+3.2.65,2022/12/22,SunmiPayHardwareService_v3.3.233
+3.2.66,2023/01/05,SunmiPayHardwareService_v3.3.234
+3.2.66T02,2023/01/12,
+3.2.67,2023/02/13,
+3.2.68,2023/03/10,
+3.2.69,2023/04/21,
+3.2.70,2023/05/10,SunmiPayHardwareService_v3.3.304
+3.2.71,2023/05/17,SunmiPayHardwareService_v3.3.307
+3.2.72,2023/05/31,SunmiPayHardwareService_v3.3.308
+3.2.73,2023/06/10,SunmiPayHardwareService_v5.0.15
+3.2.74,2023/07/05,SunmiPayHardwareService_v5.0.16
+3.2.75,2023/07/13,SunmiPayHardwareService_v3.3.311
+3.2.76,2023/08/07,SunmiPayHardwareService_v3.3.313
+3.2.77,2023/08/22,SunmiPayHardwareService_v3.3.313
+3.2.78,2023/09/05,SunmiPayHardwareService_v3.3.313
+3.2.79,2023/09/14,SunmiPayHardwareService_v3.3.313
+3.2.80,2023/10/11,SunmiPayHardwareService_v3.3.318
+3.2.81T,2023/10/30,SunmiPayHardwareService_v3.3.318
+3.2.81,,SunmiPayHardwareService_v3.3.320
+3.2.82,2023/11/29,SunmiPayHardwareService_v5.0.22
+3.2.83,2023/12/13,SunmiPayHardwareService_v5.0.23
+3.2.84,2023/12/26,SunmiPayHardwareService_v5.0.24
+3.2.85,2024/01/02,SunmiPayHardwareService_v3.3.324
+3.2.86,2024/03/07,SunmiPayHardwareService_v3.3.326
+3.2.87,2024/03/13,SunmiPayHardwareService_v3.3.327
+3.2.88,2024/03/20,SunmiPayHardwareService_v3.3.328 SunmiPayHardwareService_v5.0.28
+3.2.89,2024/04/05,SunmiPayHardwareService_v3.3.328
+3.2.90,2024/04/23,SunmiPayHardwareService_v3.3.329
+3.2.91,2024/05/17,SunmiPayHardwareService_v3.3.331 SunmiPayHardwareService_v5.0.32
+3.2.92,2024/06/07,SunmiPayHardwareService_v3.3.331 SunmiPayHardwareService_v5.0.32
+3.2.93,2024/06/13,SunmiPayHardwareService_v3.3.331 SunmiPayHardwareService_v5.0.32
+3.2.94,2024/06/26,SunmiPayHardwareService_v5.0.33
+3.3.0,2024/08/30,SunmiPayHardwareService_v5.0.35 SunmiPayHardwareService_v3.3.335
+3.3.1,2024/10/22,SunmiPayHardwareService_v3.3.339
+3.3.2,2024/12/13,SunmiPayHardwareService_v5.0.37
+3.3.3,2025/01/09,SunmiPayHardwareService_v3.3.344 SunmiPayHardwareService_v5.0.38
+3.3.4,2025/01/14,SunmiPayHardwareService_v5.0.38
+3.3.5,2025/02/12,SunmiPayHardwareService_v3.3.347 SunmiPayHardwareService_v5.0.39
+3.3.6,2025/02/19,SunmiPayHardwareService_v5.0.39
+3.3.7,2025/02/21,SunmiPayHardwareService_v5.0.40
+3.3.8,2025/04/18,SunmiPayHardwareService_v5.0.41
+3.3.9,2025/04/21,SunmiPayHardwareService_v5.0.42
+3.3.10,2025/05/07,SunmiPayHardwareService_v5.0.43 SunmiPayHardwareService_v3.3.348
+3.3.11,2025/05/20,SunmiPayHardwareService_v3.3.348 SunmiPayHardwareService_v5.0.43
+3.3.12,2025/06/09,SunmiPayHardwareService_v5.0.44 SunmiPayHardwareService_v3.3.349
+3.3.13,2025/06/30,SunmiPayHardwareService_v3.3.350 SunmiPayHardwareService_v5.0.45
+3.3.14,2025/07/24,SunmiPayHardwareService_v3.3.351 SunmiPayHardwareService_v5.0.45
+3.3.15,2025/08/20,SunmiPayHardwareService_v3.3.351 SunmiPayHardwareService_v5.0.48
+3.3.16,2025/09/25,SunmiPayHardwareService_v3.3.351 SunmiPayHardwareService_v5.0.48
+3.3.17,2025/10/21,SunmiPayHardwareService_v5.0.52
+3.3.18,2025/10/27,SunmiPayHardwareService_v3.3.354
+3.3.19,2025/11/06,SunmiPayHardwareService_v5.0.53
+3.3.20,2026/01/06,SunmiPayHardwareService_v5.0.56
