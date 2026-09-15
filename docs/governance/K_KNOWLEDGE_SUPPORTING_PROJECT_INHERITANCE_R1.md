@@ -6,6 +6,35 @@ Rule ID: `KKS-PROJECT-INHERITANCE-R1`
 
 Provide a sanitized public governance contract for future K Knowledge Supporting Project chats so reusable capability is inherited through durable sources rather than unverified conversational memory.
 
+## Project-wide chat scope
+
+Rule ID: `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1`  
+Effective: `2026-09-16`
+
+Every work chat, thread, or chat box created inside **K Knowledge Supporting** is logically part of the same Project and inherits the same Project governance, capability routing, source-authority rules, and baseline permission envelope.
+
+The inherited Project envelope includes Project instructions, governed Master Source material, approved business rules, available Skills, Agent contracts, Notion KKL Base records, GitHub canonical revisions, connected Project tools/plugins, and current-chat files or links when those capabilities are actually exposed in the current session.
+
+The user decision on 2026-09-16 establishes Project-wide scope for the Project's existing baseline capabilities and standing non-fresh permissions. A current or future work chat may use the same Project abilities, governed sources, and standing non-critical permissions without requiring a duplicate grant, provided the required tool or connector is actually available in that chat.
+
+Scope limits remain binding:
+
+- A permission expressly limited to one chat, one action, one repository/branch, one file, or one execution remains limited to that scope unless the user broadens it.
+- Fresh or action-specific approval remains required whenever the governing rule requires it, including critical Git write/merge/delete actions, Production/payment/security changes, destructive operations, permission/access changes, and other critical actions.
+- Project-wide inheritance never creates external permission, connector authentication, repository access, branch bypass, or platform capability that is not actually available.
+- Project-wide inheritance never bypasses source-authority, Production-evidence, privacy, safety, branch-protection, ruleset, or required-check controls.
+
+All Project chats are governance siblings, but logical Project membership does not mean every chat can automatically read every historical message, upload, mounted file, connector session, or external account from another chat. Do not claim historical-chat retrieval unless the active environment exposes a supported chat-history surface.
+
+The effective executable permission in a specific chat is the intersection of:
+
+1. Project-wide user authorization.
+2. The governing approval rule for the requested action.
+3. Current tool/connector availability.
+4. External-system permissions.
+5. Branch protection, rulesets, and required checks.
+6. Platform safety, privacy, and source-authority requirements.
+
 ## Durable inheritance principle
 
 A future chat may inherit Project capability only from sources that are actually available in that session, including:
@@ -18,7 +47,9 @@ A future chat may inherit Project capability only from sources that are actually
 6. GitHub canonical repositories and exact revisions when accessible.
 7. Current-chat uploads and links.
 
-Do not claim that arbitrary historical ChatGPT conversations were searched unless the active environment exposes a supported chat-history search surface. Important reusable conclusions from prior chats must be promoted into durable Project sources.
+Raw chat messages are Project-scoped work context, but they are not guaranteed to be technically retrievable from another Project chat. A chat-derived fact, rule, capability, permission, or artifact may be reused cross-chat when either the current session actually exposes the relevant Project context or it has been promoted into a durable governed source with provenance and status.
+
+Do not claim that arbitrary historical ChatGPT conversations were searched unless the active environment exposes a supported chat-history search surface. Important reusable conclusions from prior chats should still be promoted into durable Project sources.
 
 ## Inheritance layers
 
@@ -63,18 +94,17 @@ An asset is inheritable only when its identity is traceable. Record, as applicab
 
 Canonical rule: `Durable + Governed + Traceable = Inheritable`.
 
-Raw chat messages are not automatically inheritable. A chat-derived fact, rule, capability, or artifact becomes reusable Project inheritance only after promotion into a durable governed source with provenance and status.
-
 When multiple revisions exist, resolve against the exact revision/SHA/version applicable to the task. Do not use latest-file-wins or latest-message-wins as source authority.
 
 ## Future-chat startup
 
 1. Identify the Project context.
-2. Load the general Project Skill if available.
-3. Route to the most specific domain Skill or workflow.
-4. Load only the relevant sources for the task.
-5. Record exact revisions for Production-critical decisions.
-6. Preserve conflicts; never use last-write-wins for business truth.
+2. Load this Project inheritance rule.
+3. Load the general Project Skill if available.
+4. Route to the most specific domain Skill or workflow.
+5. Load only the relevant sources for the task.
+6. Record exact revisions for Production-critical decisions.
+7. Preserve conflicts; never use last-write-wins for business truth.
 
 ## Master-source promotion
 
@@ -107,6 +137,12 @@ Rule ID: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
 - Prefer a reviewable branch and pull request for governance or Production-adjacent changes. Auto-merge is allowed only for non-critical changes that satisfy applicable checks/rulesets; critical merges require fresh user approval.
 - Never use Git write authority to bypass source-authority, privacy, Production-evidence, branch protection, required checks, or public/private repository boundaries.
 
+### Kotlin / Android RCA Git exception
+
+Rule ID: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1`.
+
+For Kotlin/Android RCA work in K Knowledge Supporting, `auto Git commit = No`. Commit, push, and merge require explicit user authorization covering the action, target repository/branch, and change scope. This exception remains Project-wide until explicitly changed by the user.
+
 ### ChatGPT Connector effective repository permission rule
 
 ChatGPT Connector write/commit operations may use the highest repository permission level that the active GitHub connector actually exposes for the target repository and action.
@@ -117,6 +153,12 @@ ChatGPT Connector write/commit operations may use the highest repository permiss
 - Operations remain constrained by branch protection, rulesets, required checks, connector tool contracts, and platform restrictions.
 - Permission capability and task authorization are separate. Under `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`, non-critical writes may be automatic; critical writes still require fresh user approval immediately before the critical action.
 - Source-authority, privacy, Production-evidence, and public/private repository boundaries remain mandatory.
+
+## Automatic inheritance boundary
+
+Every work chat inside K Knowledge Supporting is treated as part of the same Project for governance, capability intent, and Project-wide permission inheritance. This rule does not force ChatGPT to expose old conversations, install a Skill, mount a private repository, authenticate a connector, elevate repository/account permissions, or change Project settings when those capabilities are absent.
+
+Use `READY FOR INHERITANCE` for durable prepared sources or approved Project-wide rules. Use `AUTO-LOADED` only when the current session actually exposes the source, Skill, connector, or Project context.
 
 ## Public repository boundary
 
