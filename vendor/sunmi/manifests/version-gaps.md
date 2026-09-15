@@ -2,7 +2,7 @@
 
 Observed: 2026-09-16
 
-Status: `OPEN — PUBLIC HISTORICAL CORPUS NOT FULLY EXPOSED`
+Status: `OPEN — PUBLIC/RESTRICTED HISTORICAL CORPUS NOT FULLY EXPOSED`
 
 This register is intentional. A gap is preferable to an invented version or an unsupported claim of completeness.
 
@@ -15,9 +15,10 @@ This register is intentional. A gap is preferable to an invented version or an u
 ## G2 — PaySDK downloadable package bundle history
 
 - Public Maven `com.sunmi:PayLib-release` history is enumerated for 22 versions.
-- SUNMI has also distributed downloadable PaySDK bundles such as the preserved `SunmiPaySDKV2_v2.0.42_2026-06-12.zip` signal.
-- Problem: a complete public index for every historical downloadable SDK ZIP/document bundle was not found.
-- Status: Maven history `VERSION-COMPLETE`; vendor bundle history `VERSION-GAP`.
+- The supplied official `SUNMI PAY SDK V2 Development Document v3.3.20` closes the **document revision lineage** through 2026-01-06: 128 revision-history rows from doc v3.0.0 through v3.3.20 are now indexed at `vendor/sunmi/versions/pay-sdk-v2-document-revision-history.csv`.
+- The document maps revisions to SunmiPaySDKService/SunmiPayHardwareService versions where SUNMI supplied that mapping.
+- Remaining problem: a complete authoritative catalog of every historical downloadable PaySDK ZIP/AAR/EMV-L2 bundle is still not available from the evidence currently archived.
+- Status: Maven history `VERSION-COMPLETE`; PaySDK **document lineage `CLOSED THROUGH v3.3.20`**; vendor downloadable-bundle history `VERSION-GAP`.
 
 ## G3 — SUNMI internal/access-controlled SCM
 
@@ -36,8 +37,8 @@ Status: `LINK-ONLY / ACCESS-CONTROLLED`.
 
 - Current newest version independently observed: `3.0.16` dated 2026-08-15.
 - Exact earlier evidence captured: `2.0.14`, `2.0.22`.
-- A cached Sonatype result still showed `3.0.15`, demonstrating index freshness variance.
-- Problem: complete Maven version sequence was not captured in this run.
+- A supplied internal sample uses `com.sunmi:sunmi-ecr-service:3.0.6@aar`; this is useful compatibility evidence but does not replace an authoritative ECR version index.
+- Problem: complete Maven/version sequence was not captured in this run.
 - Status: `VERSION-GAP`.
 
 ## G5 — DMP full version enumeration
@@ -57,8 +58,9 @@ Status: `LINK-ONLY / ACCESS-CONTROLLED`.
 ## G7 — P3 product PDF history
 
 - Official P3 CDN includes at least `p3.pdf` and `p3-new.pdf` variants.
-- Problem: no authoritative public revision manifest mapping all filenames to effective dates/revisions was found.
-- Status: `VERSION-GAP / LINK-ONLY`.
+- Supplied P3 cradle documents add operational/partner evidence but do not constitute an authoritative SUNMI product-datasheet revision manifest.
+- Problem: no authoritative complete revision manifest mapping every P3 product/manual filename to effective dates/revisions is archived yet.
+- Status: `VERSION-GAP / PARTNER-EVIDENCE-ADDED`.
 
 ## G8 — P3 MIX product PDF history
 
@@ -69,13 +71,14 @@ Status: `LINK-ONLY / ACCESS-CONTROLLED`.
 ## G9 — TMS/private deployment material
 
 - Official TMS/payment solution material is public at product/solution level.
+- A supplied TMS architecture summary explicitly states it is derived from limited public metadata and is not a verbatim SUNMI deployment manual, so it does not close the restricted/private TMS documentation gap.
 - Customer/private-cloud implementation documents, environment details, release packages or partner-only guides may require authorized access.
 - Status: `PUBLIC-CURRENT + RESTRICTED-POSSIBLE`.
 
 ## G10 — ROM / firmware binaries
 
 - Firmware/ROM applicability depends on model, SKU, region, channel and TMS/support entitlement.
-- This public knowledge repository must not infer that every ROM/firmware package is publicly downloadable.
+- A supplied P3 cradle upgrade guide demonstrates a cradle firmware-update workflow, but does not provide a complete authoritative firmware catalog.
 - Status: `VERSION-GAP / DEVICE-SPECIFIC`.
 
 ## G11 — Historical JCenter binaries
@@ -86,8 +89,15 @@ Status: `LINK-ONLY / ACCESS-CONTROLLED`.
 
 ## G12 — Copyright / redistribution boundary
 
-- Public accessibility of a vendor manual/datasheet does not automatically mean unrestricted republication into a public GitHub repository.
-- Action: keep official URL, version/date/provenance and checksum when available; copy original documents only when redistribution rights are clear.
+- Public accessibility or partner access to a vendor manual/datasheet does not automatically mean unrestricted republication into this public GitHub repository.
+- Action: keep official/partner provenance, version/date metadata and checksum when available; copy original documents only when redistribution rights are clear.
+- Identity-bearing contractual material and customer/device-specific documents must not be mirrored publicly without explicit authorization.
+
+## G13 — Uploaded partner/internal evidence
+
+- Classification manifest: `vendor/sunmi/manifests/uploaded-evidence-classification-2026-09-16.md`.
+- Partner/internal/derived artifacts can support compatibility and RCA decisions but do not become SUNMI vendor authority solely because they reference SUNMI products.
+- Status: `CLASSIFIED / NOT PROMOTED TO VENDOR AUTHORITY`.
 
 ## Closure rule
 
@@ -98,4 +108,4 @@ A gap may be closed only by one of:
 3. official Maven/Git tag/release history;
 4. authorized partner/vendor package with recorded provenance and redistribution permission.
 
-Do not close a gap from a community repost, filename guess, cached snippet alone, or undocumented version-number inference.
+Do not close a gap from a community repost, filename guess, cached snippet alone, internal simulation, or undocumented version-number inference.
