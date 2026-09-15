@@ -38,19 +38,19 @@
 - [x] No Production behavior modification promoted from the weekly report
 - [x] No credentials, secrets, PAN, PIN, keys, OTPs, private keys, or sensitive Production payloads stored
 - [x] GitHub remains the persistent archive/source revision
-- [ ] Notion `KKL Base / 02 — Android / SUNMI P3` synchronization pending completion of this consistency run
+- [x] Notion `KKL Base / 02 — Android / SUNMI P3` synchronization completed and verified
 
 ## Notion Synchronization Target
 
 Target location: `KKL Base / 02 — Android / SUNMI P3`
 
-Required synchronized fields:
+Synchronized fields:
 
 - Weekly report title and coverage window
 - GitHub archive path
 - Final verified commit SHA
 - Weekly decision (`No Change`)
-- Knowledge status (`SYNCHRONIZED` after successful Notion update)
+- Knowledge status (`SYNCHRONIZED — NO CHANGE`)
 - Authority note: Notion is the human-readable control plane; it does not override Production evidence/specification authority
 - P3/P3 MIX baseline note and real-device regression requirement
 
@@ -59,9 +59,10 @@ Required synchronized fields:
 1. GitHub weekly archive is generated and committed first.
 2. Final GitHub commit SHA is captured.
 3. Notion is updated with the archive pointer, commit SHA, weekly decision, and authority boundary.
-4. This consistency status file is updated from `PENDING` to `SYNCHRONIZED` only after the Notion write succeeds.
+4. This consistency status file is updated to `SYNCHRONIZED` only after the Notion write succeeds and is re-fetched for verification.
 5. A future weekly run must update the canonical weekly archive first, then repeat this synchronization sequence.
 
 ## Revision Log
 
 - `2026-09-16 03:56 ICT` — consistency record created from final weekly archive commit `8528126c095f0061070bc15180f3d45f76ea8e6c`; Notion sync pending.
+- `2026-09-16 03:57 ICT` — Notion `KKL Base / 02 — Android / SUNMI P3` updated and re-fetched successfully; synchronization status finalized as `SYNCHRONIZED — NO CHANGE`.
