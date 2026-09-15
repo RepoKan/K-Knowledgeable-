@@ -1,6 +1,6 @@
 # K Knowledge Supporting AI Governance
 
-Use `KKS-PROJECT-INHERITANCE-R1` as the Project bootstrap and inheritance contract for K Knowledge Supporting work. For KTC payment-critical review, also apply the more specific `KTC-PAYMENT-MASTER-R1` contract.
+Use `KKS-PROJECT-INHERITANCE-R1` as the Project bootstrap and inheritance contract for K Knowledge Supporting work. Apply `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1` for Project-wide chat/capability/standing-permission inheritance. For KTC payment-critical review, also apply the more specific `KTC-PAYMENT-MASTER-R1` contract.
 
 ## Repository boundary
 
@@ -8,18 +8,31 @@ This repository is public and sanitized. Never add KTC Production source, privat
 
 ## Project inheritance contract
 
-For a new Project chat or new AI session:
+For every current or future work chat/session inside **K Knowledge Supporting**:
 
-1. Use only durable Project sources that are actually available in the session.
-2. Load the general Project inheritance workflow before domain routing when applicable.
-3. Route to the most specific domain Skill/workflow for the task.
-4. Treat capability metadata as routing information, not factual evidence.
-5. Do not claim that arbitrary historical ChatGPT conversations were searched unless a supported history-search surface is actually available.
-6. Promote reusable chat-derived rules, capabilities, artifacts, and decisions into durable Project sources before expecting future chats to inherit them.
-7. Apply SHA-256 exact-match deduplication for Master Source promotion; preserve non-identical versions and provenance.
-8. Preserve source conflicts and use the governing source-authority order; never use last-write-wins for business truth.
+1. Treat the chat as a governance sibling in the same Project.
+2. Inherit the same Project governance, capability routing, source-authority rules, and baseline permission envelope.
+3. Reuse Project-wide standing non-critical permissions without duplicate grant when the required capability is actually available in the current session.
+4. Preserve any narrower authorization limit: one chat, one action, one repository/branch, one file, or one execution remains narrow unless the user explicitly broadens it.
+5. Require fresh/action-specific approval wherever the governing rule requires it, including critical Git write/merge/delete, Production/payment/security changes, destructive operations, and permission/access changes.
+6. Do not claim technical access merely because the chat is part of the same Project. Historical messages, uploads, mounted files, connector sessions, or external accounts may still be unavailable.
+7. Resolve effective executable permission as the intersection of Project-wide user authorization, the governing approval rule, current tool/connector availability, external permissions, branch/ruleset/check constraints, and platform safety/privacy/source-authority requirements.
+8. Use only durable Project sources that are actually available in the session for factual inheritance; promote reusable chat-derived knowledge into governed sources for reliable cross-chat reuse.
+9. Load the general Project inheritance workflow before domain routing when applicable.
+10. Route to the most specific domain Skill/workflow for the task.
+11. Treat capability metadata as routing information, not factual evidence.
+12. Do not claim that arbitrary historical ChatGPT conversations were searched unless a supported history-search surface is actually available.
+13. Apply SHA-256 exact-match deduplication for Master Source promotion; preserve non-identical versions and provenance.
+14. Preserve source conflicts and use the governing source-authority order; never use last-write-wins for business truth.
 
 See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md` and `docs/governance/K_KNOWLEDGE_SUPPORTING_CAPABILITY_REGISTRY_R1.md`.
+
+## Git authorization
+
+- Project default: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
+- Kotlin/Android RCA exception: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1` — `auto Git commit = No`; commit, push, and merge require explicit authorization for action + target repository/branch + scope.
+- Critical operations retain fresh, single-purpose approval immediately before the critical write/merge/delete action even when baseline Project permissions are inherited.
+- Never use Project-wide inheritance to bypass branch protection, required checks, external repository permission, source authority, privacy, or Production evidence gates.
 
 ## Production review contract
 
