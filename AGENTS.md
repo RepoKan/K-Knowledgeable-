@@ -17,6 +17,18 @@ Every work chat, thread, or chat box inside **K Knowledge Supporting** is a gove
 
 See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
 
+## Dynamic model routing
+
+Use `KKS-MODEL-ROUTING-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md` whenever an explicit model choice is relevant.
+
+- Resolve model availability from the active ChatGPT/Work/Codex/API surface first; a static repository file never grants model access.
+- Prefer GPT-5.6 Sol for complex reasoning, coding, research, Production debugging, and cross-system RCA.
+- Prefer GPT-5.6 Terra for routine professional work where capability/cost balance matters.
+- Prefer GPT-5.6 Luna for simple, repetitive, high-volume, cost-sensitive work.
+- Use GPT-6 Pro/Astra only when the active product/workspace actually exposes it and the task benefits from the highest-capability or long-running agentic workflow.
+- Re-check current official OpenAI model availability when the routing verification is more than 7 calendar days old, when a model disappears or is renamed, or when a new model appears in the active surface.
+- Model choice is routing metadata, not factual evidence; it never replaces exact Production source, approved specifications, runtime evidence, testing, or HOLD gates.
+
 ## Source synchronization
 
 Treat the following as synchronized operational sources by revision and provenance, not as equal authorities:
