@@ -20,6 +20,7 @@ This registry is a sanitized routing index. It is not factual evidence and does 
 - Skill and Agent operating-contract governance
 - Master Source file promotion, SHA-256 deduplication, and provenance
 - Conflict / HOLD / release-impact review
+- Dynamic model selection under `KKS-MODEL-ROUTING-R1`
 
 ## Requirements and integration analysis
 
@@ -32,6 +33,10 @@ This registry is a sanitized routing index. It is not factual evidence and does 
 
 Use the most specific available Skill or workflow for the task. For KTC payment-critical inspection, prefer the dedicated payment inspection workflow. Use the general Project inheritance workflow to bootstrap source identity, capability routing, retention, and synchronization.
 
+For explicit model selection, apply `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md`. Route by job complexity and execution surface, verify the model is actually available in the active workspace/product, and prefer current capability tiers over stale hard-coded model names.
+
 ## Evidence rule
 
 A capability entry only indicates where to look next. Production conclusions must still be supported by exact source, approved specification, vendor documentation, matched runtime evidence, or approved Project business rules according to the governing source-precedence policy.
+
+Model choice is also routing metadata, not evidence. A stronger model cannot replace missing Production proof, approved specifications, runtime tests, or the applicable HOLD gate.
