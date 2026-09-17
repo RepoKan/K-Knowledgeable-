@@ -32,24 +32,22 @@ If the current workspace does not expose the preferred model, do not claim it is
 As verified from official OpenAI sources on 2026-09-17:
 
 - `GPT-5.6 Sol` / API `gpt-5.6-sol` — flagship choice for complex reasoning, coding, research, science, computer use, and difficult professional work.
-- `GPT-5.6 Terra` / API `gpt-5.6-terra` — balanced capability/cost choice for routine professional work and everyday coding.
-- `GPT-5.6 Luna` / API `gpt-5.6-luna` — fastest / lowest-cost GPT-5.6 tier for simple, repetitive, or high-volume workloads.
-- `GPT-6 Astra` / `GPT-6 Pro` — use only when the active Chat/Work/Codex surface actually exposes it and the job benefits from the highest-capability, long-running, multi-step agentic workflow. Availability is workspace/plan controlled.
+- `GPT-5.6 Terra` — balanced capability/cost choice for routine professional work and everyday coding; available in Work/Codex/API where the product exposes it.
+- `GPT-5.6 Luna` — fastest / lowest-cost GPT-5.6 tier for simple, repetitive, or high-volume workloads; also used as the default ChatGPT model for Free/Go.
+- `GPT-6 Pro`, powered by `GPT-6 Astra` — highest-capability route for difficult or longer-running workflows when the active plan/workspace/product exposes it.
 
-Current official guidance also reports that Astra in Codex requires Codex CLI `0.153.0` or newer. GPT-5.6 in Codex requires Codex CLI `0.144.0` or newer.
-
-OpenAI has announced retirement of GPT-5.5 from ChatGPT, ChatGPT Work, and Codex on `2026-10-14`. Do not create new Project routing rules that depend on GPT-5.5. Existing saved model selections should be migrated to a currently supported GPT-5.6/Astra route before that date. The API retirement policy is separate and must be checked from current API documentation.
+OpenAI's current ChatGPT guidance states that GPT-5.6 Sol supports reasoning levels including Medium, High, and Extra High on eligible plans, while GPT-6 Pro is separately available on eligible plans. Work and Codex can expose Sol, Terra, Luna, and, depending on plan/product access, GPT-6 Astra.
 
 ## Job-to-model routing
 
 | Job class | Preferred route | Reasoning guidance | Fallback rule |
 |---|---|---|---|
-| KTC Payment / Production debugging / EMV / CTLS / ISO8583 / TLE / reversal / settlement RCA | GPT-5.6 Sol | High to Max where available | Use the strongest available reasoning model; do not silently downgrade a material Production-impact review |
-| Complex Kotlin/Android/SUNMI P3 debugging, architecture, multi-file impact tracing | Codex or Work with GPT-5.6 Sol | High/Max | Terra only when the task is bounded and low-risk; disclose downgrade for material RCA |
-| Large multi-step coding/research/computer-use workflow with many tools or long execution | GPT-6 Astra / GPT-6 Pro when actually available | Product-appropriate high effort | GPT-5.6 Sol High/Max |
-| Routine feature coding, code explanation, ordinary refactor, test scaffolding | GPT-5.6 Terra | Medium/High | Sol when ambiguity/impact increases; Luna for mechanical edits only |
-| Requirements comparison, RFI/spec analysis, technical documentation with moderate complexity | GPT-5.6 Terra | Medium/High | Sol for conflicting evidence or cross-domain synthesis |
-| Simple summarization, formatting, extraction, renaming, repetitive classification | GPT-5.6 Luna | None/Low/Medium as needed | Terra when context or ambiguity grows |
+| KTC Payment / Production debugging / EMV / CTLS / ISO8583 / TLE / reversal / settlement RCA | GPT-5.6 Sol | High / Extra High where available | Use the strongest available reasoning model; do not silently downgrade a material Production-impact review |
+| Complex Kotlin/Android/SUNMI P3 debugging, architecture, multi-file impact tracing | Codex or Work with GPT-5.6 Sol | High / Extra High | Terra only when the task is bounded and lower risk; disclose downgrade for material RCA |
+| Large multi-step coding/research/computer-use workflow with many tools or long execution | GPT-6 Pro / GPT-6 Astra when actually available | Highest product-supported effort | GPT-5.6 Sol High / Extra High |
+| Routine feature coding, code explanation, ordinary refactor, test scaffolding | GPT-5.6 Terra | Medium / High | Sol when ambiguity/impact increases; Luna for mechanical edits only |
+| Requirements comparison, RFI/spec analysis, technical documentation with moderate complexity | GPT-5.6 Terra | Medium / High | Sol for conflicting evidence or cross-domain synthesis |
+| Simple summarization, formatting, extraction, renaming, repetitive classification | GPT-5.6 Luna | Lowest effort that preserves correctness | Terra when context or ambiguity grows |
 | High-volume low-risk automation | GPT-5.6 Luna | Lowest effort that preserves correctness | Terra when error rate or ambiguity rises |
 
 ## K Knowledge Supporting escalation rules
@@ -62,7 +60,7 @@ For payment-critical or Production-impacting work:
 - Load exact source/spec/runtime revisions before drawing conclusions.
 - Use the highest appropriate reasoning level available for cross-file or cross-system impact analysis.
 - Escalate from Luna/Terra to Sol when evidence conflicts, behavior is ambiguous, or downstream impact is material.
-- Astra may be used for very large agentic investigations when available, but it does not waive source authority, test requirements, approval gates, or `HOLD - IMPACT NOT PROVEN`.
+- GPT-6 Pro/Astra may be used for very large agentic investigations when available, but it does not waive source authority, test requirements, approval gates, or `HOLD - IMPACT NOT PROVEN`.
 - If a preferred model is unavailable, state the actual fallback model when that could affect confidence or completeness.
 
 ## Freshness rule
@@ -75,7 +73,7 @@ Before an explicit model-selection decision that affects an operational workflow
 2. Re-check official OpenAI model documentation when the last external verification is older than 7 calendar days, when a model disappears/changes name, or when a new model is offered by the active product.
 3. Record the new verification date and update this rule when the change alters routing behavior.
 4. Prefer durable capability tiers (`highest-capability`, `balanced`, `fast/cost-efficient`) in automation logic and resolve them to current model IDs at runtime.
-5. Never hard-code a deprecated model as the only route.
+5. Never hard-code a model as the only route if product availability can vary by plan/workspace.
 
 ## MCP separation-of-concerns rule
 
@@ -85,10 +83,10 @@ The live connector/tool contract is the capability boundary. Static JSON cannot 
 
 ## Official sources used for this verification
 
+- https://openai.com/index/gpt-5-6/
 - https://help.openai.com/en/articles/20001354-gpt-5-6
-- https://help.openai.com/en/articles/20001275/
 - https://platform.openai.com/docs/models
-- https://openai.com/products/release-notes/
+- https://help.openai.com/en/articles/9624314
 
 ## Status
 
