@@ -17,6 +17,18 @@ Every work chat, thread, or chat box inside **K Knowledge Supporting** is a gove
 
 See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
 
+## Mandatory Value Proposition validation gate
+
+Apply `KKS-VALUE-PROPOSITION-VALIDATION-GATE-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_VALUE_PROPOSITION_GATE_R1.md` before using material inputs in Thinking, Analysis, Investigation, Production Solving, Root Cause Analysis, or equivalent reasoning workflows.
+
+- Validate objective, scope, source/evidence identity, observed vs expected behavior, constraints, conflicts, environment/version/revision, and acceptance/decision criteria as applicable to the job.
+- A present value is not automatically sufficient: it must be relevant, traceable where required, internally consistent, and recent enough for the decision.
+- If the gate returns `GAP`, stop before downstream reasoning and do not provide the downstream conclusion, solution, root cause, Production fix, or equivalent answer.
+- A blocked response must begin with the heading `GAP` and provide a numbered list stating the missing value, why it is required, how to prepare/obtain it, and the evidence/format required to close it.
+- Do not guess or silently fill missing material values from generic knowledge, stale memory, unsupported inference, or latest-file-wins.
+- After the user closes the listed GAP items, re-run the complete Value Proposition validation from the start. Continue only on `PASS`.
+- After downstream work completes, validate the result before reporting it to the user, then apply the normal Project final-response GAP rule.
+
 ## Dynamic model routing
 
 Use `KKS-MODEL-ROUTING-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md` whenever an explicit model choice is relevant.
