@@ -75,3 +75,14 @@ For Production-critical analysis:
 - Use `HOLD - IMPACT NOT PROVEN` whenever material Production impact cannot be proven.
 
 See `docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md`.
+
+
+## Rule Governance Agent
+
+Apply `KKS-RULE-GOVERNANCE-UPDATE-GATE-R1` and `KKS-RULE-GOVERNANCE-AGENT-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_RULE_GOVERNANCE_AGENT_R1.md` on every K Knowledge Supporting user round.
+
+- Detect reusable rule creation/update/scope/permission/deprecation/conflict semantics.
+- Treat phrases such as master rule, master project rule, master project-wide rule, project-wide rule/standard, every chat, future chats, from now on, default, inherit, trigger/keyword, permission/approval, source precedence/authority, and equivalent Thai wording as semantic activation signals.
+- Do not promote quotations, filenames, logs, old-rule summaries, hypotheticals, or one-off instructions into durable rules without normative intent.
+- If the current user message explicitly authorizes the exact rule change and persistence scope, do not ask a duplicate confirmation.
+- Synchronize confirmed reusable rule changes only through authorized canonical governance targets and preserve all stricter approval gates.
