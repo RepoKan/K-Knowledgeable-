@@ -20,7 +20,7 @@ The supplied contract describes workspace-scoped ChatGPT/Codex administrator acc
 codex.enterprise.analytics.read
 ```
 
-Current OpenAI Help Center guidance explicitly requires a workspace-scoped **Admin key** for Codex Enterprise Analytics and states that API Platform organization keys do **not** provide access to ChatGPT workspace analytics. It also confirms the `codex.enterprise.analytics.read` permission. Some localized OpenAI Developers/Learn pages still describe Platform organization API-key authentication; retain that as a documentation inconsistency, but use the newer operational Help Center guidance for credential setup. The authenticated Codex Enterprise Analytics API reference remains the normative source for exact endpoint and schema behavior.
+Current official OpenAI documentation is internally inconsistent on the credential type. The Admin-key Help Center guidance describes workspace-scoped **Admin keys** and confirms the `codex.enterprise.analytics.read` permission. However, the current English Codex Help Center page and OpenAI Developers/Learn Analytics API pages describe an **organization / Platform organization API key** for Codex Enterprise Analytics. Those pages point to the authenticated Codex Enterprise Analytics API reference as the source of truth for current key provisioning and access requirements. Public access to that reference redirects to ChatGPT login, so the conflict cannot be resolved from unauthenticated public documentation. Treat the credential type as an **official-source conflict pending authenticated-reference verification**.
 
 Security rule: keep the key in a secret manager or environment variable and send it only as:
 
@@ -36,8 +36,7 @@ Never commit the key, workspace IDs, or bearer headers to source control.
 |---|---|---|
 | Codex Enterprise Analytics capability exists | Confirmed externally | Current OpenAI Codex enterprise analytics documentation |
 | Admin key + `codex.enterprise.analytics.read` | Confirmed in current Help Center guidance | OpenAI Help Center |
-| Authentication credential for current operational setup | Confirmed by current Help Center guidance | Workspace-scoped Admin key; API Platform organization keys do not provide access to ChatGPT workspace analytics |
-| Older/localized Developers/Learn authentication wording | Documentation inconsistency retained | Some localized pages still describe Platform organization API-key authentication; do not use that wording to override current Help Center setup guidance |
+| Authentication credential type | Official-source conflict | Admin-key guidance: workspace-scoped Admin key + `codex.enterprise.analytics.read`; current English Codex Help Center and Developers/Learn: organization / Platform organization API key. Authenticated API reference is required to resolve. |
 | `api.chatgpt.com` Admin API host family | Confirmed at host-family level | Current OpenAI Admin API guidance |
 | Exact `/v1/analytics/codex/workspaces/{workspace_id}/...` routes | Supplied OpenAPI only | Authenticated API-reference verification pending |
 | `start_time`, `end_time`, UTC inclusive/exclusive rules, default 30-day window | Supplied OpenAPI only | Authenticated API-reference verification pending |
@@ -51,7 +50,7 @@ Never commit the key, workspace IDs, or bearer headers to source control.
 | HTTP 422 `HTTPValidationError` schema | Supplied OpenAPI only | Authenticated API-reference verification pending |
 | OpenAPI title/version `codex-backend-enterprise-analytics` / `0.0.1` | Provenance confirmed only from supplied artifact | No externally published canonical artifact was established |
 
-**Normative boundary:** Current OpenAI Help Center guidance is sufficient to confirm the workspace Admin-key setup and `codex.enterprise.analytics.read` permission. OpenAI's Codex analytics guidance still points implementers to the authenticated API reference for the exact routes, request/response schemas, metrics, time semantics, pagination, and other field-level behavior. Therefore the schema-level contract below remains candidate material until that reference is checked with authorized workspace access.
+**Normative boundary:** Public OpenAI documentation confirms that Codex Enterprise Analytics exists and that `codex.enterprise.analytics.read` is an available permission, but current official pages conflict on the credential type. OpenAI identifies the authenticated Codex Enterprise Analytics API reference as the authoritative source for current key provisioning, access requirements, routes, request/response schemas, metrics, time semantics, pagination, and field-level behavior. Because unauthenticated access to that reference redirects to ChatGPT login, the exact authentication mechanism and schema-level contract below remain candidate material until the reference is checked with authorized workspace access.
 
 **Labeling rule:** Unless a section is explicitly marked externally confirmed above, exact routes, parameters, defaults, field names, enum values, response envelopes, error models, and metric semantics below are **Supplied OpenAPI v0.0.1 — authenticated-reference verification pending**.
 
@@ -232,5 +231,5 @@ This contract can support:
 - Spec version: `0.0.1`
 - External verification review: 2026-09-18
 - Verification state: CANDIDATE — partially externally verified; canonical schema verification pending
-- Promotion gate: authentication setup is externally confirmed by current Help Center guidance; compare the authorized authenticated Codex Analytics API reference against exact routes, parameters, response schemas, pagination, time semantics, metric definitions, enum values, and error models; reconcile every divergence before promotion
+- Promotion gate: use the authorized authenticated Codex Enterprise Analytics API reference to resolve the current official credential conflict and verify exact routes, parameters, response schemas, pagination, time semantics, metric definitions, enum values, and error models; reconcile every divergence before promotion
 - Confidential data stored: none
