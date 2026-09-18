@@ -168,3 +168,15 @@ Use `READY FOR INHERITANCE` for durable prepared sources or approved Project-wid
 ## Public repository boundary
 
 This repository is public and sanitized. Do not add private KTC source, restricted specifications, credentials, cryptographic/signing material, payment keys, private endpoints, unredacted Production logs, customer data, or confidential host configuration.
+
+
+## Rule Governance Update Gate
+
+Rule ID: `KKS-RULE-GOVERNANCE-UPDATE-GATE-R1`  
+Agent ID: `KKS-RULE-GOVERNANCE-AGENT-R1`
+
+Every K Knowledge Supporting user round must be scanned for reusable governance intent. The Agent distinguishes one-off instructions from durable rule changes and recognizes Project wording such as create/set/update/master/project-wide/inherit/default/trigger/keyword/permission/approval/source-precedence language and equivalent Thai wording.
+
+The full contract and activation keyword map are in `docs/governance/K_KNOWLEDGE_SUPPORTING_RULE_GOVERNANCE_AGENT_R1.md`.
+
+A same-message explicit authorization for the exact rule delta and persistence scope satisfies the confirmation gate for that delta. Stricter fresh-approval rules remain mandatory.
