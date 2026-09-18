@@ -1,6 +1,6 @@
 # Codex Enterprise Analytics API — Workspace Usage & Code Review Metrics
 
-> Public-sanitized knowledge capture from a user-supplied OpenAPI 3.1.0 schema. No admin key, workspace ID, or other secret material is stored here. This capture has **not** been independently verified against external OpenAI documentation.
+> **Status: CANDIDATE — PARTIALLY EXTERNALLY VERIFIED / CANONICAL SCHEMA VERIFICATION PENDING.** Public-sanitized knowledge capture from a user-supplied OpenAPI 3.1.0 schema. No admin key, workspace ID, or other secret material is stored here. External OpenAI documentation was reviewed on 2026-09-18, but the authenticated Codex Analytics API reference still needs field-level verification.
 
 ## Source identity
 
@@ -20,7 +20,7 @@ The supplied contract describes workspace-scoped ChatGPT/Codex administrator acc
 codex.enterprise.analytics.read
 ```
 
-Use an Admin key, not an API Platform project key.
+Current OpenAI Help Center guidance supports the workspace Admin-key model and the `codex.enterprise.analytics.read` permission. A separate OpenAI learning page has also described Platform organization API-key authentication while deferring current access requirements and the normative contract to the authenticated API reference. Until that reference is checked directly, treat the exact authentication contract as **partially verified with an official-documentation conflict**, not as fully canonical.
 
 Security rule: keep the key in a secret manager or environment variable and send it only as:
 
@@ -29,6 +29,30 @@ Authorization: Bearer <admin_api_key>
 ```
 
 Never commit the key, workspace IDs, or bearer headers to source control.
+
+## External verification matrix — 2026-09-18
+
+| Contract area | Verification state | Evidence boundary |
+|---|---|---|
+| Codex Enterprise Analytics capability exists | Confirmed externally | Current OpenAI Codex enterprise analytics documentation |
+| Admin key + `codex.enterprise.analytics.read` | Confirmed in current Help Center guidance | OpenAI Help Center |
+| Exact authentication source/key type | Official-source conflict | Help Center supports workspace Admin key; another OpenAI learning page describes Platform organization API-key authentication and defers the normative contract to the authenticated API reference |
+| `api.chatgpt.com` Admin API host family | Confirmed at host-family level | Current OpenAI Admin API guidance |
+| Exact `/v1/analytics/codex/workspaces/{workspace_id}/...` routes | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| `start_time`, `end_time`, UTC inclusive/exclusive rules, default 30-day window | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| `limit=1..30000`, default `1000`, `page`/`next_page` cursor behavior | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| `group=workspace` semantics | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| Usage/review/response schemas and field names | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| Client/model enums, unknown-value behavior | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| Credits/USD/estimated-cost field semantics | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| Code-attribution metrics | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| P0/P1/P2 and review-response/merged-PR semantics | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| HTTP 422 `HTTPValidationError` schema | Supplied OpenAPI only | Authenticated API-reference verification pending |
+| OpenAPI title/version `codex-backend-enterprise-analytics` / `0.0.1` | Provenance confirmed only from supplied artifact | No externally published canonical artifact was established |
+
+**Normative boundary:** OpenAI's public Codex analytics guidance points implementers to the authenticated API reference for current routes, schemas, metrics, access requirements, time semantics, and pagination. Therefore the exact schema below remains candidate material until that reference is checked with authorized workspace access.
+
+**Labeling rule:** Unless a section is explicitly marked externally confirmed above, exact routes, parameters, defaults, field names, enum values, response envelopes, error models, and metric semantics below are **Supplied OpenAPI v0.0.1 — authenticated-reference verification pending**.
 
 ## Endpoint inventory
 
@@ -205,5 +229,7 @@ This contract can support:
 - Capture date: 2026-09-17
 - Source: OpenAPI 3.1.0 JSON supplied directly in the K Knowledge Supporting conversation
 - Spec version: `0.0.1`
-- Verification state: candidate / not externally verified in this capture
+- External verification review: 2026-09-18
+- Verification state: CANDIDATE — partially externally verified; canonical schema verification pending
+- Promotion gate: compare authorized authenticated Codex Analytics API reference against authentication, routes, parameters, response schemas, pagination, time semantics, metric definitions, and error models; reconcile every divergence before promotion
 - Confidential data stored: none
