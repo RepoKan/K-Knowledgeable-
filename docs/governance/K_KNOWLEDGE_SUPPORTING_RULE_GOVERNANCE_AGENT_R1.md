@@ -178,3 +178,22 @@ When this governance source is exposed in a future K Knowledge Supporting chat:
 3. Use Project activation keywords as signals.
 4. Preserve false-positive guards.
 5. Synchronize confirmed durable rule changes to available canonical control-plane sources.
+
+
+## GAP-SKILL-01 closure — 2026-09-18
+
+Status: `CLOSED (Project scope)`.
+
+The former gap "Native ChatGPT Skill installation" is not a blocking requirement for K Knowledge Supporting Project activation.
+
+Project activation is satisfied when all of the following are true:
+
+1. `KKS-RULE-GOVERNANCE-UPDATE-GATE-R1` is present in the Project inheritance contract.
+2. `KKS-RULE-GOVERNANCE-AGENT-R1` is present in the active Agent contract / `AGENTS.md`.
+3. The governed Notion Skill is discoverable.
+4. The sanitized GitHub governance is merged to canonical `main`.
+5. The reusable Skill package is validated and traceable by checksum.
+
+Native ChatGPT account-level Skill-catalog installation remains an optional external platform capability. It may be used when the active ChatGPT surface exposes a supported install/upload control, but absence of that control does not place the Project Agent on HOLD and does not downgrade Project activation from `SYNCED`.
+
+Do not claim `NATIVE_SKILL_INSTALLED` unless the active environment can verify that state directly.
