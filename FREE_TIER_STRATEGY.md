@@ -1,149 +1,94 @@
-# Free-Tier GitHub Architecture Strategy
+# K-Knowledgeable Free-Tier Architecture Strategy
 
-This document defines a safer, cheaper, and more maintainable architecture for a personal GitHub repository that uses GitHub Free as its default operating model.
+**Repository:** `RepoKan/K-Knowledgeable-`  
+**Purpose:** Public, personal knowledge storage and small Python/AI experiments  
+**Operating model:** GitHub Free, one owner, reviewable automation, no enterprise identity layer  
+**Status:** Target architecture
 
-## Objective
+## 1. Project goals
 
-Design a repository architecture that keeps the project usable for:
+This repository has three related goals:
 
-- version control
-- pull requests
-- issue tracking
-- lightweight CI/CD
-- docs and knowledge storage
-- automation within free-tier limits
-- clear separation of secrets and generated content
+1. Preserve durable knowledge as searchable Markdown.
+2. Provide small, reproducible Python experiments such as the cooking agent and joke generator.
+3. Support ChatGPT/Copilot-assisted documentation without granting an automation client unrestricted repository control.
 
-It should also remain compatible with a personal GitHub account and avoid patterns that require enterprise features or over-privileged repository access.
+The repository is **not** intended to be a production SaaS backend, a secret store, a binary artifact registry, or an enterprise SSO system.
 
-## Design principles
-
-1. Prefer public, low-risk content in the repository.
-2. Store secrets outside the repository, never in committed files.
-3. Limit automation to a narrow, documented scope.
-4. Keep generated artifacts in one folder such as `docs/` or `generated/`.
-5. Use branch protection, pull requests, and required checks when possible.
-6. Keep the repository small and readable.
-7. Use GitHub Actions only for simple validation and scheduled tasks.
-8. Treat GitHub Free as a practical baseline, not as a premium automation platform.
-
-## Recommended architecture
-
-### 1. Repository structure
+## 2. Target architecture
 
 ```text
-.
-├── .github/
-│   ├── workflows/
-│   │   ├── validate-docs.yml
-│   │   └── scheduled-sync.yml
-│   └── dependabot.yml
-├── docs/
-│   ├── architecture/
-│   ├── governance/
-│   ├── guides/
-│   └── generated/
-├── src/
-│   └── (app or bot logic)
-├── scripts/
-│   └── (small automation)
-├── tests/
-│   └── (basic validation)
-├── README.md
-├── LICENSE
-├── .gitignore
-├── requirements.txt
-└── .env.example
+Human / ChatGPT / Copilot
+          |
+          | proposed change
+          v
+Feature branch or pull request
+          |
+          v
+GitHub Actions: lint + syntax + secret-pattern checks
+          |
+          v
+Human review and merge to main
+          |
+          +--> knowledge-supporting/   durable knowledge
+          +--> docs/                    architecture and guides
+          +--> chatgpt-generated/      generated output, if retained
+          +--> cooking-agent/          isolated Python example
 ```
 
-### 2. Content model
+## 3. Repository boundaries
 
-- `docs/` holds durable documentation, architecture references, and user-facing content.
-- `generated/` stores output created by automation, but only after validation.
-- `src/` contains Python or other code, kept small and testable.
-- `scripts/` contains one-off utilities and CI helpers.
-- `tests/` confirms parsing, formatting, and build sanity.
+| Area | Purpose | Write policy |
+|---|---|---|
+| `knowledge-supporting/` | Durable knowledge and archives | Human or reviewed automation |
+| `docs/` | Architecture, governance, and guides | Pull request preferred |
+| `chatgpt-generated/` | Machine-generated Markdown | Must be validated and reviewed |
+| `cooking-agent/` | Independent Python example | Own dependencies and tests |
+| `.github/workflows/` | CI configuration | Owner review required |
+| Root JSON/config files | Integration metadata | Sanitized, no credentials |
 
-### 3. Automation model
+## 4. Security model
 
-Keep automation minimal and governed:
+- Keep the repository public only for sanitized content.
+- Never commit PATs, API keys, webhook secrets, private keys, `.env` files, or signing material.
+- Prefer the workflow-provided `GITHUB_TOKEN` for Actions.
+- Use the smallest token scope when an external connector is unavoidable.
+- Treat configuration files as documentation; they do not grant permissions by themselves.
+- Do not describe an integration as having `admin`, `delete`, or unrestricted workflow authority unless that access is actually required and separately controlled.
 
-- trigger validation on pull requests
-- trigger only simple scheduled processes
-- avoid autonomous repository-admin behavior
-- use clearly separated script folders
-- do not auto-delete files without review
-- never write secrets to files or commit tokens
+## 5. Automation model
 
-### 4. Security model
+Automation should be **bounded and reviewable**:
 
-Use the principle of least privilege:
+- CI validates changes; it does not administer the repository.
+- Generated output is limited to an explicitly documented directory.
+- Destructive operations are never automatic.
+- Scheduled jobs are low frequency and idempotent.
+- Workflow permissions default to read-only and are elevated only for a specific job.
+- Automation failures are visible through Actions checks and issues, not hidden retries that mutate more files.
 
-- secrets in GitHub Actions secrets or environment variables
-- no PATs in repository files
-- rotate credentials regularly
-- restrict write scopes to the required branch or docs path
-- avoid broad admin-level permissions in automation config
+## 6. Free-tier cost controls
 
-### 5. Free-tier operating posture
+- Prefer Markdown, JSON, and small source files.
+- Do not store large media, datasets, APKs, ZIPs, or build outputs in Git history.
+- Upload only small, temporary CI artifacts when necessary; do not use Actions artifacts as permanent storage.
+- Avoid unnecessary scheduled workflows and matrix builds.
+- Keep Python dependencies small and cache only when it materially reduces runtime.
 
-For GitHub Free, the project should stay within these guardrails:
+## 7. Definition of done
 
-- public or low-volume private repos only
-- small documentation-first repo
-- modest GitHub Actions minutes and artifact sizes
-- no large binaries in the Git history
-- no heavy package caches or large dependencies on a routine basis
-- no storage of large PDFs, APKs, or media assets in the repo
+The target is achieved when:
 
-## Suggested workflow
+- every change to `main` is reviewable;
+- CI validates Markdown and Python content;
+- no committed file contains a secret;
+- generated content has a documented owner and destination;
+- the connector documentation describes least privilege rather than unrestricted access;
+- the repository remains useful if ChatGPT/Copilot automation is unavailable.
 
-### Standard flow
+## References
 
-1. contributor creates a branch
-2. edits docs or scripts
-3. opens pull request
-4. CI validates markdown, syntax, or tests
-5. reviewer approves
-6. merge to main
-
-### Auto-generation flow
-
-1. script reads source data
-2. writes generated content to `docs/generated/`
-3. validation step checks the output
-4. output is reviewed in a PR
-5. merge only after successful checks
-
-## Recommended guardrails for this repository
-
-This repository currently includes a strong automation design and a connector-style configuration that assumes broad write and admin rights. For a free-tier best-practice model, those rights should be scaled down.
-
-Recommended changes:
-
-- keep automation focused on docs and generated content only
-- avoid `delete` and `admin` permission assumptions in config
-- write generated output only to a controlled folder
-- use a single validation workflow instead of many broad automation models
-- document all automation behavior in `docs/`
-
-## Decision summary
-
-Best total-cost, best-maintenance model for GitHub Free:
-
-- documentation-first repository
-- modest automation
-- narrow write scopes
-- public content and minimal secrets
-- review-driven changes
-- low operational overhead
-
-This model is safer, easier to maintain, and much more aligned with the spirit of free-tier GitHub usage than broad autonomous repository control.
-
-## Reference links
-
-- GitHub Plans: https://docs.github.com/en/get-started/learning-about-github/githubs-plans
-- GitHub Actions billing and limits: https://docs.github.com/en/billing/concepts/product-billing/github-actions
-- Repository limits: https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits
-- Branch protection: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
-
+- [GitHub plans](https://docs.github.com/en/get-started/learning-about-github/githubs-plans)
+- [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions)
+- [Repository limits](https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits)
+- [Workflow permissions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions)

@@ -1,124 +1,61 @@
-# Free-Tier Improvement Plan
+# Free-Tier Improvement Plan for K-Knowledgeable-
 
-This plan converts the current repository into a safer, cleaner, and more maintainable GitHub Free architecture.
+## Phase 0 — Safety audit
 
-## Phase 1: Simplify the operating model
+- Search the full Git history and current tree for tokens, keys, passwords, and private URLs.
+- Rotate any credential that may have been committed, even if later deleted.
+- Confirm that public `knowledge-supporting/` content is sanitized.
 
-### Actions
+## Phase 1 — Documentation correction
 
-- move generated files into a dedicated folder such as `docs/generated/`
-- remove repo-wide admin assumptions from automation guidance
-- reduce connector documentation to a narrow, least-privilege model
-- clarify that automation only writes approved content paths
+- Replace unrestricted connector language with the `KKS-ARCH-FREE-R1` security model.
+- Explain that configuration files do not grant GitHub permissions.
+- Correct repository metadata and remove claims that cannot be verified from the repository.
 
-### Result
+## Phase 2 — Content boundaries
 
-The repository uses a smaller operational surface area and less risk of broad accidental changes.
+- Keep durable knowledge under `knowledge-supporting/`.
+- Keep architecture and governance under `docs/`.
+- Keep generated content under `chatgpt-generated/` or `docs/generated/`, not both without a clear reason.
+- Keep application examples isolated in their existing directories.
 
-## Phase 2: Separate source from generated content
+## Phase 3 — CI simplification
 
-### Proposed structure
+- Retain only workflows with a clear purpose.
+- Add Markdown, Python syntax, JSON/YAML parsing, and basic secret-pattern checks.
+- Set explicit minimal workflow permissions.
+- Avoid uploading permanent artifacts to Actions.
 
-```text
-docs/
-  architecture/
-  governance/
-  generated/
-  guides/
-```
+## Phase 4 — Review and branch controls
 
-### Benefits
+- Use a branch and pull request for generated or structural changes.
+- Require successful checks before merging where available.
+- Prevent force pushes and accidental deletion of `main`.
+- Reserve direct commits for trivial, low-risk personal maintenance.
 
-- easier review
-- cleaner content ownership
-- lower accidental overwrite risk
-- simpler automation behavior
+## Phase 5 — Connector hardening
 
-## Phase 3: Turn validation into a default path
+- Use read-only access for inspection.
+- Permit writes only to the approved generated-content path.
+- Do not permit automatic deletion or workflow administration.
+- Require explicit human approval for workflow, governance, security, or destructive changes.
 
-### Recommended checks
+## Phase 6 — Ongoing maintenance
 
-- markdown linting
-- basic YAML validation
-- Python syntax validation
-- scan for secret patterns
-- verify generated files follow naming conventions
+Monthly or before a significant release:
 
-### Result
+- review Actions usage and failures;
+- remove unused workflows and dependencies;
+- check repository size and large files;
+- review collaborator and token access;
+- update architecture documentation when the project purpose changes.
 
-Every change is validated before merge, even for low-risk content.
+## Prioritization
 
-## Phase 4: Add review gates
+**Do first:** secret audit, permission-language correction, generated-path decision.  
+**Do next:** workflow cleanup, CI validation, branch/review controls.  
+**Do later:** static documentation publishing, richer tests, external artifact storage.
 
-### Recommended gates
+## Success measure
 
-- require pull requests before merge
-- require at least one reviewer for `main`
-- optionally require status checks to pass
-- deny force pushes on default branch
-
-### Result
-
-The repo becomes more stable and easier to trust.
-
-## Phase 5: Reduce secret and token exposure
-
-### Rules
-
-- never store tokens in repository files
-- define secrets only in GitHub Actions or local environment files
-- keep `.env.example` as a template, not a live credential source
-- document required scopes clearly
-
-### Result
-
-The risk of token leakage drops sharply.
-
-## Phase 6: Keep automation narrow and explainable
-
-### Examples
-
-- generate docs summaries
-- validate markdown structure
-- publish static docs if needed
-- run low-cost scheduled tasks
-
-### Avoid
-
-- automatic mutation outside a defined path
-- admin-level workflow behavior
-- broad connector privileges
-- destructive automation without review
-
-## Phase 7: Operate as a lightweight knowledge repo
-
-The repository should act as a documentation and knowledge base, not as a broad autonomous repo administration layer.
-
-### Recommended posture
-
-- text-first
-- review-first
-- documented outputs
-- minimal automation
-- low-risk free-tier hosting
-
-## Final target state
-
-The final repository design should resemble:
-
-- a documentation-first GitHub project
-- small automation set
-- narrow output scope
-- strong review boundaries
-- no broad admin assumptions
-- small operational footprint under GitHub Free
-
-## Implementation priority
-
-1. reduce permission scope
-2. separate generated files
-3. enforce PR review flow
-4. add validation workflow
-5. document all automation
-6. keep the repository minimal and transparent
-
+The project remains useful as a public personal knowledge base with small experiments, while a connector failure or accidental automation run cannot administer the repository or silently destroy unrelated content.

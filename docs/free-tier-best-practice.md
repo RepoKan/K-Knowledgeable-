@@ -1,137 +1,60 @@
-# Free-Tier Best Practice Architecture
+# Free-Tier Best Practice Guide
 
-This architecture is optimized for a personal GitHub account operating under GitHub Free and focused on documentation, knowledge management, and small automation.
+This guide is the operational companion to [`kks-architecture-spec.md`](architecture/kks-architecture-spec.md).
 
-## Goals
+## Recommended daily workflow
 
-- stay within GitHub Free limits
-- keep repository safe and maintainable
-- use clear review and governance patterns
-- avoid unnecessary admin or automation privileges
-- support a lightweight knowledge-driven workflow without enterprise features
+1. Create a branch for a change.
+2. Edit knowledge, docs, or an isolated example.
+3. Run local Markdown and Python checks.
+4. Open a pull request.
+5. Review generated output and changed permissions.
+6. Merge only after checks pass.
 
-## Architecture layers
+## Safe generated-content workflow
 
-### 1. Source layer
+```text
+Prompt or source data
+        |
+        v
+Small deterministic generator
+        |
+        v
+Approved generated directory
+        |
+        v
+CI validation
+        |
+        v
+Pull request review
+        |
+        v
+main
+```
 
-The source layer is the human-maintained part of the repository.
+## Never do these things
 
-Recommended areas:
+- commit a token, password, private key, or live webhook URL;
+- use a public repository as a database for private information;
+- let a generator delete unrelated files;
+- grant admin access when writing Markdown is enough;
+- store large build outputs or binary collections in Git;
+- rely on a README claim as evidence of actual GitHub permissions.
 
-- `README.md`
-- `docs/architecture/`
-- `docs/guides/`
-- `docs/governance/`
-- `src/`
-- `tests/`
+## Practical free-tier controls
 
-Rules:
+- Keep Actions workflows short and infrequent.
+- Use path filters so documentation checks do not run for unrelated changes.
+- Keep artifacts temporary and small.
+- Prefer repository history for text revisions and external storage for large media.
+- Use issues and pull requests for assignment, review, approval, and decision records.
+- Use Actions checks and workflow logs for monitoring instead of building a monitoring service.
 
-- keep source human-readable
-- avoid committing secrets
-- keep the repo mostly text-based
-- prefer markdown and scripts over large binary assets
+## Project-specific storage rule
 
-### 2. Processing layer
+- `knowledge-supporting/`: durable, reviewed knowledge.
+- `docs/`: architecture, policies, and user guides.
+- `chatgpt-generated/`: machine-generated drafts or outputs, always subject to validation and review.
+- `cooking-agent/`: isolated example application.
 
-Use scripts or GitHub Actions to process knowledge or generated content. Keep processing deterministic.
-
-Examples:
-
-- markdown validation
-- content linting
-- small generated summaries
-- scheduled updates limited to docs or generated folders
-
-Recommended practices:
-
-- no delete-by-default automation
-- no direct repo-admin operations
-- all generated content goes to a controlled directory
-- pipeline is idempotent and reviewable
-
-### 3. Validation layer
-
-Use CI to validate:
-
-- markdown structure
-- YAML syntax
-- Python syntax
-- script execution against sample data
-- missing required metadata
-
-Example workflow responsibilities:
-
-- `markdownlint` or comparable checks
-- Python unit tests
-- static validation of generated files
-- check for unsafe secret patterns
-
-### 4. Review layer
-
-Use pull requests as the main policy model.
-
-Recommended controls:
-
-- require review for `main`
-- restrict direct pushes if possible
-- enforce checks before merge
-- review generated content before publishing
-
-### 5. Monitoring layer
-
-Use built-in platform feedback instead of custom heavy observability.
-
-Use:
-
-- Actions status pages
-- workflow logs
-- repository checks
-- issue and pull request review history
-
-Avoid:
-
-- large custom monitoring stacks
-- per-commit event pipelines
-- external monitoring solutions unless they are essential
-
-## Recommended automation policy
-
-### Allowed automation
-
-- scheduled doc refresh
-- generated Markdown summary creation
-- CI validation
-- simple content quality checks
-- small repository health scripts
-
-### Avoided automation
-
-- repo-wide delete operations
-- broad bot permissions
-- admin-level automation
-- high-frequency network polling
-- writing secrets into config files
-- uncontrolled binary generation
-
-## Recommended repository policy
-
-- keep generated files in `docs/generated/` or similar
-- allow bot writes only to a known folder
-- use manual review for large changes
-- prefer deterministic, small files
-- keep history clean and intentional
-
-## Security best practices
-
-1. Use `GITHUB_TOKEN` in workflows where possible.
-2. If PATs are necessary, use the smallest scope required.
-3. Store secrets in repository secrets or environment variables.
-4. Never commit API keys, tokens, or credentials.
-5. Review workflow triggers and branch scopes.
-6. Validate code before using it in automation.
-
-## Summary
-
-The best free-tier architecture is not a large autonomous connector. It is a disciplined, text-first, review-driven repository with narrow automation, clear folder boundaries, and minimal permissions. This is the safest model for a personal repository under GitHub Free.
-
+If a file does not fit one of these categories, classify it before adding it.
