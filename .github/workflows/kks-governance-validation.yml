@@ -2,12 +2,8 @@ name: KKS governance validation
 
 on:
   pull_request:
-    paths:
-      - "README.md"
-      - "CHATGPT_CONNECTOR_GUIDE.md"
-      - "chatgpt-connector-channel.json"
-      - "scripts/validate_kks_governance.py"
-      - ".github/workflows/kks-governance-validation.yml"
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
