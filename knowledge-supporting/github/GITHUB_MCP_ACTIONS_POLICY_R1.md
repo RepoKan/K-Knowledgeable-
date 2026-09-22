@@ -6,13 +6,21 @@ Baseline reviewed: `main@afd0260cba7ad92c8767391d4dde1ff39f0d67d9`
 
 ## MCP review
 
-GitHub repository MCP settings on GitHub.com are shared by Copilot cloud agent and Copilot code review. GitHub and Playwright MCP servers are enabled by default, so the repository settings page does not need an additional custom server unless external data or tools are required.
+GitHub repository MCP settings on GitHub.com are shared by Copilot cloud agent and Copilot code review. GitHub and Playwright MCP servers are enabled by default, so this repository does not need a duplicate custom GitHub MCP server unless external data or wider GitHub access is intentionally required.
 
-The repository previously contained a root `mcp_config.json` using a `servers` top-level object. That format is not the JSON shape documented for GitHub repository MCP settings, which use `mcpServers` and require explicit server `type` and `tools`.
+The repository already contains a root `mcp_config.json` with a `servers` top-level object. That is not the current GitHub repository MCP-settings schema and it is not the recommended Copilot CLI project-level location. Current GitHub repository settings use `mcpServers`; Copilot CLI project-level configuration is loaded from `.mcp.json` or `.github/mcp.json`.
 
-A new `.github/mcp.json` is included for project-level Copilot CLI use. It uses the GitHub MCP read-only endpoint and limits toolsets to repository, issue, pull-request, Actions, code-security, and secret-protection data. This is intentionally read-only because GitHub Copilot can use configured MCP tools autonomously.
+Because the built-in GitHub server is already available, this change does **not** add a second GitHub server. Instead, `.github/policies/kks-copilot-mcp-settings.json` is a copy-ready repository-settings payload that leaves custom MCP servers empty:
 
-Do not add credentials, private keys, tokens, or private Production material to this public repository. If a future MCP server needs secrets, use Copilot Agents secrets/variables with the `COPILOT_MCP_` prefix.
+```json
+{
+  "mcpServers": {}
+}
+```
+
+This preserves the built-in GitHub and Playwright MCP servers while avoiding unnecessary credentials and duplicate tool surfaces.
+
+Do not add credentials, private keys, tokens, or private Production material to this public repository. If a future custom MCP server requires secrets, use Copilot Agents secrets/variables and follow the required `COPILOT_MCP_` naming rules.
 
 ## Actions policy review
 
@@ -28,7 +36,7 @@ No reviewed workflow uses `pull_request_target`.
 
 The import file `.github/policies/kks-safe-actions-events-r1.json` therefore allows only the events currently required by the repository and intentionally omits `pull_request_target`.
 
-This aligns with GitHub's security guidance for public repositories: `pull_request_target` is privileged and should remain blocked unless a hardened workflow has a proven need for it.
+This aligns with GitHub's security guidance for public repositories: `pull_request_target` is a privileged event and GitHub is moving public repositories toward blocking it by default.
 
 ## Apply in GitHub UI
 
@@ -39,8 +47,8 @@ For Copilot cloud agent and Copilot code review:
 1. Open repository **Settings**.
 2. Open **Copilot -> MCP servers**.
 3. Keep the built-in GitHub and Playwright servers enabled.
-4. Add custom JSON only when an external MCP server is required.
-5. Do not paste `.github/mcp.json` into this page merely to duplicate the built-in GitHub server.
+4. If the page is empty and no external MCP server is needed, use the payload from `.github/policies/kks-copilot-mcp-settings.json`.
+5. Add custom MCP JSON only when an external server or wider GitHub data scope is actually required.
 
 ### Actions policy
 
@@ -49,7 +57,7 @@ For Copilot cloud agent and Copilot code review:
 3. Choose **New policy -> Import a ruleset**.
 4. Upload `.github/policies/kks-safe-actions-events-r1.json`.
 5. Review the preview and confirm that `pull_request_target` is not allowed.
-6. Create/activate the policy only after the repository administrator confirms the event allowlist is still complete.
+6. Create/activate the policy only after confirming the event allowlist still matches all repository workflows.
 
 ## Change control
 
