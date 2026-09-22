@@ -42,6 +42,12 @@ queries:
   - "Summarize the files that configure Copilot Spaces for this repo."
 ```
 
+# Connector governance
+- Apply `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` when Copilot/ChatGPT/Codex uses GitHub connector tools.
+- Routine non-critical, non-security repository operations already covered by Project authorization may proceed without duplicate permission prompts.
+- Connector capability is not security authorization. Never use the connector to bypass rulesets, branch protection, required checks/reviews, access controls, secrets, Actions policies, token/auth scopes, security settings, or stricter fresh-approval requirements.
+- Security/admin changes require the applicable explicit task-specific authorization.
+
 # Security and private data
 - Do NOT add secrets, private keys, or credentials to the Space. Instead document how to obtain them and how to configure them locally (e.g., using environment variables or a secrets manager).
 
