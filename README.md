@@ -6,7 +6,7 @@
 
 ## Operating contract
 
-This repository documents how a GitHub connector may be used. A connector's technical capability is not authorization to perform an action.
+This repository documents how a GitHub connector may be used. A connector's technical capability does not grant authorization to perform an action.
 
 All repository changes follow this path:
 
