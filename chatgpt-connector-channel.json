@@ -1,10 +1,18 @@
 {
+  "schema_version": "1.1",
+  "governance": {
+    "policy": "KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1",
+    "git_policy": "KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1",
+    "critical_action_approval": "fresh_action_specific",
+    "write_strategy": "feature_branch_pull_request",
+    "public_repository_boundary": true
+  },
   "session_termination": {
-    "status": "terminated",
-    "timestamp": "2026-08-30T15:31:10Z",
-    "reason": "Manual session termination to allow connector processing",
-    "connector_mode": "active",
-    "allow_autonomous_processing": true
+    "status": "governance-gated",
+    "timestamp": "2026-09-22T00:00:00Z",
+    "reason": "Connector capability does not grant authorization",
+    "connector_mode": "approval_required",
+    "allow_autonomous_processing": false
   },
   "channel": {
     "name": "ChatGPT Connector Channel",
@@ -13,187 +21,41 @@
     "permissions": {
       "read": true,
       "write": true,
-      "delete": true,
-      "admin": true
+      "delete": false,
+      "admin": false
     },
+    "authorization_note": "Effective permission is determined by the active connection, repository rules, and explicit approval.",
     "endpoints": {
       "base_url": "https://api.github.com/repos/RepoKan/K-Knowledgeable-",
       "store_md_file": "/contents",
       "retrieve_md_file": "/contents",
       "list_files": "/contents",
-      "auth_type": "token"
-    },
-    "api_routes": {
-      "post_file": {
-        "method": "PUT",
-        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
-        "description": "Store markdown files in repository",
-        "permissions": [
-          "write",
-          "admin"
-        ]
-      },
-      "get_file": {
-        "method": "GET",
-        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
-        "description": "Retrieve markdown files from repository",
-        "permissions": [
-          "read",
-          "admin"
-        ]
-      },
-      "list_directory": {
-        "method": "GET",
-        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{path}",
-        "description": "List files in directory",
-        "permissions": [
-          "read",
-          "admin"
-        ]
-      },
-      "delete_file": {
-        "method": "DELETE",
-        "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
-        "description": "Delete markdown files from repository",
-        "permissions": [
-          "delete",
-          "admin"
-        ]
-      }
-    },
-    "actions_workflows": {
-      "enabled": true,
-      "authorization_model": "write",
-      "permissions": {
-        "create_workflow": true,
-        "update_workflow": true,
-        "delete_workflow": true,
-        "trigger_workflow": true,
-        "read_workflow_runs": true,
-        "cancel_workflow_runs": true,
-        "rerun_workflow": true
-      },
-      "endpoints": {
-        "list_workflows": {
-          "method": "GET",
-          "path": "/repos/RepoKan/K-Knowledgeable-/actions/workflows",
-          "description": "List all workflows in repository",
-          "permission_level": "read"
-        },
-        "get_workflow": {
-          "method": "GET",
-          "path": "/repos/RepoKan/K-Knowledgeable-/actions/workflows/{workflow_id}",
-          "description": "Get workflow details",
-          "permission_level": "read"
-        },
-        "create_workflow": {
-          "method": "PUT",
-          "path": "/repos/RepoKan/K-Knowledgeable-/contents/.github/workflows/{workflow_name}.yml",
-          "description": "Create new workflow file",
-          "permission_level": "write"
-        },
-        "update_workflow": {
-          "method": "PUT",
-          "path": "/repos/RepoKan/K-Knowledgeable-/contents/.github/workflows/{workflow_id}.yml",
-          "description": "Update existing workflow",
-          "permission_level": "write"
-        },
-        "delete_workflow": {
-          "method": "DELETE",
-          "path": "/repos/RepoKan/K-Knowledgeable-/contents/.github/workflows/{workflow_id}.yml",
-          "description": "Delete workflow file",
-          "permission_level": "write"
-        },
-        "trigger_workflow": {
-          "method": "POST",
-          "path": "/repos/RepoKan/K-Knowledgeable-/actions/workflows/{workflow_id}/dispatches",
-          "description": "Trigger workflow dispatch",
-          "permission_level": "write"
-        },
-        "list_workflow_runs": {
-          "method": "GET",
-          "path": "/repos/RepoKan/K-Knowledgeable-/actions/runs",
-          "description": "List workflow runs",
-          "permission_level": "read"
-        },
-        "cancel_workflow_run": {
-          "method": "POST",
-          "path": "/repos/RepoKan/K-Knowledgeable-/actions/runs/{run_id}/cancel",
-          "description": "Cancel a workflow run",
-          "permission_level": "write"
-        },
-        "rerun_workflow": {
-          "method": "POST",
-          "path": "/repos/RepoKan/K-Knowledgeable-/actions/runs/{run_id}/rerun",
-          "description": "Rerun a workflow",
-          "permission_level": "write"
-        }
-      },
-      "workflow_templates": {
-        "auto_generate": true,
-        "templates": [
-          {
-            "name": "chatgpt-markdown-sync",
-            "trigger": "push",
-            "on_paths": [
-              "chatgpt-generated/**/*.md"
-            ],
-            "description": "Sync ChatGPT-generated markdown files"
-          },
-          {
-            "name": "chatgpt-file-validation",
-            "trigger": "pull_request",
-            "on_paths": [
-              "chatgpt-generated/**"
-            ],
-            "description": "Validate ChatGPT-generated content"
-          }
-        ]
-      }
+      "auth_type": "connection-managed"
     },
     "storage_config": {
       "default_directory": "chatgpt-generated",
       "file_format": "markdown",
-      "auto_commit": true,
-      "commit_message_template": "Auto-generated from ChatGPT: {filename}"
-    },
-    "features": {
-      "auto_file_creation": true,
-      "version_control": true,
-      "backup_enabled": true,
-      "sync_enabled": true,
-      "workflow_automation": true
+      "auto_commit": false,
+      "default_branch": "main",
+      "write_target": "approved_feature_branch",
+      "commit_message_template": "Scoped change: {filename}"
     }
   },
-  "connector_processing": {
-    "status": "ready",
-    "autonomous_mode": true,
-    "processing_queue": [],
-    "error_handling": "automatic_retry",
-    "max_retries": 3,
-    "retry_delay_seconds": 5
+  "features": {
+    "auto_file_creation": false,
+    "version_control": true,
+    "backup_enabled": false,
+    "sync_enabled": true,
+    "workflow_automation": false,
+    "pull_request_required": true,
+    "human_approval_required": true
   },
-  "governance": {
-    "rule_id": "KKS-GITHUB-CONNECTOR-FAST-PATH-R1",
-    "fast_path_enabled": true,
-    "fast_path_scope": "non_critical_non_security_repository_operations",
-    "skip_duplicate_conversational_approval": true,
-    "connector_capability_is_task_authorization": false,
-    "security_admin_fast_path_allowed": false,
-    "never_bypass": [
-      "branch_protection",
-      "rulesets",
-      "required_status_checks",
-      "required_reviews",
-      "repository_or_collaborator_permissions",
-      "secrets_or_sensitive_variables",
-      "actions_policies",
-      "security_settings",
-      "token_or_authentication_scopes",
-      "platform_safety_and_tool_contracts",
-      "stricter_fresh_approval_rules"
-    ],
-    "security_admin_operations_require_task_specific_authorization": true,
-    "note": "Technical connector permissions describe capability only and must not be treated as a security bypass."
+  "connector_processing": {
+    "status": "governance-gated",
+    "autonomous_mode": false,
+    "processing_queue": [],
+    "error_handling": "report_for_review",
+    "max_retries": 0,
+    "retry_delay_seconds": 0
   }
 }
