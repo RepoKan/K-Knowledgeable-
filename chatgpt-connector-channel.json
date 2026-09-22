@@ -28,25 +28,37 @@
         "method": "PUT",
         "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
         "description": "Store markdown files in repository",
-        "permissions": ["write", "admin"]
+        "permissions": [
+          "write",
+          "admin"
+        ]
       },
       "get_file": {
         "method": "GET",
         "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
         "description": "Retrieve markdown files from repository",
-        "permissions": ["read", "admin"]
+        "permissions": [
+          "read",
+          "admin"
+        ]
       },
       "list_directory": {
         "method": "GET",
         "path": "/repos/RepoKan/K-Knowledgeable-/contents/{path}",
         "description": "List files in directory",
-        "permissions": ["read", "admin"]
+        "permissions": [
+          "read",
+          "admin"
+        ]
       },
       "delete_file": {
         "method": "DELETE",
         "path": "/repos/RepoKan/K-Knowledgeable-/contents/{filename}",
         "description": "Delete markdown files from repository",
-        "permissions": ["delete", "admin"]
+        "permissions": [
+          "delete",
+          "admin"
+        ]
       }
     },
     "actions_workflows": {
@@ -123,13 +135,17 @@
           {
             "name": "chatgpt-markdown-sync",
             "trigger": "push",
-            "on_paths": ["chatgpt-generated/**/*.md"],
+            "on_paths": [
+              "chatgpt-generated/**/*.md"
+            ],
             "description": "Sync ChatGPT-generated markdown files"
           },
           {
             "name": "chatgpt-file-validation",
             "trigger": "pull_request",
-            "on_paths": ["chatgpt-generated/**"],
+            "on_paths": [
+              "chatgpt-generated/**"
+            ],
             "description": "Validate ChatGPT-generated content"
           }
         ]
@@ -156,5 +172,28 @@
     "error_handling": "automatic_retry",
     "max_retries": 3,
     "retry_delay_seconds": 5
+  },
+  "governance": {
+    "rule_id": "KKS-GITHUB-CONNECTOR-FAST-PATH-R1",
+    "fast_path_enabled": true,
+    "fast_path_scope": "non_critical_non_security_repository_operations",
+    "skip_duplicate_conversational_approval": true,
+    "connector_capability_is_task_authorization": false,
+    "security_admin_fast_path_allowed": false,
+    "never_bypass": [
+      "branch_protection",
+      "rulesets",
+      "required_status_checks",
+      "required_reviews",
+      "repository_or_collaborator_permissions",
+      "secrets_or_sensitive_variables",
+      "actions_policies",
+      "security_settings",
+      "token_or_authentication_scopes",
+      "platform_safety_and_tool_contracts",
+      "stricter_fresh_approval_rules"
+    ],
+    "security_admin_operations_require_task_specific_authorization": true,
+    "note": "Technical connector permissions describe capability only and must not be treated as a security bypass."
   }
 }
