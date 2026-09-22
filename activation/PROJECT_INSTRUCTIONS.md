@@ -50,6 +50,14 @@ Kotlin/Android RCA exception: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1` — `auto Git comm
 
 Critical actions retain fresh, single-purpose approval immediately before execution. Project-wide permission inheritance does not override this requirement.
 
+## GitHub Connector fast path
+
+Load `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` whenever ChatGPT, Codex, or Copilot uses the GitHub connector.
+
+For routine non-critical and non-security GitHub work already covered by standing Project authorization, do not ask the user to repeat the same permission merely because the connector is being used. Proceed through the connector and keep the operation traceable.
+
+This fast path never applies to security or administrative mutations, including permissions/access, rulesets, branch protection, required checks/reviews, secrets, Actions policies, security settings, token scopes, deploy keys, or other security controls. Connector capability does not authorize bypass.
+
 ## Production evidence
 
 Never use chat recency or latest-file-wins as Production authority. Resolve the exact source/spec/runtime revision applicable to the task. When material evidence is missing, use `HOLD - IMPACT NOT PROVEN`.
