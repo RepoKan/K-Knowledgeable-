@@ -1,3 +1,9 @@
+> [!IMPORTANT]
+> **Master connector rule:** `KKS-GITHUB-CONNECTOR-FAST-PATH-R1`.
+> ChatGPT/Codex/Copilot may skip duplicate conversational approval/process for routine non-critical, non-security GitHub work that is already inside authorized Project scope. Connector capabilities such as read/write/delete/admin are capability signals only and do **not** authorize security or administrative collaboration.
+> Never use connector permission to bypass rulesets, branch protection, required checks/reviews, repository access controls, secrets, Actions policies, token/auth scopes, security settings, destructive protections, platform restrictions, or stricter fresh-approval rules.
+> See `docs/governance/K_KNOWLEDGE_SUPPORTING_GITHUB_CONNECTOR_FAST_PATH_R1.md`.
+
 # K-Knowledgeable- Repository: ChatGPT Connector Integration Guide
 
 **Repository Owner:** RepoKan  
