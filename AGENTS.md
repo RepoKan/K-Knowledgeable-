@@ -58,6 +58,18 @@ The exact Production source and approved evidence retain authority according to 
 - Critical operations retain fresh, single-purpose approval immediately before the critical action even when Project-wide baseline permissions exist.
 - Never use Project-wide inheritance to bypass branch protection, rulesets, required checks, external repository permissions, or Production evidence gates.
 
+## GitHub Connector fast path
+
+Apply `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` for ChatGPT/Codex/Copilot GitHub connector work.
+
+- For routine non-critical, non-security repository work already inside the authorized Project scope, bypass duplicate conversational approval/process and proceed through the available GitHub connector.
+- Connector permission is capability only; it is never standing authorization for security or administrative changes.
+- Do not use connector `admin`, `maintain`, `push`, `write`, `delete`, or workflow capabilities to bypass rulesets, branch protection, required checks, review requirements, access controls, security settings, secrets, Actions policies, or stricter fresh-approval gates.
+- Security/access/ruleset/branch-protection/secret/Actions-policy mutations remain outside the fast path and require the applicable explicit task-specific authorization.
+- When another rule is stricter, the stricter rule wins.
+
+See `docs/governance/K_KNOWLEDGE_SUPPORTING_GITHUB_CONNECTOR_FAST_PATH_R1.md`.
+
 ## Public repository boundary
 
 This repository is public. Keep only sanitized governance, architecture, connector guidance, and pointers here. Do not add private KTC source, private specifications, credentials, payment/signing keys, private endpoints, unredacted Production logs, customer data, or confidential host configuration.
