@@ -1,0 +1,25 @@
+{
+  "name": "KKS Safe Actions Events R1",
+  "target": "actions",
+  "enforcement": "active",
+  "conditions": {
+    "workflow_path": {
+      "include": ["~ALL"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "restrict_action_events",
+      "parameters": {
+        "allowed_events": [
+          "push",
+          "pull_request",
+          "workflow_dispatch",
+          "schedule",
+          "release"
+        ]
+      }
+    }
+  ]
+}
