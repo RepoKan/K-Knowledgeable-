@@ -4,6 +4,10 @@ Repository: `RepoKan/K-Knowledgeable-`
 
 Baseline reviewed: `main@afd0260cba7ad92c8767391d4dde1ff39f0d67d9`
 
+## Master connector governance
+
+Apply `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` together with this document. The connector fast path removes duplicate conversational process for authorized routine non-security work; it never authorizes security/admin bypass. Rulesets, branch protection, required checks/reviews, access controls, secrets, Actions policies, authentication scopes, and security settings remain outside the fast path.
+
 ## MCP review
 
 GitHub repository MCP settings on GitHub.com are shared by Copilot cloud agent and Copilot code review. GitHub and Playwright MCP servers are enabled by default, so this repository does not need a duplicate custom GitHub MCP server unless external data or wider GitHub access is intentionally required.

@@ -159,6 +159,18 @@ ChatGPT Connector write/commit operations may use the highest repository permiss
 - Permission capability and task authorization are separate. Under `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`, non-critical writes may be automatic; critical writes still require fresh user approval immediately before the critical action.
 - Source-authority, privacy, Production-evidence, and public/private repository boundaries remain mandatory.
 
+### GitHub Connector process fast path
+
+Rule ID: `KKS-GITHUB-CONNECTOR-FAST-PATH-R1`.
+
+When ChatGPT, Codex, Copilot, or another governed Project agent uses an available GitHub connector, routine non-critical and non-security repository work inside standing Project authorization may bypass duplicate conversational approval/process.
+
+This is not a security bypass. Live connector permissions are technical capabilities only. Security/admin operations remain excluded from the fast path, including access/permission changes, rulesets, branch protection, required checks/reviews, secrets, Actions policies, token/authentication configuration, security enforcement, and other administrative controls.
+
+The connector fast path never overrides branch/ruleset/check enforcement, public/private data boundaries, source authority, Production evidence requirements, platform safety, or a stricter fresh-approval rule.
+
+See `docs/governance/K_KNOWLEDGE_SUPPORTING_GITHUB_CONNECTOR_FAST_PATH_R1.md`.
+
 ## Automatic inheritance boundary
 
 Every work chat inside K Knowledge Supporting is treated as part of the same Project for governance, capability intent, and Project-wide permission inheritance. This rule does not force ChatGPT to expose old conversations, install a Skill, mount a private repository, authenticate a connector, elevate repository/account permissions, or change Project settings when those capabilities are absent.

@@ -103,6 +103,15 @@ Connector configuration files describe intended behavior only. They do not prove
 
 Do not claim that an operation succeeded unless the active tool reports success. Do not perform deletion or destructive history changes without explicit, task-specific authorization.
 
+## GitHub connector fast-path boundary
+
+Apply `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` to connector-backed knowledge maintenance.
+
+- Routine non-critical, non-security updates already authorized by Project scope may proceed without duplicate permission prompts.
+- Connector write/admin capability is not security authorization.
+- Never use the fast path for access/permission changes, rulesets, branch protection, required checks/reviews, secrets, Actions policies, security settings, destructive history changes, or Production/security-critical work.
+- Existing GitHub controls and stricter Project approval rules always remain enforceable.
+
 ## Required response behavior
 
 If required source identity, revision, approval, or evidence is missing, stop and return:

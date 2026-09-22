@@ -34,6 +34,16 @@ See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md` and `docs
 - Critical operations retain fresh, single-purpose approval immediately before the critical write/merge/delete action even when baseline Project permissions are inherited.
 - Never use Project-wide inheritance to bypass branch protection, required checks, external repository permission, source authority, privacy, or Production evidence gates.
 
+## GitHub Connector fast path
+
+Apply `KKS-GITHUB-CONNECTOR-FAST-PATH-R1`.
+
+For routine non-critical, non-security repository work that is already within authorized Project scope, ChatGPT/Codex/Copilot may skip duplicate conversational permission prompts and use the available GitHub connector directly.
+
+Do not interpret connector permission as security authorization. Never use connector capability to bypass rulesets, branch protection, required checks/reviews, access controls, secrets, Actions policies, security settings, platform restrictions, or stricter fresh-approval requirements.
+
+Security/admin mutations remain outside the fast path.
+
 ## Production review contract
 
 For Production-critical payment work:
