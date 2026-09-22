@@ -1,0 +1,3 @@
+# Python bytecode artifacts from local validation runs
+__pycache__/
+*.pyc
