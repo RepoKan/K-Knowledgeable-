@@ -134,7 +134,7 @@ def looks_like_date_sequence(raw: str) -> bool:
 
 def check_validator_regressions(violations: list[str], findings: list[str]) -> None:
     """Guard the validator against previously confirmed false-negative/coverage bugs."""
-    probe = "test instructions\n" + ("x" * 200) + "\naccount=5555444433331111"
+    probe = "test instructions\n" + ("q" * 200) + "\naccount=5555444433331111"
     match = PAN_RE.search(probe)
     if match is None or is_placeholder_match(probe, match.start(), match.end()):
         violations.append("validator regression: unrelated placeholder text can hide a PAN candidate")
