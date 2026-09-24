@@ -24,7 +24,6 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
-import compileall
 import json
 import re
 import sys
@@ -43,9 +42,9 @@ REQUIRED_GOVERNANCE_DOCS = [
     "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_RULE_GOVERNANCE_AGENT_R1.md",
+    ".github/skills/enter/SKILL.md",
 ]
-SCAN_JSON_GLOBS = ["*.json", ".github/**/*.json", ".vscode/*.json"]
-SCAN_PY_DIRS = ["scripts", "cooking-agent"]
+ENTER_SKILL = ".github/skills/enter/SKILL.md"
 SCAN_TEXT_EXTS = {".md", ".txt", ".json", ".yml", ".yaml", ".py", ".sh"}
 SCAN_SKIP_DIRS = {".git", "node_modules", "__pycache__", ".venv", "venv"}
 
@@ -94,25 +93,70 @@ def rel(p: Path) -> str:
 
 
 def iter_files(subdirs: list[str], extensions: set[str] | None = None) -> list[Path]:
-    out: list[Path] = []
+    """Return each matching repository file once, even when roots overlap."""
+    unique: dict[str, Path] = {}
     for sub in subdirs:
         base = REPO_ROOT / sub
         if not base.exists():
             continue
-        for p in sorted(base.rglob("*")):
+        for p in base.rglob("*"):
             if not p.is_file():
                 continue
             if any(part in SCAN_SKIP_DIRS for part in p.parts):
                 continue
             if extensions is not None and p.suffix not in extensions:
                 continue
-            out.append(p)
-    return out
+            unique[rel(p)] = p
+    return [unique[key] for key in sorted(unique)]
+
+
+def match_context(text: str, start: int, end: int, radius: int = 80) -> str:
+    """Return bounded context for classifying one candidate finding."""
+    return text[max(0, start - radius) : min(len(text), end + radius)]
+
+
+def is_placeholder_match(text: str, start: int, end: int) -> bool:
+    """Only suppress a match when placeholder evidence is local to that match."""
+    return bool(PLACEHOLDER_HINTS.search(match_context(text, start, end)))
+
+
+def looks_like_date_sequence(raw: str) -> bool:
+    """Recognize common date/date-range strings that can resemble PAN-length data."""
+    compact = re.sub(r"\s+", "", raw.strip(" -"))
+    return bool(
+        re.fullmatch(
+            r"(?:19|20)\d{2}[-/]\d{1,2}[-/]\d{1,2}"
+            r"(?:[-–—](?:19|20)\d{2}[-/]\d{1,2}[-/]\d{1,2})?",
+            compact,
+        )
+    )
+
+
+def check_validator_regressions(violations: list[str], findings: list[str]) -> None:
+    """Guard the validator against previously confirmed false-negative/coverage bugs."""
+    probe = "test instructions\n" + ("q" * 200) + "\naccount=5555444433331111"
+    match = PAN_RE.search(probe)
+    if match is None or is_placeholder_match(probe, match.start(), match.end()):
+        violations.append("validator regression: unrelated placeholder text can hide a PAN candidate")
+
+    overlap = iter_files([".", ".github"], None)
+    overlap_names = [rel(p) for p in overlap]
+    if len(overlap_names) != len(set(overlap_names)):
+        violations.append("validator regression: overlapping scan roots produced duplicate file results")
+
+    root_python = REPO_ROOT / "joke-generator.py"
+    if root_python.is_file():
+        python_names = {rel(p) for p in iter_files(["."], {".py"})}
+        if "joke-generator.py" not in python_names:
+            violations.append("validator regression: root-level Python files are excluded from syntax coverage")
+
+    if not any(item.startswith("validator regression:") for item in violations):
+        findings.append("validator self-checks ok: local placeholders, deduplication, root Python coverage")
 
 
 def check_json_parse(violations: list[str]) -> list[tuple[Path, dict]]:
     parsed: list[tuple[Path, dict]] = []
-    json_files = iter_files([".", ".github", ".vscode"], {".json"})
+    json_files = iter_files(["."], {".json"})
     for p in json_files:
         try:
             with p.open(encoding="utf-8") as f:
@@ -193,6 +237,40 @@ def check_required_artifacts(violations: list[str]) -> None:
             violations.append(f"missing required governance artifact: {path}")
 
 
+ENTER_SKILL_REQUIRED_TERMS = (
+    "repository",
+    "ref",
+    "sha",
+    "agents.md",
+    "feature branch",
+    "public repository",
+)
+ENTER_SKILL_PLACEHOLDERS = (
+    "describe what this skill does",
+    "define the functionality provided by this skill",
+)
+
+
+def check_enter_skill(violations: list[str], findings: list[str]) -> None:
+    path = REPO_ROOT / ENTER_SKILL
+    if not path.is_file():
+        return
+    try:
+        text = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as e:
+        violations.append(f"{ENTER_SKILL}: unreadable ({e})")
+        return
+    lower = text.lower()
+    for placeholder in ENTER_SKILL_PLACEHOLDERS:
+        if placeholder in lower:
+            violations.append(f"{ENTER_SKILL}: template placeholder remains: {placeholder}")
+    missing = [term for term in ENTER_SKILL_REQUIRED_TERMS if term not in lower]
+    if missing:
+        violations.append(f"{ENTER_SKILL}: missing governed entry terms: {', '.join(missing)}")
+    elif not any(placeholder in lower for placeholder in ENTER_SKILL_PLACEHOLDERS):
+        findings.append("enter skill ok: governed project entry contract is present")
+
+
 REQUIRED_DOC_PHRASES = (
     "feature branch",
     "pull request",
@@ -263,7 +341,7 @@ def check_workflows(violations: list[str], findings: list[str]) -> None:
 
 
 def check_secrets(violations: list[str], findings: list[str]) -> None:
-    text_files = iter_files([".", "docs", "chatgpt-generated", "knowledge-supporting", "activation", "scripts", "cooking-agent", ".github"], None)
+    text_files = iter_files(["."], SCAN_TEXT_EXTS)
     for p in text_files:
         if p.suffix not in SCAN_TEXT_EXTS:
             continue
@@ -273,16 +351,14 @@ def check_secrets(violations: list[str], findings: list[str]) -> None:
             continue  # binary or unreadable: skip
         for name, rx in SECRET_PATTERNS:
             for m in rx.finditer(text):
-                match_text = m.group(0)
-                context = text[max(0, m.start() - 40) : m.end() + 40]
-                if PLACEHOLDER_HINTS.search(context) and name != "private_key_block":
+                if is_placeholder_match(text, m.start(), m.end()) and name != "private_key_block":
                     findings.append(f"placeholder ignored: {rel(p)} contains example {name}")
                     continue
                 violations.append(f"{rel(p)}: possible {name} secret detected")
 
 
 def check_public_boundary(violations: list[str], findings: list[str]) -> None:
-    text_files = iter_files(["docs", "chatgpt-generated", "knowledge-supporting", "activation"], None)
+    text_files = iter_files(["."], SCAN_TEXT_EXTS)
     for p in text_files:
         if p.suffix not in SCAN_TEXT_EXTS:
             continue
@@ -291,40 +367,42 @@ def check_public_boundary(violations: list[str], findings: list[str]) -> None:
         except (OSError, UnicodeError):
             continue
         for m in PRIVATE_ENDPOINT_RE.finditer(text):
-            context = text[max(0, m.start() - 40) : m.end() + 40]
-            if not PLACEHOLDER_HINTS.search(context):
+            if not is_placeholder_match(text, m.start(), m.end()):
                 violations.append(f"{rel(p)}: private/internal endpoint literal detected ({m.group(0)[:60]})")
-        stripped = text.replace("-", "").replace(" ", "").replace("\t", "")
-        # PAN heuristic on raw text: 13-19 consecutive digits (allowing single
-        # spaces/dashes inside) but never spanning a double-space/date separator.
+        # PAN heuristic on raw text: 13-19 digits with optional single spaces/dashes.
+        # Placeholder suppression is deliberately local so an unrelated "test" or
+        # "demo" elsewhere in the same file cannot hide a real candidate.
         for m in PAN_RE.finditer(text):
-            digits = re.sub(r"[ -]", "", m.group(0))
-            if PLACEHOLDER_HINTS.search(text) or digits in {
+            raw = m.group(0)
+            digits = re.sub(r"[ -]", "", raw)
+            if is_placeholder_match(text, m.start(), m.end()) or digits in {
                 "0123456789012",
                 "4111111111111111",
                 "1234567890123456",
             }:
-                findings.append("placeholder ignored: example PAN pattern")
+                findings.append(f"placeholder ignored: {rel(p)} contains example PAN pattern")
                 continue
-            # Date-like sequences (e.g. 2026-06-22 - 2026-06-28) are not PANs.
-            if re.fullmatch(r"(19|20)\d{2}(-\d{2}){1,3}", digits):
-                findings.append("date-like sequence ignored")
+            if looks_like_date_sequence(raw):
+                findings.append(f"date-like sequence ignored: {rel(p)}")
                 continue
             violations.append(f"{rel(p)}: possible PAN-length numeric sequence detected ({digits[:4]}...{digits[-4:]})")
 
 
 def check_python_syntax(violations: list[str], findings: list[str]) -> None:
-    py_dirs = [d for d in SCAN_PY_DIRS if (REPO_ROOT / d).is_dir()]
-    if not py_dirs:
-        findings.append("no Python directories to syntax-check")
+    py_files = iter_files(["."], {".py"})
+    if not py_files:
+        findings.append("no Python files to syntax-check")
         return
-    for d in py_dirs:
-        base = REPO_ROOT / d
-        ok = compileall.compile_dir(str(base), quiet=2, force=False, rx=re.compile(r"__pycache__"))
-        if not ok:
-            violations.append(f"{d}: Python syntax error detected")
-        else:
-            findings.append(f"python ok: {d} compiles")
+    failed = 0
+    for p in py_files:
+        try:
+            source = p.read_text(encoding="utf-8")
+            compile(source, rel(p), "exec")
+        except (SyntaxError, OSError, UnicodeError) as e:
+            violations.append(f"{rel(p)}: Python syntax error ({e})")
+            failed += 1
+    if failed == 0:
+        findings.append(f"python ok: {len(py_files)} file(s) compile")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -339,8 +417,10 @@ def main(argv: list[str] | None = None) -> int:
     if not args.quiet:
         findings.append(f"json ok: {len(parsed)} JSON object file(s) parse")
 
+    check_validator_regressions(violations, findings)
     check_connector_gates(violations, findings)
     check_required_artifacts(violations)
+    check_enter_skill(violations, findings)
     check_documentation_contract(violations, findings)
     check_workflows(violations, findings)
     check_secrets(violations, findings)
