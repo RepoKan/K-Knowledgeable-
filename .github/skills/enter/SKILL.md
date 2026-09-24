@@ -13,7 +13,7 @@ Use this Skill as the repository entry gate. Keep the entry step short and route
 2. Establish the exact repository, target ref, and full commit SHA before version-sensitive conclusions or Git writes.
 3. Read `AGENTS.md` and `activation/PROJECT_INSTRUCTIONS.md`. For Project-wide scope also read `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
 4. Apply `docs/governance/K_KNOWLEDGE_SUPPORTING_VALUE_PROPOSITION_GATE_R1.md` before material analysis, RCA, or Production-solving conclusions.
-5. Treat this repository as public. Never publish private Production source/specs, credentials or keys, private endpoints, unredacted logs, customer/cardholder/payment data, or confidential host configuration.
+5. Treat this public repository as a publication boundary. Never publish private Production source/specs, credentials or keys, private endpoints, unredacted logs, customer/cardholder/payment data, or confidential host configuration.
 6. Route to the most specific available domain workflow:
    - KTC/payment Production impact -> payment inspection workflow.
    - Kotlin/Android/POS/device work -> Android POS workflow.
