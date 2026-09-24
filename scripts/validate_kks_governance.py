@@ -132,6 +132,28 @@ def looks_like_date_sequence(raw: str) -> bool:
     )
 
 
+def check_validator_regressions(violations: list[str], findings: list[str]) -> None:
+    """Guard the validator against previously confirmed false-negative/coverage bugs."""
+    probe = "test instructions\n" + ("x" * 200) + "\naccount=5555444433331111"
+    match = PAN_RE.search(probe)
+    if match is None or is_placeholder_match(probe, match.start(), match.end()):
+        violations.append("validator regression: unrelated placeholder text can hide a PAN candidate")
+
+    overlap = iter_files([".", ".github"], None)
+    overlap_names = [rel(p) for p in overlap]
+    if len(overlap_names) != len(set(overlap_names)):
+        violations.append("validator regression: overlapping scan roots produced duplicate file results")
+
+    root_python = REPO_ROOT / "joke-generator.py"
+    if root_python.is_file():
+        python_names = {rel(p) for p in iter_files(["."], {".py"})}
+        if "joke-generator.py" not in python_names:
+            violations.append("validator regression: root-level Python files are excluded from syntax coverage")
+
+    if not any(item.startswith("validator regression:") for item in violations):
+        findings.append("validator self-checks ok: local placeholders, deduplication, root Python coverage")
+
+
 def check_json_parse(violations: list[str]) -> list[tuple[Path, dict]]:
     parsed: list[tuple[Path, dict]] = []
     json_files = iter_files(["."], {".json"})
@@ -395,6 +417,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.quiet:
         findings.append(f"json ok: {len(parsed)} JSON object file(s) parse")
 
+    check_validator_regressions(violations, findings)
     check_connector_gates(violations, findings)
     check_required_artifacts(violations)
     check_enter_skill(violations, findings)
