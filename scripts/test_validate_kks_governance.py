@@ -28,7 +28,7 @@ class GovernanceValidatorTests(unittest.TestCase):
             self.assertEqual([p.relative_to(root).as_posix() for p in files], ["nested/config.json"])
 
     def test_unrelated_test_word_does_not_hide_numeric_candidate(self) -> None:
-        text = "test instructions\n" + ("x" * 200) + "\naccount=5555444433331111"
+        text = "test instructions\n" + ("q" * 200) + "\naccount=5555444433331111"
         match = validator.PAN_RE.search(text)
         self.assertIsNotNone(match)
         assert match is not None
