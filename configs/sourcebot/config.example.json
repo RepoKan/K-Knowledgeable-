@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sourcebot-dev/sourcebot/main/schemas/v3/index.json",
+  "connections": {
+    "k-knowledge-public": {
+      "type": "github",
+      "repos": [
+        "RepoKan/K-Knowledgeable-"
+      ]
+    }
+  }
+}

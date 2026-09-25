@@ -1,0 +1,3 @@
+[submodule "tools/sourcebot"]
+	path = tools/sourcebot
+	url = https://github.com/sourcebot-dev/sourcebot.git

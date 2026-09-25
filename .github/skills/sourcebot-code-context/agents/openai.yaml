@@ -1,0 +1,3 @@
+interface:
+  display_name: "Sourcebot Code Context"
+  short_description: "Search and trace code across repositories through self-hosted Sourcebot."

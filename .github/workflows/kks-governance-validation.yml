@@ -15,5 +15,67 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Validate KKS governance contract
-        run: python3 scripts/validate_kks_governance.py
+        shell: bash
+        run: |
+          echo "::group::KKS governance validation"
+          set +e
+          python3 scripts/validate_kks_governance.py 2>&1 | tee kks-governance-validation.log
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "::endgroup::"
+
+          if [ "$status" -ne 0 ]; then
+            echo "::error title=KKS governance validation::Governance validation failed. Review the grouped log for violations."
+            exit "$status"
+          fi
+
+          {
+            echo "### KKS governance validation"
+            echo "- Status: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Validate Sourcebot integration
+        id: sourcebot
+        shell: bash
+        run: |
+          echo "::group::Sourcebot integration validation"
+          set +e
+          python3 scripts/validate_sourcebot_integration.py 2>&1 | tee sourcebot-validation.log
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "::endgroup::"
+
+          if [ "$status" -ne 0 ]; then
+            echo "::error title=Sourcebot integration::Sourcebot integration validation failed."
+            exit "$status"
+          fi
+
+          sourcebot_version="$(python3 -c 'import json; print(json.load(open("configs/sourcebot/upstream.lock.json"))["release"])')"
+          sourcebot_sha="$(python3 -c 'import json; print(json.load(open("configs/sourcebot/upstream.lock.json"))["commit"])')"
+
+          echo "sourcebot_version=$sourcebot_version" >> "$GITHUB_OUTPUT"
+          echo "sourcebot_sha=$sourcebot_sha" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "### Sourcebot integration"
+            echo "- Status: PASS"
+            echo "- Release: `$sourcebot_version`"
+            echo "- Upstream commit: `$sourcebot_sha`"
+            echo "- Integration mode: pinned Git submodule + governed skills"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          {
+            echo "release=$sourcebot_version"
+            echo "commit=$sourcebot_sha"
+            echo "gitlink=tools/sourcebot"
+            echo "chatgpt_skill=.github/skills/sourcebot-code-context/SKILL.md"
+            echo "sourcebot_native_skill=sourcebot-skills/k-knowledge-codebase-guide.md"
+          } > sourcebot-integration-manifest.txt
+
+          if [ -n "${GITHUB_ARTIFACTS:-}" ]; then
+            echo "sourcebot-integration-manifest.txt" >> "$GITHUB_ARTIFACTS"
+          else
+            echo "::notice title=Sourcebot artifact declaration::GITHUB_ARTIFACTS is unavailable on this runner; the manifest remains in the job workspace."
+          fi
