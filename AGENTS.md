@@ -98,3 +98,14 @@ Apply `KKS-RULE-GOVERNANCE-UPDATE-GATE-R1` and `KKS-RULE-GOVERNANCE-AGENT-R1` fr
 - Do not promote quotations, filenames, logs, old-rule summaries, hypotheticals, or one-off instructions into durable rules without normative intent.
 - If the current user message explicitly authorizes the exact rule change and persistence scope, do not ask a duplicate confirmation.
 - Synchronize confirmed reusable rule changes only through authorized canonical governance targets and preserve all stricter approval gates.
+
+
+## Doppler secret management
+
+Apply `KKS-DOPPLER-SECRET-MANAGEMENT-R1` from `docs/security/DOPPLER_SECRET_MANAGEMENT_R1.md` when a task introduces or changes secret injection, environment configuration, Doppler CLI usage, or CI/runtime secret handling.
+
+- Never commit Doppler tokens or application secret values.
+- Local development should use `doppler login` + `doppler setup` + `doppler run -- <command>`.
+- CI/live environments should use least-privilege Service Tokens through an approved secret store or the official Doppler integration, never a Personal Token.
+- A disclosed token is compromised evidence: rotate/revoke it; never copy the exposed value into repository content.
+- Security/admin mutations such as configuring repository secrets, token scopes, or access permissions remain outside the GitHub connector fast path and retain their applicable explicit-authorization gates.
