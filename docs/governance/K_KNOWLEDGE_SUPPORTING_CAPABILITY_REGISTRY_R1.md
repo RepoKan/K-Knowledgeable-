@@ -40,3 +40,11 @@ For explicit model selection, apply `docs/governance/K_KNOWLEDGE_SUPPORTING_MODE
 A capability entry only indicates where to look next. Production conclusions must still be supported by exact source, approved specification, vendor documentation, matched runtime evidence, or approved Project business rules according to the governing source-precedence policy.
 
 Model choice is also routing metadata, not evidence. A stronger model cannot replace missing Production proof, approved specifications, runtime tests, or the applicable HOLD gate.
+
+## Cross-repository code context
+
+- Sourcebot self-hosted code search for cross-repository discovery, navigation, and code understanding.
+- Sourcebot MCP as an optional agent context layer when the deployed Sourcebot plan exposes MCP.
+- `sourcebot-code-context` Skill for governed routing across Sourcebot search, symbol, file, branch, diff, and Ask capabilities.
+- Use the native GitHub connector for live PR, issue, workflow, permission, branch-protection, and immediately-created ref state because Sourcebot is an indexed snapshot.
+- Preserve exact repository/ref/SHA evidence and the public-repository data boundary when using Sourcebot.
