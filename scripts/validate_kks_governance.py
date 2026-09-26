@@ -41,6 +41,7 @@ REQUIRED_GOVERNANCE_DOCS = [
     "docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md",
+    "docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_RULE_GOVERNANCE_AGENT_R1.md",
     ".github/skills/enter/SKILL.md",
 ]

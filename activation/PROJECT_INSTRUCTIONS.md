@@ -12,6 +12,7 @@ Apply these rules at startup:
 4. Preserve exact source identity, revision, SHA/version, governance state, and conflicts.
 5. For KTC payment-critical work, also apply `KTC-PAYMENT-MASTER-R1`.
 6. For Kotlin/Android RCA, also apply `KKS-KOTLIN-ANDROID-RCA-MASTER-R1` and `KKS-RCA-GIT-EXPLICIT-SCOPE-R1`.
+7. Load `KKS-MODEL-ROUTING-R1` and `KKS-MODEL-CREDIT-LIMIT-GATE-R1` for Project-wide model routing and credit/quota enforcement.
 
 ## Project-wide chat inheritance
 
@@ -66,6 +67,8 @@ Never use chat recency or latest-file-wins as Production authority. Resolve the 
 
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_CAPABILITY_REGISTRY_R1.md`
+- `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md`
+- `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md`
 - `docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md`
 - `AGENTS.md`
 - `.github/copilot-instructions.md`

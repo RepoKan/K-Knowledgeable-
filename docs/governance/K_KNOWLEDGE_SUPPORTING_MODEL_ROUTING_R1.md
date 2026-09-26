@@ -2,7 +2,7 @@
 
 Rule ID: `KKS-MODEL-ROUTING-R1`
 
-Last externally verified: `2026-09-17`
+Last externally verified: `2026-09-26`
 
 This is a sanitized capability-routing rule. It controls **which currently available model tier should be preferred for a job**. It is not Production evidence and does not change payment, device, host, security, or business-rule authority.
 
@@ -53,6 +53,19 @@ Model names cannot be treated as globally selectable across every surface.
 - **OpenAI API:** use explicit model IDs such as `gpt-5.6-sol`, `gpt-5.6-terra`, and `gpt-5.6-luna` according to current API documentation.
 
 Always resolve the active surface before applying the job matrix below.
+
+## Project-wide default model profile — 2026-09-26
+
+For K Knowledge Supporting, use this durable role mapping when the active surface exposes the named API/product models:
+
+- `PRIMARY = gpt-5.6-sol`
+- `SECONDARY = gpt-5.6-terra`
+- `ECONOMY = gpt-5.6-luna`
+- `CODEX = gpt-5.6-sol`
+
+This profile is governed together with `KKS-MODEL-CREDIT-LIMIT-GATE-R1`. Sol remains the quality-first route; Terra and Luna are cost/capacity routes only when the task class permits. Never silently downgrade a Production-critical review because credits are constrained.
+
+The Freebuff API profile is intentionally separate: `gpt-4o` is its primary/default processing model and `gpt-5.5` is its rate-limited secondary escalation model. GPT-5.5 in this rule is an API-only Freebuff dependency; it is not the K Knowledge Supporting ChatGPT/Codex secondary route.
 
 ## Job-to-model routing
 

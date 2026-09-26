@@ -41,6 +41,19 @@ Use `KKS-MODEL-ROUTING-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_RO
 - Re-check current official OpenAI model availability when the routing verification is more than 7 calendar days old, when a model disappears or is renamed, or when a new model appears in the active surface.
 - Model choice is routing metadata, not factual evidence; it never replaces exact Production source, approved specifications, runtime evidence, testing, or HOLD gates.
 
+## Model credit and quota gate
+
+Apply `KKS-MODEL-CREDIT-LIMIT-GATE-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md`.
+
+- Project profile: PRIMARY `gpt-5.6-sol`, SECONDARY `gpt-5.6-terra`, ECONOMY `gpt-5.6-luna`, CODEX `gpt-5.6-sol`.
+- Logical OpenAI API target: **Loxbit → KKL**. Keep exact project IDs, API keys, and credentials out of the public repository.
+- Freebuff desired overrides: `gpt-4o` = 5 RPM / 20,000 TPM; `gpt-5.5` = 1 RPM / 20,000 TPM; all other models inherit organization limits.
+- If authoritative app-local remaining credit is `<= 0`, stop before the next billable action with `CREDIT_STOP`.
+- If an evidence-based projection shows the next action would make remaining credit `<= 0`, stop before execution with `CREDIT_STOP_BEFORE_EXECUTION`.
+- If remaining quota is not exposed, use `CREDIT_UNKNOWN`; never invent a numerical balance.
+- Do not combine ChatGPT, Work, Codex, API, Freebuff, or provider balances unless an authoritative billing source proves they share one pool.
+- Credit pressure may route work to a cheaper model only when the task's required quality/risk class still passes. Production-critical work must not be silently downgraded.
+
 ## Source synchronization
 
 Treat the following as synchronized operational sources by revision and provenance, not as equal authorities:
