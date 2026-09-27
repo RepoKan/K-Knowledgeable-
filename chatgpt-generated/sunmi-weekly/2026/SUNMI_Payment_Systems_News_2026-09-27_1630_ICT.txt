@@ -1,0 +1,101 @@
+TH lang
+SUNMI Payment Systems News [Weekly 2026-09-21 - 2026-09-27 16:30 ICT]
+
+Generated Date: 2026-09-27 16:30 ICT
+Coverage Period: Last Monday - Sunday 16:30 Thai Time
+Coverage Window: 2026-09-21 00:00 - 2026-09-27 16:30 ICT
+Schedule Time: Sunday 16:30 ICT
+Time Zone: Asia/Bangkok
+Pinned Topic Check: Passed - current heading set applied
+Source Verification Rule: SUNMI official sources first
+Retention Rule: 1 year with FIFO cleanup when supported
+Archive Format: UTF-8 Text File
+Usage Mode: Low-usage compact weekly run
+
+Weekly Hi light
+
+No-Change Compact Brief: ไม่พบ meaningful SUNMI official developer/payment update ใหม่ภายใน coverage window 2026-09-21 ถึง 2026-09-27 16:30 ICT จาก official surfaces ที่ตรวจในรอบนี้. SUNMI OS ยังแสดง Payment Terminal Service, Printer Service, Scanner Service และ OTA; SUNMI SoftPOS ยังอธิบาย DMP-based remote management และ regular security-patch positioning แต่ไม่พบ dated SDK/API/payment release note ใหม่ในสัปดาห์นี้.
+
+Carry-over: Android-version documentation และ SoftPOS security-patch bulletin จากสัปดาห์ก่อนยังเป็น release-verification trigger. อย่า infer ROM/security upgrade สำหรับ P3/P3 MIX/P2 หากยังไม่มี exact model/SKU/ROM evidence.
+
+Official sources checked:
+- https://www.sunmi.com/en/sunmi-os/
+- https://www.sunmi.com/eu/softpos/
+- https://www.sunmi.com/en/
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+SUNMI Development News
+
+No Change: ไม่พบ official SDK/API/TMS/RKI/Payment/P3 developer announcement ที่มี publication/update date ใหม่ภายใน coverage window. หน้า product/news ที่ถูก crawl ใหม่แต่มี publication date เก่ากว่าช่วงนี้ถูกจัดเป็น duplicate/carry-over.
+
+Previous Revision / Carry-over:
+- SUNMI Device's Android Version update signal 2026-09-16.
+- SUNMI SoftPOS Devices Security Patch Status Bulletin update signal 2026-09-17.
+- Payment SDK / PrinterX / RKI / SunmiCustomer / generic Security Bulletin: previous baseline; no meaningful new official delta found this week.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+SUNMI Lib Update
+
+No Change: ไม่พบ public SUNMI payment-library update ใหม่ที่ยืนยันได้ใน coverage window. ใช้ baseline เดิมต่อไปและห้าม bump dependency จาก page crawl timestamp หรือ product-page refresh เพียงอย่างเดียว. ก่อนเปลี่ยน PayLib/SPHS/Printer/ECR/DMP ต้องมี official package/version mapping ที่ตรง target device และ regression evidence.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Officially SUNMI Verified
+
+- Current SUNMI OS page remains active with payment-terminal, printer, scanner, app-store and OTA capabilities.
+- Current SUNMI SoftPOS page remains active with regular security-patch positioning and SUNMI DMP remote management.
+- Current SUNMI main site continues to expose SUNMI Payment Solution, P3 Family, SUNMI OS 4.0 and DMP/SoftPOS navigation.
+- No new dated developer/payment release was found in the checked official surfaces for this weekly window.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Incident Response Guideline
+
+No new incident rule this week. Keep the carry-over response order: isolate exact model/SKU/ROM/SPHS/app build; verify payment-service and EMV flows; regress printer slips/reprint/reconnect; separate TMS config/APK/ROM changes; validate ECR reconnect/duplicate-command behavior; and use the last-known-good app+SDK+SPHS+ROM combination for rollback decisions. Team communication should identify first bad version, last known good, business impact, workaround, owner and next validation.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Ranking
+
+Impact Rank | Device / Module | Impact Focus | Recommended Check
+High | Payment SDK / EMV | Carry-over release gate; no new weekly SDK delta | Keep exact PayLib/SPHS mapping and rerun core financial regression after ROM/app changes
+High | Security | Prior security-patch signal remains relevant | Capture exact patch state before rollout
+High | Printer | No new PrinterX signal; OS/app regression risk remains | Sale/Void/Settlement/Reprint/No-paper/Reconnect on real device
+High | APK Release | No new weekly release-note delta | Verify signing, ABI, package visibility/permissions and staged rollout
+High | SUNMI P3 / P3 MIX | No new model-specific official delta found | Keep separate compatibility matrix; no inferred ROM upgrade
+Medium | ECR / TMS / DMP | No new weekly artifact signal | Preserve duplicate-command controls, rollout inventory and rollback evidence
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Checklist
+
+[x] Verify SUNMI official sources first
+[x] Compare against 2026-09-20 weekly archive and 2026-08-30 reference baseline
+[x] Duplicate/carry-over filtering completed
+[x] Classify SDK / OS / TMS / API / Product
+[x] Map Payment / EMV / PinPad / Printer / ECR / TMS / APK Release
+[x] Assess P3 / P2 / P3 MIX without inferring unsupported model rows
+[x] No dependency bump without official package/version mapping
+[x] Regression matrix retained for payment, printer, ECR and rollout paths
+[x] Real-device validation remains mandatory before Production changes
+[x] Rollback/monitoring and short team announcement retained
+[x] Title/heading validation passed before text archive creation
+[x] Revision decision: No Change
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Text Archive
+
+Runtime Path: /mnt/data/SUNMI_Payment_Systems_News_2026-09-27_1630_ICT.txt
+GitHub Storage Status: target branch creation is operational in this run; final persistence is verified only after archive readback.
+GitHub Branch: automation/sunmi-weekly
+GitHub Path: chatgpt-generated/sunmi-weekly/2026/SUNMI_Payment_Systems_News_2026-09-27_1630_ICT.txt
+GitHub Commit: authoritative commit SHA is recorded in the post-write receipt and revision metadata rather than self-embedded in the committed file.
+Fallback Library Status: not used when GitHub roundtrip verification succeeds.
+Registered agents/tools used: Official SUNMI Source Verification, GitHub Storage, Deep Research Reference Baseline, Duplicate Filtering, Revision Knowledge, Text Archive, Runtime Download Copy
+Download Link Policy: runtime link is temporary; target access window is 7 days; GitHub or persistent Library copy is the source for re-creating a downloadable file after expiry.
+Revision Entry: REV-2026-09-27-001 — No Change — no meaningful new official SUNMI developer/payment update found for 2026-09-21 00:00 through 2026-09-27 16:30 ICT; previous Android-version/security-patch signals retained as carry-over.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
