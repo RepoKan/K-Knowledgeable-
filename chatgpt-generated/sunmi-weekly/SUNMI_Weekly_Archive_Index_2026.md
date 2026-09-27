@@ -48,3 +48,25 @@
 `COMPLETE — 12 consecutive weekly canonical records from 2026-06-22 through 2026-09-13.`
 
 Legacy PDF/HTML/TXT artifacts from the original June workflow remain historical evidence; the current Markdown series does not delete or overwrite them.
+
+
+## Active 16:30 TXT Continuation
+
+The active scheduled workflow now uses Sunday 16:30 ICT and one UTF-8 `.txt` archive per weekly run. The historical Sunday 08:00 ICT Markdown sequence above is preserved as prior lineage and is not rewritten.
+
+- 2026-09-20: prior 16:30 TXT report is preserved in persistent ChatGPT Library; it was not mirrored to GitHub because the repository integration write was blocked on that run.
+- 2026-09-27: first GitHub-persisted 16:30 TXT archive on branch `automation/sunmi-weekly`.
+- Archive: `2026/SUNMI_Payment_Systems_News_2026-09-27_1630_ICT.txt`
+- Weekly Decision: `No Change`
+- Archive Commit: `f75ccb3e52f49c00764f5ba4138a8e639f5bc0ad`
+- Archive Blob SHA: `f78932663ac73f04c18be48f860c11b75d1388f7`
+- Readback: exact UTF-8 content match verified.
+- Coverage: `2026-09-21 00:00 - 2026-09-27 16:30 ICT`
+- Production Behavior Change: `None authorized or required by this weekly report`
+
+### 16:30 TXT Sequence
+
+| # | Coverage | Archive | Status | Main Signal |
+|---:|---|---|---|---|
+| 1 | 2026-09-21 - 2026-09-27 16:30 ICT | `SUNMI_Payment_Systems_News_2026-09-27_1630_ICT.txt` | Original scheduled No Change | No meaningful new official SUNMI developer/payment update found; prior Android-version/security-patch signals retained as carry-over |
+
