@@ -15,5 +15,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Run governance regression tests
+        run: python3 -m unittest scripts/test_validate_kks_governance.py
       - name: Validate KKS governance contract
         run: python3 scripts/validate_kks_governance.py

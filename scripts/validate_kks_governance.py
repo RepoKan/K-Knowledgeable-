@@ -134,6 +134,30 @@ def looks_like_date_sequence(raw: str) -> bool:
     )
 
 
+
+def merge_policy_text_violations(rel_path: str, text: str) -> list[str]:
+    """Return merge-policy violations for one canonical governance surface."""
+    lower = text.lower()
+    issues: list[str] = []
+    for phrase in MERGE_POLICY_REQUIRED.get(rel_path, ()):
+        if phrase not in lower:
+            issues.append(f"merge policy: {rel_path} missing required phrase: {phrase}")
+    for phrase in MERGE_POLICY_FORBIDDEN:
+        if phrase in lower:
+            issues.append(f"merge policy: {rel_path} contains conflicting phrase: {phrase}")
+    return issues
+
+
+def merge_human_approval_violation(cfg: object) -> bool:
+    """True when connector metadata does not preserve required human approval."""
+    if not isinstance(cfg, dict):
+        return True
+    features = cfg.get("features")
+    if not isinstance(features, dict):
+        return True
+    return not is_truthy_violation(features.get("human_approval_required"))
+
+
 def check_validator_regressions(violations: list[str], findings: list[str]) -> None:
     """Guard the validator against previously confirmed false-negative/coverage bugs."""
     probe = "test instructions\n" + ("q" * 200) + "\naccount=5555444433331111"
@@ -152,8 +176,33 @@ def check_validator_regressions(violations: list[str], findings: list[str]) -> N
         if "joke-generator.py" not in python_names:
             violations.append("validator regression: root-level Python files are excluded from syntax coverage")
 
+    policy_path = "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md"
+    good_policy = (
+        "Every merge requires fresh, action-specific user approval immediately before the merge. "
+        "Do not use auto-merge as a substitute."
+    )
+    if merge_policy_text_violations(policy_path, good_policy):
+        violations.append("validator regression: compliant merge policy is rejected")
+
+    conflicting_policy = good_policy + " Auto-merge is allowed only for non-critical changes."
+    conflict_issues = merge_policy_text_violations(policy_path, conflicting_policy)
+    if not any("contains conflicting phrase" in issue for issue in conflict_issues):
+        violations.append("validator regression: conflicting non-critical auto-merge policy is not detected")
+
+    missing_approval_policy = "Do not use auto-merge as a substitute."
+    missing_issues = merge_policy_text_violations(policy_path, missing_approval_policy)
+    if not any("missing required phrase" in issue for issue in missing_issues):
+        violations.append("validator regression: missing fresh merge approval language is not detected")
+
+    if not merge_human_approval_violation({"features": {"human_approval_required": False}}):
+        violations.append("validator regression: human_approval_required=false is not detected")
+    if merge_human_approval_violation({"features": {"human_approval_required": True}}):
+        violations.append("validator regression: human_approval_required=true is rejected")
+
     if not any(item.startswith("validator regression:") for item in violations):
-        findings.append("validator self-checks ok: local placeholders, deduplication, root Python coverage")
+        findings.append(
+            "validator self-checks ok: local placeholders, deduplication, root Python coverage, merge policy drift"
+        )
 
 
 def check_json_parse(violations: list[str]) -> list[tuple[Path, dict]]:
@@ -370,19 +419,13 @@ def check_merge_policy_parity(violations: list[str], findings: list[str]) -> Non
             violations.append(f"merge policy: cannot read {rel_path} ({e})")
             continue
 
-        for phrase in required_phrases:
-            if phrase not in lower:
-                violations.append(f"merge policy: {rel_path} missing required phrase: {phrase}")
-        for phrase in MERGE_POLICY_FORBIDDEN:
-            if phrase in lower:
-                violations.append(f"merge policy: {rel_path} contains conflicting phrase: {phrase}")
+        violations.extend(merge_policy_text_violations(rel_path, lower))
 
     cfg_path = REPO_ROOT / CONNECTOR_CONFIG
     if cfg_path.is_file():
         try:
             cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
-            human_approval = cfg.get("features", {}).get("human_approval_required")
-            if not is_truthy_violation(human_approval):
+            if merge_human_approval_violation(cfg):
                 violations.append(
                     f"merge policy: {CONNECTOR_CONFIG} features.human_approval_required must stay true"
                 )

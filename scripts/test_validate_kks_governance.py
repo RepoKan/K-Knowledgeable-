@@ -67,6 +67,44 @@ class GovernanceValidatorTests(unittest.TestCase):
                 validator.check_enter_skill(violations, findings)
             self.assertTrue(any("template placeholder remains" in item for item in violations))
 
+    def test_merge_policy_accepts_compliant_project_rule(self) -> None:
+        path = "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md"
+        text = (
+            "Every merge requires fresh, action-specific user approval immediately before the merge. "
+            "Do not use auto-merge as a substitute."
+        )
+        self.assertEqual(validator.merge_policy_text_violations(path, text), [])
+
+    def test_merge_policy_rejects_noncritical_auto_merge_conflict(self) -> None:
+        path = "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md"
+        text = (
+            "Every merge requires fresh, action-specific user approval immediately before the merge. "
+            "Do not use auto-merge as a substitute. "
+            "Auto-merge is allowed only for non-critical changes."
+        )
+        issues = validator.merge_policy_text_violations(path, text)
+        self.assertTrue(any("contains conflicting phrase" in item for item in issues))
+
+    def test_merge_policy_rejects_missing_fresh_approval_language(self) -> None:
+        path = "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md"
+        issues = validator.merge_policy_text_violations(
+            path,
+            "Do not use auto-merge as a substitute.",
+        )
+        self.assertTrue(any("missing required phrase" in item for item in issues))
+
+    def test_merge_policy_rejects_disabled_human_approval(self) -> None:
+        self.assertTrue(
+            validator.merge_human_approval_violation(
+                {"features": {"human_approval_required": False}}
+            )
+        )
+        self.assertFalse(
+            validator.merge_human_approval_violation(
+                {"features": {"human_approval_required": True}}
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
