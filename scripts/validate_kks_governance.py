@@ -298,6 +298,14 @@ MERGE_POLICY_REQUIRED = {
         "the fast path stops before merge",
         "every merge requires fresh, action-specific user approval",
     ),
+    ".github/copilot-instructions.md": (
+        "every merge requires fresh, action-specific user approval",
+        "auto-merge must not bypass this gate",
+    ),
+    ".github/github_instructions_knowledge-supporting.instructions.md": (
+        "every merge requires fresh, action-specific user approval",
+        "auto-merge is outside the fast path",
+    ),
     "README.md": (
         "obtain human review and approval before merge",
         "is not merged automatically",
