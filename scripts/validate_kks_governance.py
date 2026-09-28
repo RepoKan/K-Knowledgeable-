@@ -45,6 +45,7 @@ REQUIRED_GOVERNANCE_DOCS = [
     "docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_RULE_GOVERNANCE_AGENT_R1.md",
+    "docs/security/DOPPLER_SECRET_MANAGEMENT_R1.md",
     ".github/skills/enter/SKILL.md",
 ]
 ENTER_SKILL = ".github/skills/enter/SKILL.md"
