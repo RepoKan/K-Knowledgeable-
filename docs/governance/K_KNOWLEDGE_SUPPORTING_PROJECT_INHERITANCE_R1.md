@@ -103,13 +103,14 @@ When multiple revisions exist, resolve against the exact revision/SHA/version ap
 3. Load the general Project Skill if available.
 4. Route to the most specific domain Skill or workflow.
 5. Load only the relevant sources for the task.
-6. Apply `KKS-VALUE-PROPOSITION-VALIDATION-GATE-R1` before any Thinking, Analysis, Investigation, Production Solving, Root Cause Analysis, or equivalent downstream reasoning.
-7. If Value Proposition validation returns `GAP`, stop the downstream process, begin the response with `GAP`, list the missing values and preparation steps, and wait for the value set to be repaired.
-8. After GAP closure, re-validate the complete Value Proposition. Continue only on `PASS`.
-9. Record exact revisions for Production-critical decisions.
-10. Preserve conflicts; never use last-write-wins for business truth.
+6. Apply `KKS-MODEL-ROUTING-R1` and `KKS-MODEL-CREDIT-LIMIT-GATE-R1`. Before any additional billable model/tool action, enforce the credit gate when the active app exposes authoritative quota/balance data; never invent unexposed credits.
+7. Apply `KKS-VALUE-PROPOSITION-VALIDATION-GATE-R1` before any Thinking, Analysis, Investigation, Production Solving, Root Cause Analysis, or equivalent downstream reasoning.
+8. If Value Proposition validation returns `GAP`, stop the downstream process, begin the response with `GAP`, list the missing values and preparation steps, and wait for the value set to be repaired.
+9. After GAP closure, re-validate the complete Value Proposition. Continue only on `PASS`.
+10. Record exact revisions for Production-critical decisions.
+11. Preserve conflicts; never use last-write-wins for business truth.
 
-See `docs/governance/K_KNOWLEDGE_SUPPORTING_VALUE_PROPOSITION_GATE_R1.md`.
+See `docs/governance/K_KNOWLEDGE_SUPPORTING_VALUE_PROPOSITION_GATE_R1.md` and `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md`.
 
 ## Master-source promotion
 
