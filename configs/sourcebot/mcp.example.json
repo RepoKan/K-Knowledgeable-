@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "sourcebot": {
+      "type": "http",
+      "url": "https://sourcebot.example.com/api/mcp"
+    }
+  }
+}

@@ -19,3 +19,5 @@ jobs:
         run: python3 -m unittest scripts/test_validate_kks_governance.py
       - name: Validate KKS governance contract
         run: python3 scripts/validate_kks_governance.py
+      - name: Validate Sourcebot integration
+        run: python3 scripts/validate_sourcebot_integration.py

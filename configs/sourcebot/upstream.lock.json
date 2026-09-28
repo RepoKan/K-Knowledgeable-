@@ -1,0 +1,8 @@
+{
+  "repository": "sourcebot-dev/sourcebot",
+  "clone_url": "https://github.com/sourcebot-dev/sourcebot.git",
+  "release": "v5.1.14",
+  "commit": "3c0e5ca6f07f524b42490a5feef4ff9a0824c990",
+  "published_at": "2026-09-17T21:21:20Z",
+  "license": "FSL-1.1-ALv2 core; ee directories use separate upstream license terms"
+}
