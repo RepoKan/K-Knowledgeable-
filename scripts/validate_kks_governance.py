@@ -11,6 +11,7 @@ Promotes the documented governance process into executable tooling. Checks:
 6. Secret-pattern scan with placeholder guarding.
 7. Python files compile (syntax check).
 8. Public-boundary scan (PAN heuristics, private endpoints).
+9. Merge-policy parity across canonical governance surfaces.
 
 Usage:
     python3 scripts/validate_kks_governance.py
@@ -279,6 +280,46 @@ REQUIRED_DOC_PHRASES = (
     "public repository",
     "does not grant authorization",
 )
+
+MERGE_POLICY_REQUIRED = {
+    "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md": (
+        "every merge requires fresh, action-specific user approval",
+        "do not use auto-merge as a substitute",
+    ),
+    "AGENTS.md": (
+        "every merge requires fresh, action-specific user approval",
+        "auto-merge must not bypass this gate",
+    ),
+    "activation/PROJECT_INSTRUCTIONS.md": (
+        "every merge requires fresh, action-specific user approval",
+        "auto-merge must not bypass this gate",
+    ),
+    "docs/governance/K_KNOWLEDGE_SUPPORTING_GITHUB_CONNECTOR_FAST_PATH_R1.md": (
+        "the fast path stops before merge",
+        "every merge requires fresh, action-specific user approval",
+    ),
+    ".github/copilot-instructions.md": (
+        "every merge requires fresh, action-specific user approval",
+        "auto-merge must not bypass this gate",
+    ),
+    ".github/github_instructions_knowledge-supporting.instructions.md": (
+        "every merge requires fresh, action-specific user approval",
+        "auto-merge is outside the fast path",
+    ),
+    "README.md": (
+        "obtain human review and approval before merge",
+        "is not merged automatically",
+    ),
+    "CHATGPT_CONNECTOR_GUIDE.md": (
+        "obtain human review and approval before merge",
+        "is not merged automatically",
+    ),
+}
+MERGE_POLICY_FORBIDDEN = (
+    "auto-merge is allowed only for non-critical changes",
+    "automatic merge is allowed for non-critical changes",
+)
+
 FORBIDDEN_DOC_CLAIMS = (
     "full api write permissions for autonomous processing",
     "no manual intervention required",
@@ -313,6 +354,43 @@ def check_documentation_contract(violations: list[str], findings: list[str]) -> 
     for phrase in FORBIDDEN_DOC_CLAIMS:
         if phrase.lower() in lower_readme or phrase.lower() in guide.lower():
             violations.append(f"unsafe connector claim remains: {phrase}")
+
+
+
+def check_merge_policy_parity(violations: list[str], findings: list[str]) -> None:
+    """Enforce one merge rule across Project governance and connector guidance."""
+    for rel_path, required_phrases in MERGE_POLICY_REQUIRED.items():
+        path = REPO_ROOT / rel_path
+        if not path.is_file():
+            violations.append(f"merge policy: missing required file {rel_path}")
+            continue
+        try:
+            lower = path.read_text(encoding="utf-8").lower()
+        except (OSError, UnicodeError) as e:
+            violations.append(f"merge policy: cannot read {rel_path} ({e})")
+            continue
+
+        for phrase in required_phrases:
+            if phrase not in lower:
+                violations.append(f"merge policy: {rel_path} missing required phrase: {phrase}")
+        for phrase in MERGE_POLICY_FORBIDDEN:
+            if phrase in lower:
+                violations.append(f"merge policy: {rel_path} contains conflicting phrase: {phrase}")
+
+    cfg_path = REPO_ROOT / CONNECTOR_CONFIG
+    if cfg_path.is_file():
+        try:
+            cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+            human_approval = cfg.get("features", {}).get("human_approval_required")
+            if not is_truthy_violation(human_approval):
+                violations.append(
+                    f"merge policy: {CONNECTOR_CONFIG} features.human_approval_required must stay true"
+                )
+        except (json.JSONDecodeError, OSError, UnicodeError, AttributeError) as e:
+            violations.append(f"merge policy: cannot validate {CONNECTOR_CONFIG} ({e})")
+
+    if not any(item.startswith("merge policy:") for item in violations):
+        findings.append("merge policy parity ok: every merge requires fresh action-specific approval")
 
 
 def check_workflows(violations: list[str], findings: list[str]) -> None:
@@ -423,6 +501,7 @@ def main(argv: list[str] | None = None) -> int:
     check_required_artifacts(violations)
     check_enter_skill(violations, findings)
     check_documentation_contract(violations, findings)
+    check_merge_policy_parity(violations, findings)
     check_workflows(violations, findings)
     check_secrets(violations, findings)
     check_public_boundary(violations, findings)

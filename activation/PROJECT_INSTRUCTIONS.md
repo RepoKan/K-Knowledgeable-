@@ -61,7 +61,9 @@ Project default: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
 
 Kotlin/Android RCA exception: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1` — `auto Git commit = No`; commit, push, and merge require explicit authorization covering action, target repository/branch, and scope.
 
-Critical actions retain fresh, single-purpose approval immediately before execution. Project-wide permission inheritance does not override this requirement.
+Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges. Auto-merge must not bypass this gate.
+
+Critical actions additionally retain fresh, single-purpose approval immediately before execution. Project-wide permission inheritance does not override either requirement.
 
 ## GitHub Connector fast path
 

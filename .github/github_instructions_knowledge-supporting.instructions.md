@@ -111,6 +111,7 @@ Apply `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` to connector-backed knowledge maintena
 - Connector write/admin capability is not security authorization.
 - Never use the fast path for access/permission changes, rulesets, branch protection, required checks/reviews, secrets, Actions policies, security settings, destructive history changes, or Production/security-critical work.
 - Existing GitHub controls and stricter Project approval rules always remain enforceable.
+- Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges; auto-merge is outside the fast path.
 
 ## Required response behavior
 

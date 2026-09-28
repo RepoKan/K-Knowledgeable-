@@ -31,7 +31,8 @@ See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md` and `docs
 
 - Project default: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
 - Kotlin/Android RCA exception: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1` — `auto Git commit = No`; commit, push, and merge require explicit authorization for action + target repository/branch + scope.
-- Critical operations retain fresh, single-purpose approval immediately before the critical write/merge/delete action even when baseline Project permissions are inherited.
+- Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges. Auto-merge must not bypass this gate.
+- Critical operations additionally retain fresh, single-purpose approval immediately before the critical write/merge/delete action even when baseline Project permissions are inherited.
 - Never use Project-wide inheritance to bypass branch protection, required checks, external repository permission, source authority, privacy, or Production evidence gates.
 
 ## GitHub Connector fast path

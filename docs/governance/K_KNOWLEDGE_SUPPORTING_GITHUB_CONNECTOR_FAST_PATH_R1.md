@@ -30,6 +30,10 @@ When the active GitHub connector exposes the required operation and the user req
 
 For these operations, agents should bypass **duplicate conversational process**, not GitHub controls.
 
+## Merge boundary
+
+The fast path stops before merge. Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges. Auto-merge is not permitted as a substitute for that approval. A successful validation run, mergeable PR state, or standing non-critical Project permission does not itself authorize merge.
+
 ## Mandatory security boundary
 
 The fast path MUST NOT be used to create, change, remove, weaken, or bypass security or access controls.

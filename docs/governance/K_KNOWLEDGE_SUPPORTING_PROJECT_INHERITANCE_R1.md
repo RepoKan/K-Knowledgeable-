@@ -139,7 +139,7 @@ Rule ID: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
 - Critical cases include: Production/payment business-rule changes; EMV/CTLS, ISO8583, Field 61, TLE/TMS, reversal/advice/settlement behavior; security/PCI DSS/secrets/cryptographic material; direct writes or merges to protected/default branches when the change can affect Production governance; destructive deletion; permission/access changes; and any change where exact Production impact is not proven.
 - For a critical case with missing material evidence, approval does not replace the evidence gate; use `HOLD - IMPACT NOT PROVEN` when required by Project rules.
 - Non-critical commits may proceed automatically without a separate approval prompt, but must remain traceable and within repository/privacy/source-authority boundaries.
-- Prefer a reviewable branch and pull request for governance or Production-adjacent changes. Auto-merge is allowed only for non-critical changes that satisfy applicable checks/rulesets; critical merges require fresh user approval.
+- Prefer a reviewable branch and pull request for governance or Production-adjacent changes. Every merge requires fresh, action-specific user approval immediately before the merge, including non-critical changes. Do not use auto-merge as a substitute for this approval. Required checks/rulesets must also pass.
 - Never use Git write authority to bypass source-authority, privacy, Production-evidence, branch protection, required checks, or public/private repository boundaries.
 
 ### Kotlin / Android RCA Git exception
