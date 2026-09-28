@@ -15,6 +15,7 @@ Define a sanitized, repository-safe way to use Doppler for local development, CI
 Official Doppler guidance:
 
 - Service Account Identities (OIDC): https://docs.doppler.com/docs/service-account-identities
+- GitHub OIDC Examples: https://docs.doppler.com/docs/github-oidc-examples
 - GitHub integration / Actions: https://docs.doppler.com/docs/github-actions
 - CLI installation and usage: https://docs.doppler.com/docs/install-cli
 
