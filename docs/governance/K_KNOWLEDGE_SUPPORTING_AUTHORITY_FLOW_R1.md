@@ -187,6 +187,6 @@ This is sanitized governance only. Do not copy private KTC source, restricted sp
 
 Status: `ACTIVE / MERGED / VALIDATED`
 
-Canonical merged main: `c0fa7592b7aee705447565b3ff23c1d582f04409`
+Activation merge commit: `c0fa7592b7aee705447565b3ff23c1d582f04409`
 
-Post-merge validation: GitHub Actions `KKS governance validation` run `36483961800` completed successfully on the canonical merged main.
+Post-merge validation: GitHub Actions `KKS governance validation` run `36483961800` completed successfully on activation merge commit `c0fa7592b7aee705447565b3ff23c1d582f04409`.
