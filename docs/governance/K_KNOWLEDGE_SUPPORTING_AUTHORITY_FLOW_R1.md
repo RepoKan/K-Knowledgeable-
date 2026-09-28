@@ -185,4 +185,8 @@ When another rule is stricter, the stricter rule wins.
 
 This is sanitized governance only. Do not copy private KTC source, restricted specifications, credentials, keys, private endpoints, unredacted Production logs, customer/cardholder data, or confidential host configuration into this public repository.
 
-Status: `READY FOR REVIEW`
+Status: `ACTIVE / MERGED / VALIDATED`
+
+Canonical merged main: `c0fa7592b7aee705447565b3ff23c1d582f04409`
+
+Post-merge validation: GitHub Actions `KKS governance validation` run `36483961800` completed successfully on the canonical merged main.
