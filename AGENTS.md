@@ -17,6 +17,24 @@ Every work chat, thread, or chat box inside **K Knowledge Supporting** is a gove
 
 See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
 
+## Authority flow and separation
+
+Apply `KKS-AUTHORITY-FLOW-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_AUTHORITY_FLOW_R1.md`.
+
+```text
+FACTS -> EVIDENCE -> KNOWLEDGE -> WORKFLOW -> IMPLEMENTATION -> REVISION -> HUMAN-GOVERNED CHANGE
+```
+
+- Evidence determines factual support; do not let workflow or preference metadata create facts.
+- Notion records governed knowledge and provenance; it does not replace exact source, runtime evidence, or Git revision truth.
+- Skills and Agent contracts determine workflow; `AGENTS.md` determines working style and operating constraints.
+- GitHub determines repository revision truth through exact repository/ref/SHA/PR/merge state.
+- Human approval determines governed promotions where the applicable rule requires it.
+- No layer may silently promote its own output into another authority layer or approve itself.
+- Auto Preference Learner remains working-style only: Suggest -> numbered proposal -> explicit user acceptance -> managed `AGENTS.md` block. It must not directly mutate implementation.
+
+See `docs/governance/K_KNOWLEDGE_SUPPORTING_AUTHORITY_FLOW_R1.md`.
+
 ## Mandatory Value Proposition validation gate
 
 Apply `KKS-VALUE-PROPOSITION-VALIDATION-GATE-R1` from `docs/governance/K_KNOWLEDGE_SUPPORTING_VALUE_PROPOSITION_GATE_R1.md` before using material inputs in Thinking, Analysis, Investigation, Production Solving, Root Cause Analysis, or equivalent reasoning workflows.

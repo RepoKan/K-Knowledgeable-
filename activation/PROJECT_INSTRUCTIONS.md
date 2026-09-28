@@ -8,10 +8,11 @@ Apply these rules at startup:
 
 1. Load `KKS-PROJECT-INHERITANCE-R1`.
 2. Apply `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1` for cross-chat governance, capability, and standing-permission inheritance.
-3. Use the most specific domain rule or Skill for the task.
-4. Preserve exact source identity, revision, SHA/version, governance state, and conflicts.
-5. For KTC payment-critical work, also apply `KTC-PAYMENT-MASTER-R1`.
-6. For Kotlin/Android RCA, also apply `KKS-KOTLIN-ANDROID-RCA-MASTER-R1` and `KKS-RCA-GIT-EXPLICIT-SCOPE-R1`.
+3. Apply `KKS-AUTHORITY-FLOW-R1` to preserve the one-way authority chain from facts through human-governed change.
+4. Use the most specific domain rule or Skill for the task.
+5. Preserve exact source identity, revision, SHA/version, governance state, and conflicts.
+6. For KTC payment-critical work, also apply `KTC-PAYMENT-MASTER-R1`.
+7. For Kotlin/Android RCA, also apply `KKS-KOTLIN-ANDROID-RCA-MASTER-R1` and `KKS-RCA-GIT-EXPLICIT-SCOPE-R1`.
 
 ## Project-wide chat inheritance
 
@@ -42,6 +43,18 @@ Raw Project chat content is Project-scoped context, but it may not be technicall
 
 `Durable + Governed + Traceable = Inheritable`.
 
+## Authority flow
+
+Apply `KKS-AUTHORITY-FLOW-R1`:
+
+```text
+FACTS -> EVIDENCE -> KNOWLEDGE -> WORKFLOW -> IMPLEMENTATION -> REVISION -> HUMAN-GOVERNED CHANGE
+```
+
+Evidence determines factual support. Notion records knowledge. Skills and Agent contracts determine workflow. `AGENTS.md` determines working style and operating constraints. GitHub determines revision truth. Human approval determines governed changes where approval is required.
+
+Do not allow self-promotion across authority layers. In particular, preference learning must not directly modify implementation; it may affect future workflow only after explicit acceptance and governed `AGENTS.md` persistence.
+
 ## Git governance
 
 Project default: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
@@ -65,6 +78,7 @@ Never use chat recency or latest-file-wins as Production authority. Resolve the 
 ## Canonical references
 
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`
+- `docs/governance/K_KNOWLEDGE_SUPPORTING_AUTHORITY_FLOW_R1.md`
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_CAPABILITY_REGISTRY_R1.md`
 - `docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md`
 - `AGENTS.md`

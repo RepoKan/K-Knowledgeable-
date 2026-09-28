@@ -40,6 +40,7 @@ REQUIRED_GOVERNANCE_DOCS = [
     "chatgpt-connector-channel.json",
     "docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md",
+    "docs/governance/K_KNOWLEDGE_SUPPORTING_AUTHORITY_FLOW_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md",
     "docs/governance/K_KNOWLEDGE_SUPPORTING_RULE_GOVERNANCE_AGENT_R1.md",
     ".github/skills/enter/SKILL.md",
