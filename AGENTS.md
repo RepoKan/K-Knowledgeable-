@@ -73,7 +73,8 @@ The exact Production source and approved evidence retain authority according to 
 
 - Project default: `KKS-AUTO-GIT-COMMIT-CRITICAL-APPROVAL-R1`.
 - Kotlin/Android RCA exception: `KKS-RCA-GIT-EXPLICIT-SCOPE-R1` — `auto Git commit = No`; commit, push, and merge require explicit authorization covering action, target repository/branch, and scope.
-- Critical operations retain fresh, single-purpose approval immediately before the critical action even when Project-wide baseline permissions exist.
+- Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges. Auto-merge must not bypass this gate.
+- Critical operations additionally retain fresh, single-purpose approval immediately before the critical action even when Project-wide baseline permissions exist.
 - Never use Project-wide inheritance to bypass branch protection, rulesets, required checks, external repository permissions, or Production evidence gates.
 
 ## GitHub Connector fast path
