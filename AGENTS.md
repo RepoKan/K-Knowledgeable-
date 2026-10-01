@@ -2,7 +2,7 @@
 
 ## Master rule
 
-Use `KKS-PROJECT-INHERITANCE-R1` as the Project bootstrap contract and `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1` as the Project-wide chat/permission inheritance rule. Use `KTC-PAYMENT-MASTER-R1` as the sanitized governance baseline for KTC payment inspection workflows.
+Use `KKS-PROJECT-INHERITANCE-R1` as the Project bootstrap contract and `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1` as the Project-wide chat/permission inheritance rule. Use `KTC-PAYMENT-MASTER-R1` as the sanitized governance baseline for KTC payment inspection workflows. Use `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` as the canonical Master Rule for ChatGPT/Codex/Copilot GitHub connector process simplification, subject to its merge and security boundaries.
 
 ## Project-wide chat scope
 
