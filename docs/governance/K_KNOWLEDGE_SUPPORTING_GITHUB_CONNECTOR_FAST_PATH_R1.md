@@ -4,7 +4,9 @@ Rule ID: `KKS-GITHUB-CONNECTOR-FAST-PATH-R1`
 
 Effective: `2026-09-22`
 
-Status: `PROPOSED_FOR_MAIN`
+Status: `ACTIVE_CANONICAL_MAIN`
+
+Authority: `MASTER_RULE`
 
 ## Purpose
 
