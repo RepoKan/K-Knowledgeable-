@@ -1,0 +1,126 @@
+TH lang
+SUNMI Payment Systems News [Weekly 2026-09-28 - 2026-10-04 16:30 ICT]
+
+Generated Date: 2026-10-04 16:30 ICT
+Coverage Period: Last Monday - Sunday 16:30 Thai Time
+Coverage Window: 2026-09-28 00:00 - 2026-10-04 16:30 ICT
+Schedule Time: Sunday 16:30 ICT
+Time Zone: Asia/Bangkok
+Pinned Topic Check: Passed - current heading set applied
+Source Verification Rule: SUNMI official sources first
+Retention Rule: 1 year with FIFO cleanup when supported
+Archive Format: UTF-8 Text File
+Usage Mode: Low-usage compact weekly run
+
+Weekly Hi light
+
+พบ meaningful official update 1 รายการในสัปดาห์นี้: SUNMI ประกาศความร่วมมือกับ Enactor เมื่อ 2026-09-29 และยืนยันผ่าน compatibility testing ว่า T3 PRO MAX, CPad และ L3 ผ่านการ validation สำหรับ Enactor unified-commerce solution แล้ว
+
+สำหรับงาน Android EDC/POS ผลกระทบหลักอยู่ที่ POS/platform integration และ device-compatibility validation มากกว่า Payment SDK core. T3 PRO MAX เป็น desktop POS; CPad และ L3 มี use case ด้าน checkout/SoftPOS ตาม official product pages. ยังไม่มีหลักฐานว่า update นี้เปลี่ยน PayLib, EMV kernel, PinPad, RKI, PrinterX หรือ P3/P3 MIX payment behavior โดยตรง.
+
+Priority: Medium สำหรับ POS integration/deployment planning; High release gates เดิมของ Payment SDK/EMV/PinPad/Security/Printer/APK/P3 ยังคงเป็น carry-over และต้องใช้ exact device/runtime evidence ก่อน Production change.
+
+Read next:
+- https://www.sunmi.com/en/news/568/sunmi-enactor-better-together-for-smarter-retail/
+- https://www.sunmi.com/en/t3-pro-series/
+- https://www.sunmi.com/en/cpad/
+- https://www.sunmi.com/en/l3
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+SUNMI Development News
+
+New official update:
+- 2026-09-29 — SUNMI × Enactor: Better Together for Smarter Retail.
+- SUNMI ระบุว่า T3 PRO MAX, CPad และ L3 ผ่าน technical collaboration และ compatibility testing กับ Enactor solution.
+- Development implication: ใช้เป็น validated integration signal สำหรับ fixed POS, customer-facing/tablet และ mobile retail workflows.
+- Boundary: ไม่ใช่ Payment SDK release note และไม่ใช่ evidence ว่า P3/P3 MIX, EMV, PinPad, RKI หรือ printer library เปลี่ยน behavior.
+
+Duplicate / carry-over:
+- Android-version documentation signal 2026-09-16 — Carry-over.
+- SoftPOS security-patch bulletin signal 2026-09-17 — Carry-over.
+- Payment SDK / PrinterX / RKI / SunmiCustomer / generic Security Bulletin — Previous Revision; no meaningful new official delta found this week.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+SUNMI Lib Update
+
+No new SUNMI payment-library release was identified in this weekly window from the checked package/developer evidence.
+
+Carry-over baseline:
+- PayLib-release: 2.0.42
+- PrinterX: 1.0.20
+- sunmi-ecr-service: 3.0.16
+- lib-dmp-api: v0.0.12
+
+Do not bump dependencies because of the Enactor announcement alone. Keep binary/library changes separate from partner-solution validation. Any SDK/AAR change still requires authoritative package/version mapping plus target-device regression.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Officially SUNMI Verified
+
+- SUNMI official news dated 2026-09-29 states that T3 PRO MAX, CPad and L3 were successfully validated for Enactor's solution through technical collaboration and compatibility testing.
+- T3 PRO MAX is part of SUNMI's desktop POS line.
+- CPad supports retail/restaurant checkout scenarios and official product material states SoftPOS payment support.
+- L3 official material includes in-store checkout and SoftPOS-related positioning.
+- No checked source established a new P3/P3 MIX Payment SDK, EMV, PinPad, RKI or PrinterX release in this coverage window.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Incident Response Guideline
+
+For Enactor/SUNMI integration rollout, isolate platform-integration issues from payment-core regressions:
+1. Capture exact device model, SUNMI OS/Android build, app build, Enactor component/version, network profile and deployment group.
+2. For T3 PRO MAX / CPad / L3 integration failures, verify app install/startup, device APIs, peripherals, network/session behavior and checkout workflow separately from host authorization.
+3. If SoftPOS/payment is involved on CPad or L3, keep Payment/EMV/security validation separate and do not reuse general POS validation as proof of payment certification.
+4. Printer-dependent evidence still requires real-device slip/reprint/no-paper/reconnect testing.
+5. ECR/device-connection retry paths must preserve idempotency and avoid duplicate financial actions.
+6. TMS/DMP rollout should use pilot/staged groups, exact version inventory, monitoring and a last-known-good rollback baseline.
+7. Team communication should state affected device/build, first bad version, last known good, business impact, workaround, owner and next validation.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Ranking
+
+Impact Rank | Device / Module | Impact Focus | Recommended Check
+High | Payment SDK / EMV | No new SDK delta; existing release gate remains | Keep exact PayLib/SPHS mapping; rerun financial regression after any OS/app change
+High | PinPad / Security | No new weekly key/security release found | Verify PIN paths, key state/KCV and exact security baseline before rollout
+High | Printer | No new PrinterX release found | Sale/Void/Settlement/Reprint/No-paper/Reconnect on real device
+High | APK Release | New partner validation does not replace APK compatibility testing | Verify signing, ABI, permissions/package visibility and staged rollout
+High | SUNMI P3 / P3 MIX | No new model-specific official delta found | Keep separate compatibility matrix; no inferred ROM/SDK upgrade
+Medium | T3 PRO MAX / Enactor | Newly validated fixed-POS integration | Test app lifecycle, peripherals, network/session, checkout and deployment path
+Medium | CPad / Enactor | Newly validated customer-facing/tablet integration; SoftPOS capable | Separate general POS validation from payment/security certification checks
+Medium | L3 / Enactor | Newly validated mobile-retail integration | Test mobile checkout, NFC/SoftPOS path where used, connectivity and device management
+Medium | ECR / TMS / DMP | No new library delta; rollout/idempotency risk remains | Preserve duplicate-command controls, pilot rollout, inventory and rollback evidence
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Checklist
+
+[x] Verify official SUNMI sources first
+[x] Duplicate/carry-over check against 2026-09-27 archive and 2026-08-30 baseline
+[x] Classify update as Product/Platform Integration; not Payment SDK binary release
+[x] Map Payment / EMV / PinPad / Printer / ECR / TMS / APK Release
+[x] Assess T3 PRO MAX / CPad / L3 impact and keep P3/P2/P3 MIX boundaries explicit
+[x] Prepare tuning scope for POS/app/device integration only
+[x] Keep payment-core regression matrix unchanged unless payment path is touched
+[x] Test applicable flows on real device before Production rollout
+[x] Prepare pilot/staged rollout, monitoring and rollback
+[x] Short team announcement: Enactor compatibility validation is new; no confirmed SUNMI payment-library release
+[x] Confirm title/heading validation before text archive creation
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Text Archive
+
+Runtime Path: /mnt/data/SUNMI_Payment_Systems_News_2026-10-04_1630_ICT.txt
+GitHub Storage Status: pending post-write readback at archive-generation time
+GitHub Branch: automation/sunmi-weekly
+GitHub Path: chatgpt-generated/sunmi-weekly/2026/SUNMI_Payment_Systems_News_2026-10-04_1630_ICT.txt
+GitHub Commit: authoritative commit SHA is recorded in the post-write revision metadata and archive index
+Fallback Library Status: not used when GitHub roundtrip verification succeeds
+Registered agents/tools used: Official SUNMI Source Verification, GitHub Storage, Deep Research Reference Baseline, Duplicate Filtering, Revision Knowledge, Text Archive, Runtime Download Copy
+Download Link Policy: runtime link is temporary; target access window is 7 days; GitHub or persistent Library copy is the source for re-creating a downloadable file after expiry.
+Revision Entry: REV-2026-10-04-001 — Change — SUNMI/Enactor compatibility validation dated 2026-09-29 for T3 PRO MAX, CPad and L3; no confirmed new core payment-library release.
+
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
