@@ -8,8 +8,11 @@
     "node": ">=24.18.0"
   },
   "scripts": {
+    "predev": "node scripts/verify-readiness.mjs",
     "dev": "skybridge dev",
+    "prebuild": "node scripts/verify-readiness.mjs",
     "build": "skybridge build",
+    "prestart": "node scripts/verify-readiness.mjs",
     "start": "skybridge start",
     "test:fixture": "node --test tests/*.test.mjs"
   },
