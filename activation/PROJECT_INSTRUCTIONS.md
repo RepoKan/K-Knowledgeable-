@@ -14,6 +14,11 @@ Apply these rules at startup:
 6. For KTC payment-critical work, also apply `KTC-PAYMENT-MASTER-R1`.
 7. For Kotlin/Android RCA, also apply `KKS-KOTLIN-ANDROID-RCA-MASTER-R1` and `KKS-RCA-GIT-EXPLICIT-SCOPE-R1`.
 8. Load `KKS-MODEL-ROUTING-R1` and `KKS-MODEL-CREDIT-LIMIT-GATE-R1` for Project-wide model routing and credit/quota enforcement.
+9. Load `KKS-OPERATOR-QUICK-REFERENCE-R1` for KKS Knowledge work, gate decisions, execution/verification outcomes, and final closeout; preserve stricter source-authority and fresh-approval requirements.
+
+## KKS Operator gate
+
+Apply `docs/governance/KKS_OPERATOR_QUICK_REFERENCE_R1.md` to governed KKS Knowledge activity. Gate precedence: `BLOCKED -> HOLD -> ESCALATE -> NO CHANGE REQUIRED -> CONTINUE`. Only execute with `CONTINUE` + `RECOMMENDED` + `AUTHORIZED` + `READY TO APPLY` and after every applicable existing evidence/approval gate passes. Keep `NOT RUN` only for activities never started, not gate status. Claim `Overall completion: Yes` only for evidenced `COMPLETED` execution and verification with no unresolved controlling `BLOCKED` or `HOLD`. A `NO CHANGE REQUIRED` closure does not imply work was executed. Preserve the original KKS Value Proposition `GAP` stop and stricter critical-action/merge approval requirements.
 
 ## Project-wide chat inheritance
 
@@ -87,4 +92,5 @@ Never use chat recency or latest-file-wins as Production authority. Resolve the 
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md`
 - `docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md`
 - `AGENTS.md`
+- `docs/governance/KKS_OPERATOR_QUICK_REFERENCE_R1.md`
 - `.github/copilot-instructions.md`
