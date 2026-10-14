@@ -1,6 +1,6 @@
 # KKS Source Explorer — MCP App Pilot
 
-**Status:** DRAFT SPEC / NOT APPROVED FOR IMPLEMENTATION  
+**Status:** APPROVED FOR ISOLATED R1 IMPLEMENTATION (MERGE AND DEPLOYMENT NOT APPROVED)  
 **Version:** R1 (2026-10-14)  
 **Repository:** `RepoKan/K-Knowledgeable-` (public, sanitized metadata only)  
 **Baseline:** `main@22406760ae8653003819141186d68d0a368e08b2`  
@@ -80,7 +80,7 @@ The UI may filter or expand returned data locally. It must not create changes, c
 
 ## 7. Acceptance criteria
 
-- [ ] Product `SPEC.md` accepted by the user (this document is currently a draft).
+- [x] Product `SPEC.md` accepted by the user for isolated public-reference development on 2026-10-14.
 - [ ] Official upstream commit/version and lockfile pinned and reviewed.
 - [ ] Clean isolated Node.js >=24 host confirmed.
 - [ ] Skybridge dev server starts locally without Production material.
@@ -100,6 +100,6 @@ The UI may filter or expand returned data locally. It must not create changes, c
 
 ## 9. Outstanding product decision
 
-**Approval required before implementation:** confirm that this two-tool read-only Source Explorer and the fixture-only/non-deployed scope are the intended R1 product. Creating this document is not permission to install packages, start public tunnels, connect private accounts, or deploy.
+**Approval recorded 2026-10-14:** User approved development of the two-tool, fixture-only Source Explorer. This does not authorize public tunnels, private account connections, merge, or deployment.
 
 **Official external references reviewed:** https://github.com/alpic-ai/skybridge and https://github.com/alpic-ai/skybridge/blob/main/docs/get-started/quickstart.mdx (2026-10-14).
