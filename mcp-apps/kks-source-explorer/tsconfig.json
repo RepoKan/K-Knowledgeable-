@@ -1,0 +1,1 @@
+{"extends":"skybridge/tsconfig","compilerOptions":{"allowJs":true},"include":["src",".skybridge/**/*.d.ts"]}
