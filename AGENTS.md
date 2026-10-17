@@ -27,3 +27,7 @@ Every work chat, thread, or chat box inside **K Knowledge Supporting** is a gove
 - Effective executable permission is the intersection of Project-wide user authorization, action-specific approval rules, current tool/connector availability, external permissions, branch/ruleset/required-check constraints, and source-authority limits.
 
 See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
+
+## Git merge approval
+
+Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges. Auto-merge must not bypass this gate.
