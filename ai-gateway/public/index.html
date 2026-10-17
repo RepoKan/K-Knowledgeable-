@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invent a holiday</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, sans-serif; color: #17251d; background: #f5f6ef; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px 20px; }
+    main { max-width: 680px; margin: 8vh auto; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: #526d56; text-transform: uppercase; }
+    h1 { max-width: 600px; margin: 20px 0 16px; font-size: clamp(40px, 8vw, 64px); letter-spacing: -.055em; line-height: 1.05; }
+    .intro { max-width: 500px; font-size: 18px; line-height: 1.6; color: #526057; }
+    button { min-height: 52px; margin-top: 16px; padding: 14px 24px; border: 0; border-radius: 12px; background: #234d36; color: white; font: inherit; font-weight: 650; cursor: pointer; }
+    button:hover { background: #173b27; }
+    button:focus-visible { outline: 3px solid #8caa53; outline-offset: 4px; }
+    button:disabled { opacity: .65; cursor: wait; }
+    #status { min-height: 24px; font-size: 14px; color: #526057; line-height: 1.6; }
+    #status[data-error="true"] { color: #9b2525; }
+    #result { margin-top: 28px; padding: 28px; border: 1px solid #dce2d4; border-radius: 20px; background: white; }
+    #result h2 { font-size: 18px; margin: 0 0 16px; }
+    #holiday { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; line-height: 1.8; }
+    footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #dce2d4; color: #617064; font-size: 12px; }
+    @media (max-width: 480px) { main { margin: 40px auto; } button { width: 100%; } #result { padding: 20px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">A little imagination, a new tradition</div>
+    <h1>Invent a new holiday.</h1>
+    <p class="intro">Discover a celebration that doesn’t exist yet, and the traditions that could bring it to life.</p>
+    <button id="generate" type="button">Invent a holiday</button>
+    <p id="status" role="status" aria-live="polite">Ready when you are.</p>
+    <section id="result" aria-labelledby="result-title" hidden>
+      <h2 id="result-title">Your new celebration</h2>
+      <div id="holiday"></div>
+    </section>
+    <footer>Powered by Kimi K3 · Vercel AI Gateway</footer>
+  </main>
+  <script type="module">
+    const button = document.querySelector('#generate');
+    const status = document.querySelector('#status');
+    const result = document.querySelector('#result');
+    const holiday = document.querySelector('#holiday');
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      button.textContent = 'Imagining…';
+      result.hidden = true;
+      holiday.textContent = '';
+      status.dataset.error = 'false';
+      status.textContent = 'Creating a holiday and its traditions…';
+      try {
+        const response = await fetch('/api', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: { Accept: 'application/json' },
+          signal: AbortSignal.timeout(55_000),
+        });
+        if (!response.headers.get('content-type')?.includes('application/json')) {
+          throw new Error('Sign in to this Vercel preview, then try again.');
+        }
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'The request failed. Please try again.');
+        }
+        if (typeof data.text !== 'string' || !data.text.trim()) {
+          throw new Error('No holiday was returned. Please try again.');
+        }
+        holiday.textContent = data.text;
+        result.hidden = false;
+        status.textContent = 'Your holiday is ready.';
+      } catch (error) {
+        status.dataset.error = 'true';
+        status.textContent = error.name === 'TimeoutError'
+          ? 'The request took too long. Please try again.'
+          : error.message;
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Invent another holiday';
+      }
+    });
+  </script>
+</body>
+</html>

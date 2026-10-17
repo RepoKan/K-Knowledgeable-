@@ -37,7 +37,7 @@ repository; local workspace edits are not automatically pushed to GitHub.
 | 3 | Node.js Version | 24.x |
 | 4 | Install Command | npm ci |
 | 5 | Build Command | Leave unset; do not use npm start as a build command |
-| 6 | Output Directory | Leave unset |
+| 6 | Output Directory | public (configured in vercel.json) |
 | 7 | Environment variable name | AI_GATEWAY_API_KEY |
 | 8 | Environment variable value | Enter a replacement key directly in Vercel |
 | 9 | Environment targets | Production; Preview when needed |
@@ -50,6 +50,11 @@ Vercel loads api/index.ts as a Node.js function. It returns JSON containing
 `text` on successful generation; GET returns 405, missing credentials return
 503, and provider failures or empty text return 502. Responses are not cached.
 The endpoint has a fixed prompt and does not accept arbitrary input.
+
+The root URL serves public/index.html as a mobile-friendly browser preview.
+Its button sends POST /api and shows either the generated holiday or the API
+error. Static output is restricted to public/ so terminal TypeScript source
+and configuration files are not served as downloadable website content.
 
 The terminal command still uses index.ts. On Vercel, the function reads the
 environment variable configured in the dashboard; do not upload .env.local.
