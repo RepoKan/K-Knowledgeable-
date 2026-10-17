@@ -1,0 +1,22 @@
+{
+  "name": "ai-gateway-holiday-example",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "packageManager": "npm@11.9.0",
+  "scripts": {
+    "start": "node --env-file=.env.local index.ts",
+    "check": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "ai": "^7.0.142"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}
