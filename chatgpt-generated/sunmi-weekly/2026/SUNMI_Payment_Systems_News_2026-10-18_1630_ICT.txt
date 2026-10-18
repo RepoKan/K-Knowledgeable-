@@ -1,0 +1,79 @@
+TH lang
+SUNMI Payment Systems News [Weekly 2026-10-12 - 2026-10-18 16:30 ICT]
+
+Generated Date: 2026-10-18 16:30 ICT
+Coverage Period: Last Monday - Sunday 16:30 Thai Time
+Coverage Window: 2026-10-12 00:00 - 2026-10-18 16:30 ICT
+Schedule Time: Sunday 16:30 ICT
+Time Zone: Asia/Bangkok
+Pinned Topic Check: Passed - current heading set applied
+Source Verification Rule: SUNMI official sources first
+Retention Rule: 1 year with FIFO cleanup when supported
+Archive Format: UTF-8 Text File
+Usage Mode: Low-usage compact weekly run
+
+Weekly Hi light
+
+No-Change Compact Brief: จากแหล่งทางการ SUNMI ที่ตรวจสอบได้ ยังไม่พบการเปลี่ยนแปลงสำคัญใหม่ในสัปดาห์นี้สำหรับ Payment SDK/EMV/PinPad, Printer, OS/Security, RKI/TMS, ECR หรือ APK release ของ Android EDC/POS. ไม่ใช่คำยืนยันว่าไม่มีการเปลี่ยนแปลงในทุกช่องทางหรือทุกรุ่นอุปกรณ์.
+สิ่งที่ต้องจับตา: Security Update Bulletin แสดง Update Time ล่าสุด 2026-10-07 (Carry-over จากสัปดาห์ก่อน) และยังไม่มีหลักฐานยืนยัน ROM/Security Patch ใหม่สำหรับ P3/P2 จากหน้าที่ตรวจสอบได้. Priority: High สำหรับ Production release gate เดิม ไม่ใช่ High เพราะพบการอัปเดตใหม่. อ่านต่อ: SUNMI Security Update Bulletin และ Payment SDK Development.
+สถานะการยืนยันข้อมูล: ยังไม่ได้รับการยืนยันจาก SUNMI Official WebSite
+
+SUNMI Development News
+
+No Change — หน้าทางการ SUNMI ที่ตรวจสอบ ได้แก่ Developer Documentation, Security Update Bulletin (2026-10-07), Device's Android Version (2026-09-16) และ SoftPOS Devices Security Patch Status Bulletin (2026-09-17). ทั้งหมดเป็น Previous Revision / Carry-over และยังไม่พบรายการเฉพาะ P3/P2/T Series ที่ยืนยันว่าต้องเปลี่ยน Production baseline ในช่วงนี้.
+Official URLs:
+- https://developer.sunmi.com/en-US/
+- https://docs.sunmi.com/en-US/cicmeghjk546/xdmxeghjk491
+- https://docs.sunmi.com/en-US/cicmeghjk546/xmameghjk546
+- https://docs.sunmi.com/en-US/cicmeghjk546/xrcaeghjk480
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+SUNMI Lib Update
+
+No verified new binary/library release in the inspected sources for 2026-10-12 through 2026-10-18 16:30 ICT. Previous Revision: PaySDK V2 package v2.0.42 (2026-06-12) and PrinterX 1.0.20 (2026-06-24); do not infer a new Gradle/AAR or ROM release from documentation timestamps. Preserve tested PayLib/SPHS/EMV mapping; require exact official package/version and device matrix before changes.
+สถานะการยืนยันข้อมูล: ยังไม่ได้รับการยืนยันจาก SUNMI Official WebSite
+
+Officially SUNMI Verified
+
+SUNMI official documentation currently displays Security Update Bulletin Update Time 2026-10-07 17:32:48, Device's Android Version Update Time 2026-09-16 15:30:49, and SoftPOS Devices Security Patch Status Bulletin Update Time 2026-09-17 14:12:58. Dates are document timestamps only, not proof of P3/P2 firmware deployment or payment-library release. Source type: SUNMI Official Developer Documentation / Security Bulletins; purpose: OS and security baseline review.
+สถานะการยืนยันข้อมูล: ยืนยันแล้ว จาก SUNMI Official WebSite
+
+Incident Response Guideline
+
+หากพบปัญหาระหว่าง P3/P2 pilot หรือ TMS rollout ให้แยก scope ของ ROM/OS, PayLib-SPHS/EMV, PinPad/RKI, APK signature/ABI, ECR-host timeout และ Printer callback ก่อนแก้ Kotlin/Java payment source. เก็บ Model/SKU, ROM build, security patch, App/SDK versions, transaction outcome และ last-known-good โดยไม่เก็บ PAN/PIN/key material. ตรวจ regression บนอุปกรณ์จริง: SALE, VOID, REVERSAL, SETTLEMENT, contact/CTLS, cancel, slip/reprint/no-paper, ECR idempotency และ device reconnect. หากพฤติกรรมทางการเงินผิดปกติให้หยุด rollout พิจารณา rollback ตามเกณฑ์ที่อนุมัติ และสื่อสาร impact/owner/next check ให้ทีม.
+สถานะการยืนยันข้อมูล: ยังไม่ได้รับการยืนยันจาก SUNMI Official WebSite
+
+Ranking
+
+Impact Rank | Device / Module | Impact Focus | Recommended Check
+High | Payment SDK | No new verified delta; service binding | PayLib/SPHS version matrix, bind/rebind
+High | EMV | Kernel and CTLS risk | JAR/SO/Manifest, contact/CTLS regression
+High | PinPad / RKI | Key-state/security consistency | Approved key-state and PIN/cancel checks
+High | Printer | Slip evidence and callback | SALE/VOID/reprint/no-paper on device
+High | APK Release | OS/install compatibility | Signature, ABI, visibility, staged rollout
+High | SUNMI P3/P2 | ROM/security baseline | Exact model/SKU/ROM/patch inventory
+Medium | ECR / Host | Duplicate transaction prevention | Retry/idempotency, reversal handling
+Medium | TMS / Device Management | Controlled deployment | Pilot groups, monitor, rollback
+Low | T Series | No specific new weekly change verified | Check only if included in rollout
+สถานะการยืนยันข้อมูล: ยังไม่ได้รับการยืนยันจาก SUNMI Official WebSite
+
+Checklist
+
+Official SUNMI sources -> Duplicate/Carry-over vs 2026-08-30 baseline and 2026-10-11 report -> SDK/OS/TMS/API/Product classification -> Payment/EMV/PinPad/Printer/ECR/TMS/APK mapping -> P3/P2/T Series scope -> tuning scope -> regression matrix -> real-device test -> rollback/monitoring -> short team announcement -> title/heading validation. Result: No Change; maintain approved Production dependencies and release gates.
+สถานะการยืนยันข้อมูล: ยังไม่ได้รับการยืนยันจาก SUNMI Official WebSite
+
+Text Archive
+
+Filename: SUNMI_Payment_Systems_News_2026-10-18_1630_ICT.txt
+Runtime Path: /mnt/data/SUNMI_Payment_Systems_News_2026-10-18_1630_ICT.txt (temporary download copy)
+GitHub Repository: RepoKan/K-Knowledgeable-
+GitHub Branch: automation/sunmi-weekly
+GitHub Target Path: chatgpt-generated/sunmi-weekly/2026/SUNMI_Payment_Systems_News_2026-10-18_1630_ICT.txt
+GitHub Receipt: see append-only revision REV-2026-10-18-001.md and post-write readback result; not asserted by this pre-commit archive text.
+Library Fallback: only if GitHub write/readback fails.
+Registered Agents/Tools Used: Official SUNMI Source Verification, GitHub Storage, Deep Research Reference Baseline, Duplicate Filtering, Revision Knowledge, Text Archive, Runtime Download Copy; Persistent Library reserved for fallback.
+Revision Decision: REV-2026-10-18-001, No Change / Carry-over.
+Download Link Policy: runtime link is temporary; target access window is 7 days; GitHub or persistent Library copy is the source for re-creating a downloadable file after expiry.
+Expiry Control: explicit expiry metadata unavailable; target 2026-10-25 16:30 ICT.
+Retention: 1 year, FIFO only when supported; no historical deletions performed.
+สถานะการยืนยันข้อมูล: ยังไม่ได้รับการยืนยันจาก SUNMI Official WebSite
