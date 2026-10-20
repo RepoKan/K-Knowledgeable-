@@ -460,3 +460,4 @@ This is an operator-control supplement for all **KKS Knowledge** use cases, incl
 On startup, load KKS Project Inheritance and Authority Flow, then apply this operator rule to the task's decision/execution/verification. The more restrictive gate controls when requirements conflict. Preserve the pre-existing `KKS-VALUE-PROPOSITION-VALIDATION-GATE-R1` `GAP` behavior and fresh Git merge/critical-action approvals. GitHub is the revision authority; Notion is the human-readable Knowledge control plane. Neither reference alone proves a rule was merged or a payment change deployed.
 
 **Publication boundary:** sanitized general-purpose governance only; no private Production details, credentials, host configuration, cardholder data, or unredacted logs.
+
