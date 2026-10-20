@@ -82,9 +82,9 @@ The UI may filter or expand returned data locally. It must not create changes, c
 
 - [x] Product `SPEC.md` accepted by the user for isolated public-reference development on 2026-10-14.
 - [ ] Official upstream commit/version and lockfile pinned and reviewed.
-- [ ] Clean isolated Node.js >=24 host confirmed.
+- [x] Clean isolated Node.js >=24 host confirmed (24.19.0, 2026-10-20).
 - [ ] Skybridge dev server starts locally without Production material.
-- [ ] MCP initialize, `tools/list`, both tool calls and invalid-input handling verified with actual protocol requests.
+- [x] MCP initialize, `tools/list`, both tool calls and invalid-input handling verified with actual protocol requests (built Skybridge Express adapter, loopback only, 2026-10-20).
 - [ ] React view renders and both data states are inspected in DevTools.
 - [ ] LLM-visible data remains meaningful if the view is unavailable.
 - [ ] Offline and runtime tests are distinguished from exact-head GitHub CI.
@@ -103,3 +103,11 @@ The UI may filter or expand returned data locally. It must not create changes, c
 **Approval recorded 2026-10-14:** User approved development of the two-tool, fixture-only Source Explorer. This does not authorize public tunnels, private account connections, merge, or deployment.
 
 **Official external references reviewed:** https://github.com/alpic-ai/skybridge and https://github.com/alpic-ai/skybridge/blob/main/docs/get-started/quickstart.mdx (2026-10-14).
+
+## 10. Dependency and verification update (2026-10-20)
+
+The architecture and two public-fixture tools are unchanged. A genuine npm v3 lockfile is now included. Pin @opentelemetry/api 1.9.1 to satisfy the optional peer import required by the current Skybridge/PostHog production bundle. Installation with lifecycle scripts disabled, 11 fixture tests, full TypeScript checking and production build passed on Node 24.19.0.
+
+The local protocol verification used the actual built Skybridge VERCEL=1 Express adapter with an ephemeral 127.0.0.1 listener, closed immediately afterward. It did not deploy to Vercel or test the normal CLI listener. UI rendering, dev-server startup and packet-level egress remain open.
+
+Security hold: npm audit reports five high-severity affected packages for the transitive braces denial-of-service advisory GHSA-vfj7-8cjw-p6xm (CVE-2026-93687), with no published patched braces version. The lockfile is reproducibility evidence, not an approved dependency audit. Do not downgrade framework majors automatically or promote this candidate to ready.
