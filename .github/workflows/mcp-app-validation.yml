@@ -5,13 +5,18 @@ on:
     paths:
       - 'mcp-apps/kks-source-explorer/**'
       - '.github/workflows/mcp-app-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'mcp-apps/kks-source-explorer/**'
+      - '.github/workflows/mcp-app-validation.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  validate:
+  mcp-app:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
@@ -35,7 +40,11 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Run fixture tests
         run: npm run test:fixture
+      - name: Audit locked dependencies
+        run: npm audit --audit-level=high
       - name: Check TypeScript
         run: npx --no-install tsc --noEmit
       - name: Build the MCP app
         run: npm run build
+      - name: Verify actual loopback MCP and disabled cloud routes
+        run: npm run test:runtime

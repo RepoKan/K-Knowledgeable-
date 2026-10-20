@@ -14,7 +14,8 @@
     "build": "skybridge build",
     "prestart": "node scripts/verify-readiness.mjs",
     "start": "skybridge start",
-    "test:fixture": "node --test tests/*.test.mjs"
+    "test:fixture": "node --test tests/*.test.mjs",
+    "test:runtime": "node scripts/test-runtime.mjs"
   },
   "dependencies": {
     "@opentelemetry/api": "1.9.1",
@@ -23,7 +24,13 @@
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
+  "overrides": {
+    "nodemon": {
+      "chokidar": "4.0.3"
+    }
+  },
   "devDependencies": {
+    "tsx": "4.23.15",
     "@skybridge/devtools": "2.0.0",
     "@skybridge/vite-plugin": "2.0.0",
     "@vitejs/plugin-react": "5.2.0",

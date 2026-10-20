@@ -1,40 +1,35 @@
 # KKS Source Explorer MCP App pilot
 
-STATUS: LOCAL BUILD AND MCP VERIFIED; SECURITY AND UI REVIEW HOLD; NOT DEPLOYED.
+STATUS: LOCAL BUILD, MCP AND DEVTOOLS VERIFIED; CANDIDATE; NOT DEPLOYED.
 
-The user approved SPEC R1 on 2026-10-14 for two read-only tools using public fixtures. This approval does not include merge, public tunnel, connector registration, or deployment.
+SPEC R1 was approved for two read-only tools using public fixtures on 2026-10-14. The owner authorized resolving and merging the reviewed outstanding PRs on 2026-10-20. Public tunnels, connector registration and deployment still require separate approval.
 
-## What the app does
+## Run and verify locally
 
-- list_reference_sources: only allowlisted HTTPS URLs for public KKS and Skybridge references.
-- get_integration_status: dated CANDIDATE fixture with open verification gates, not live GitHub status.
-- Two Skybridge React views: source browser and integration readiness.
+Use isolated Node >=24.18.0. Review the committed npm v3 lockfile and advisories, then run `npm ci --ignore-scripts`. Set `SKYBRIDGE_TELEMETRY_DISABLED=1` and `DO_NOT_TRACK=1` before any Skybridge command.
 
-## Developer environment
+- `npm run test:fixture`: public fixture contracts and a real nodemon watcher regression.
+- `npm audit --audit-level=high`: dependency gate; no advisory suppression.
+- `npx --no-install tsc --noEmit`: complete type check.
+- `npm run build` then `npm run test:runtime`: production bundle and actual loopback MCP, including eight cloud/tunnel denial checks.
+- `npm run dev -- --plain --no-open`: local DevTools. Do not enable a tunnel. The installed framework's normal listener is not a hardened public service; use a loopback-only test environment.
 
-Use a separate Node.js >=24.18.0 host; do not alter Continue's Node 20 baseline.
+The tools return packaged public references and a dated candidate snapshot. They do not query current GitHub state. Existing Continue runtime and root MCP configuration are untouched.
 
-1. Audit package.json dependencies and official Skybridge source before installation.
-2. Review the committed npm v3 package-lock.json and current dependency advisories before installation. Regenerate it deliberately when dependencies change.
-3. Run npm ci --ignore-scripts after review. Investigate necessary native installation hooks separately.
-4. Set SKYBRIDGE_TELEMETRY_DISABLED=1 and DO_NOT_TRACK=1 in the shell before executing any Skybridge CLI.
-5. Run npm run test:fixture, npm run build, then npm run dev; no public tunnel.
-6. Verify actual MCP initialize, tools/list, both tools/call, invalid categories, and React view rendering in localhost DevTools.
-7. Audit egress, confirm latest GitHub head SHA/CI and obtain separate merge or deployment approval.
+## Dependency compatibility
 
-Upstream reviewed: alpic-ai/skybridge@6dd443908113b5218d20a5016ed6c34d223e5146.
-Verified on 2026-10-20 using isolated Node 24.19.0/npm 11.9.0: genuine lockfile generation, installation with lifecycle scripts disabled, 11 fixture tests, full TypeScript checking and production build passed. An exact @opentelemetry/api 1.9.1 dependency satisfies PostHog's optional peer import that otherwise breaks Skybridge's server bundle.
+Skybridge 2.0.3 uses PostHog's optional OpenTelemetry import during bundling; @opentelemetry/api 1.9.1 is pinned to make the server build reproducible. tsx 4.23.15 is explicit for development. nodemon.json watches only the literal src directory and includes TSX/MJS fixture changes, using `node --import tsx` rather than the CLI's optional IPC server.
 
-Actual built Skybridge MCP passed initialize, tools/list, both tools/call and invalid-category rejection through its Express adapter bound only to 127.0.0.1 on an ephemeral port. This used the framework's VERCEL=1 adapter locally; it was not a Vercel deployment. React rendering and the normal dev-server process were not tested.
+The scoped nodemon -> chokidar 4.0.3 override removes the vulnerable braces dependency chain (GHSA-vfj7-8cjw-p6xm). It is an application compatibility override, not a patched braces release. Chokidar 4 removes glob handling: do not add glob watch paths or assume general nodemon configuration compatibility. The committed regression covers change/add/unlink restarts for this pilot's literal-directory configuration. Reevaluate the override when upstream changes.
 
-The installed CLI telemetry gate and tool-call metric middleware both honor SKYBRIDGE_TELEMETRY_DISABLED=1 and DO_NOT_TRACK=1. Those flags were set for build and protocol checks. This source review is not a network packet/egress audit.
+## Verification (2026-10-20)
 
-## Hold conditions
+Node 24.19.0/npm 11.9.0: locked installation with lifecycle scripts disabled, 12 fixture/watcher tests, full type checking, production build and zero-vulnerability npm audit passed locally. Actual Skybridge MCP initialize, tools/list, both calls and invalid categories passed on loopback. Both React views rendered in DevTools; filters and provenance expansion were checked. GitHub CI repeats installation, audit, tests, build and runtime protocol/route checks on PRs and main; inspect the exact current head before relying on it.
 
-- npm audit reports five high-severity affected packages through braces -> chokidar -> nodemon -> Skybridge and its Vite plugin. Advisory GHSA-vfj7-8cjw-p6xm (CVE-2026-93687) has no published patched braces version as of this verification. Do not treat this lockfile as security approval or apply npm's unrelated major downgrades automatically.
-- React/DevTools rendering, normal dev-server startup and observed network egress remain unverified. The dependency advisory must be resolved or explicitly reviewed before broader use.
-- Root AGENTS.md now states the merge approval policy explicitly; the governance check passed at b3957a6. Always verify CI again on the latest PR head.
-- Do not use Production/payment data, private specs/logs, tokens or internal endpoints.
-- The app never becomes authority for real Production or current GitHub status.
+DevTools includes a cloud-status probe even when CLI telemetry is disabled. Application middleware now returns 403 for all /__skybridge/deploy and /__skybridge/tunnel routes before upstream SDK handlers execute. The local browser check used a loopback SDK base URL, non-loopback fetch/UDP guards and a browser request allowlist; no outbound attempts were recorded after the fix. This scoped test is not a comprehensive packet-level or external-host audit.
 
-Rollback: discard this isolated project; leave all existing KKS and Continue configuration untouched.
+## Remaining boundary
+
+No ChatGPT host connection, public tunnel, remote registration or deployment was tested or authorized. The app remains CANDIDATE. Never supply Production/payment data, private files, tokens or internal endpoints. Local checks do not grant Production authority.
+
+Rollback: revert the PR merge or discard this isolated project; preserve existing KKS and Continue configuration.

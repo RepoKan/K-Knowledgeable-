@@ -41,4 +41,11 @@ export const app = new Skybridge({
       };
     }),
 });
+
+// This pilot is local-only. DevTools normally probes cloud deployment status;
+// block its cloud and tunnel controls before Skybridge installs those routes.
+const localOnly = (_request: unknown, response: { status(code: number): { json(body: object): unknown } }) =>
+  response.status(403).json({ error: 'Cloud deployment and public tunnels are disabled for this local fixture pilot.' });
+app.use('/__skybridge/deploy', localOnly);
+app.use('/__skybridge/tunnel', localOnly);
 export type AppType = typeof app;

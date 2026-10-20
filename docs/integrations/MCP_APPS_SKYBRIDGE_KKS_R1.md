@@ -13,7 +13,7 @@ Use Skybridge as a replaceable, separately hosted **MCP app / UI layer**, not a 
 
 Skybridge requires **Node.js 24+**. Keep that runtime isolated from the current local-first Continue **Node.js 20.20.1** baseline. Do not upgrade Continue or replace root `mcp_config.json`; KKS already has a separate GitHub/Copilot MCP policy and does not need a duplicate GitHub server.
 
-## Product-discovery candidate, not an approved SPEC.md
+## Approved local pilot, not a deployed integration
 
 - Users: KKS engineers reviewing sanitized integration facts.
 - Pain: official external framework guidance and local approval gates are split across sources.
@@ -23,7 +23,7 @@ Skybridge requires **Node.js 24+**. Keep that runtime isolated from the current 
 - Data: explicit allowlist of sanitized public references; no unrestricted filesystem or repository traversal.
 - Auth: none needed for public fixture-only pilot. A future private-data design requires reviewed OAuth and permission scope.
 
-A formal `SPEC.md` and user confirmation of the intended pilot must precede implementation of a real MCP app.
+The user approved the two-tool fixture-only SPEC R1 on 2026-10-14. The implementation and current verification record are in `mcp-apps/kks-source-explorer/SPEC.md`. On 2026-10-20 the user additionally authorized resolving and merging the reviewed outstanding PRs. Neither approval authorizes public tunnels, connector registration or deployment.
 
 ## Architecture
 
@@ -54,7 +54,8 @@ The documented bootstrap command is `npx skybridge create kks-mcp-pilot`; inspec
 - Official GitHub documentation: checked 2026-10-13.
 - KKS governance, MCP policy and source SHA: confirmed from connected GitHub.
 - Static candidate policy/unit tests: 6 local tests passed on reference files.
-- Node24-based framework install, MCP connection, widget runtime, ChatGPT host and deployment: **NOT RUN**.
+- Local checks on 2026-10-20: Node 24.19.0 locked installation, zero-vulnerability npm audit, 12 fixture/watcher tests, full type checking, production build, actual loopback MCP and both DevTools React views passed. Cloud/tunnel routes are denied by application middleware. See the app SPEC and PR #34 for exact-head CI; this record is not live monitoring.
+- External ChatGPT host connection and deployment: **NOT RUN / NOT APPROVED**. Local egress was checked with loopback/fetch/UDP guards and a browser request allowlist; this is not a comprehensive packet-level audit.
 - Rollback: discard this candidate / trial service; do not alter KKS existing MCP config or Production source.
 
 This record contains no private source, credentials or payment material.

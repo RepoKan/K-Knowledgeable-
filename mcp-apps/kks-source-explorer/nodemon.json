@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": "ts,tsx,mjs,json,md",
+  "exec": "node --import tsx src/index.ts"
+}

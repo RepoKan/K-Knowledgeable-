@@ -55,7 +55,7 @@ def main():
             print(f" - {error}")
         return 1
     print("PASS: KKS Skybridge reference policy (static metadata only)")
-    print("NOT RUN: Skybridge startup, MCP protocol, React widget, ChatGPT connection, deployment")
+    print("NOT EXERCISED BY THIS STATIC CHECK: Skybridge startup, MCP protocol, React widget, ChatGPT connection, deployment")
     return 0
 
 
