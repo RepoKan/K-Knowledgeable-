@@ -45,7 +45,7 @@ Execution may begin **only when ALL** are true:
 ```text
 Gate status = CONTINUE
 Decision status = RECOMMENDED
-authorization status = AUTHORIZED
+Authorization status = AUTHORIZED
 Readiness verdict = READY TO APPLY
 ```
 
