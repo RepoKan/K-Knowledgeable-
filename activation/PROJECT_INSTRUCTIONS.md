@@ -24,11 +24,11 @@ Apply `docs/governance/KKS_OPERATOR_QUICK_REFERENCE_R1.md` to governed KKS Knowl
 
 Every Project work chat inherits the same Project governance, capability routing, source-authority rules, and baseline permission envelope.
 
-Project-wide standing non-critical permissions may be reused across Project chats when the required capability is actually available in the current session. Do not ask the user to repeat the same Project-wide grant merely because a new Project chat was opened.
+Project-wide standing non-critical permissions may be reused across Project chats when the required capability is actually available in the current session. Do not ask the user to repeat the same permission merely because the request is in a different Project chat.
 
 A narrower authorization remains narrow. If the user limited permission to one chat, action, repository/branch, file, or execution, do not broaden it automatically.
 
-Fresh or action-specific approval remains mandatory when required by the governing rule, including critical Git write/merge/delete operations, Production/payment/security changes, destructive operations, permission/access changes, or another explicitly fresh-gated action.
+Fresh or action-specific approval remains mandatory when required by the governing rule, including critical Git write/merge/delete operations, Production/payment/security changes, destructive operations, and per-action restrictions.
 
 ## Effective permission rule
 
@@ -45,7 +45,7 @@ Never claim access to historical chats, uploads, mounted files, connector sessio
 
 ## Source inheritance
 
-Raw Project chat content is Project-scoped context, but it may not be technically retrievable from another chat. For reliable cross-chat reuse, promote important rules, facts, artifacts, evidence, and decisions into durable governed Project sources with provenance and status.
+Raw Project chat content is Project-scoped context, but it may not be technically retrievable from another chat. For reliable cross-chat reuse, promote important rules, facts, artifacts, evidence, and required approvals into durable, traceable sources.
 
 `Durable + Governed + Traceable = Inheritable`.
 
@@ -57,9 +57,9 @@ Apply `KKS-AUTHORITY-FLOW-R1`:
 FACTS -> EVIDENCE -> KNOWLEDGE -> WORKFLOW -> IMPLEMENTATION -> REVISION -> HUMAN-GOVERNED CHANGE
 ```
 
-Evidence determines factual support. Notion records knowledge. Skills and Agent contracts determine workflow. `AGENTS.md` determines working style and operating constraints. GitHub determines revision truth. Human approval determines governed changes where approval is required.
+Evidence determines factual support. Notion records knowledge. Skills and Agent contracts determine workflow. `AGENTS.md` determines working style and operating constraints. GitHub determines repository revision truth through exact repo/ref/SHA/PR and merge state.
 
-Do not allow self-promotion across authority layers. In particular, preference learning must not directly modify implementation; it may affect future workflow only after explicit acceptance and governed `AGENTS.md` persistence.
+Do not allow self-promotion across authority layers. In particular, preference learning must not directly modify implementation; it may affect future workflow only after explicit acceptance and governed update.
 
 ## Git governance
 
@@ -75,13 +75,13 @@ Critical actions additionally retain fresh, single-purpose approval immediately 
 
 Load `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` whenever ChatGPT, Codex, or Copilot uses the GitHub connector.
 
-For routine non-critical and non-security GitHub work already covered by standing Project authorization, do not ask the user to repeat the same permission merely because the connector is being used. Proceed through the connector and keep the operation traceable.
+For routine non-critical and non-security GitHub work already covered by standing Project authorization, do not ask the user to repeat the same permission merely because the connector is being used.
 
-This fast path never applies to security or administrative mutations, including permissions/access, rulesets, branch protection, required checks/reviews, secrets, Actions policies, security settings, token scopes, deploy keys, or other security controls. Connector capability does not authorize bypass.
+This fast path never applies to security or administrative mutations, including permissions/access, rulesets, branch protection, required checks/reviews, secrets, Actions policies, security settings, or an action-specific merge.
 
 ## Production evidence
 
-Never use chat recency or latest-file-wins as Production authority. Resolve the exact source/spec/runtime revision applicable to the task. When material evidence is missing, use `HOLD - IMPACT NOT PROVEN`.
+Never use chat recency or latest-file-wins as Production authority. Resolve the exact source/spec/runtime revision applicable to the task. When material evidence is missing, use `HOLD - IMPACT NOT PROVEN` and stop before downstream action.
 
 ## Canonical references
 
@@ -91,6 +91,7 @@ Never use chat recency or latest-file-wins as Production authority. Resolve the 
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_ROUTING_R1.md`
 - `docs/governance/K_KNOWLEDGE_SUPPORTING_MODEL_CREDIT_LIMIT_R1.md`
 - `docs/governance/KTC_PAYMENT_THREE_SOURCE_MASTER_RULE_R1.md`
-- `AGENTS.md`
 - `docs/governance/KKS_OPERATOR_QUICK_REFERENCE_R1.md`
+- `AGENTS.md`
 - `.github/copilot-instructions.md`
+
