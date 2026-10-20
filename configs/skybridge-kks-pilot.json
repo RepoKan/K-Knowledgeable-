@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "kks-skybridge-reference-r1",
+  "status": "CANDIDATE",
+  "source": {
+    "organization": "alpic-ai",
+    "repository": "https://github.com/alpic-ai/skybridge",
+    "template": "https://github.com/alpic-ai/apps-sdk-template",
+    "quickstart": "https://github.com/alpic-ai/skybridge/blob/main/docs/get-started/quickstart.mdx",
+    "documentedPackageVersion": "2.0.3"
+  },
+  "runtime": {
+    "isolated": true,
+    "minimumNodeMajor": 24,
+    "mustNotUpgradeContinue": true
+  },
+  "security": {
+    "onlySanitizedPublicSources": true,
+    "noProductionData": true,
+    "noCredentialsInRepository": true,
+    "noRemoteDeploymentUntilApproved": true,
+    "noPaymentOperations": true
+  },
+  "integration": {
+    "readOnlyPilot": true,
+    "modifyExistingMcpConfig": false,
+    "duplicateGithubMcpServer": false,
+    "deploymentApproved": false
+  },
+  "kksGitHubBaseline": {
+    "repository": "RepoKan/K-Knowledgeable-",
+    "ref": "main",
+    "sha": "22406760ae8653003819141186d68d0a368e08b2"
+  }
+}
