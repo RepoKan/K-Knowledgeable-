@@ -4,6 +4,8 @@
 
 Use `KKS-PROJECT-INHERITANCE-R1` as the Project bootstrap contract and `KKS-PROJECT-CHAT-UNIFIED-SCOPE-R1` as the Project-wide chat/permission inheritance rule. Use `KTC-PAYMENT-MASTER-R1` as the sanitized governance baseline for KTC payment inspection workflows. Use `KKS-GITHUB-CONNECTOR-FAST-PATH-R1` as the canonical Master Rule for ChatGPT/Codex/Copilot GitHub connector process simplification, subject to its merge and security boundaries.
 
+- Merge policy: every merge requires fresh, action-specific user approval; auto-merge must not bypass this gate.
+
 ## KKS Operator Quick Reference — execution and closeout
 
 Apply `KKS-OPERATOR-QUICK-REFERENCE-R1` from `docs/governance/KKS_OPERATOR_QUICK_REFERENCE_R1.md` whenever performing K Knowledge Supporting (KKS) Knowledge work, governed actions, or reporting outcomes.
@@ -27,7 +29,3 @@ Every work chat, thread, or chat box inside **K Knowledge Supporting** is a gove
 - Effective executable permission is the intersection of Project-wide user authorization, action-specific approval rules, current tool/connector availability, external permissions, branch/ruleset/required-check constraints, and source-authority limits.
 
 See `docs/governance/K_KNOWLEDGE_SUPPORTING_PROJECT_INHERITANCE_R1.md`.
-
-## Git merge approval
-
-Every merge requires fresh, action-specific user approval immediately before execution, including non-critical merges. Auto-merge must not bypass this gate.
