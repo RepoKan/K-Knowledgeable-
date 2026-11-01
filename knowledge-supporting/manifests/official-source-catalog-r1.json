@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "policy": {
+    "mode": "metadata-only",
+    "automatic_repository_writes": false,
+    "automatic_knowledge_promotion": false,
+    "review_required_before_content_update": true,
+    "redirects_must_remain_on_allowlisted_hosts": true
+  },
+  "sources": [
+    {
+      "id": "kotlin-language-docs",
+      "title": "Kotlin language documentation",
+      "url": "https://kotlinlang.org/docs/home.html",
+      "allowed_hosts": ["kotlinlang.org"],
+      "authority": "official",
+      "scope": "Kotlin language reference, standard library and tooling"
+    },
+    {
+      "id": "android-compose-docs",
+      "title": "Android Jetpack Compose documentation",
+      "url": "https://developer.android.com/develop/ui/compose/documentation",
+      "allowed_hosts": ["developer.android.com"],
+      "authority": "official",
+      "scope": "Android-native Compose APIs and guidance"
+    },
+    {
+      "id": "kotlin-multiplatform-docs",
+      "title": "Kotlin Multiplatform documentation",
+      "url": "https://kotlinlang.org/docs/multiplatform/kmp-overview.html",
+      "allowed_hosts": ["kotlinlang.org"],
+      "authority": "official",
+      "scope": "Kotlin Multiplatform architecture and supported targets"
+    },
+    {
+      "id": "openai-codex-developer-docs",
+      "title": "OpenAI Codex developer documentation",
+      "url": "https://developers.openai.com/learn/codex",
+      "allowed_hosts": ["developers.openai.com"],
+      "authority": "official",
+      "scope": "Codex product and developer guidance; not a substitute for authenticated Analytics API schema"
+    },
+    {
+      "id": "github-actions-docs",
+      "title": "GitHub Actions documentation",
+      "url": "https://docs.github.com/en/actions",
+      "allowed_hosts": ["docs.github.com"],
+      "authority": "official",
+      "scope": "Workflow syntax, permissions, security and automation"
+    }
+  ],
+  "codex_analytics_boundary": {
+    "status": "SOURCE_CONFLICT_PENDING_AUTHENTICATED_VERIFICATION",
+    "knowledge_record": "knowledge-supporting/knowledge-base/codex-enterprise-analytics-api-v0.0.1.md",
+    "rule": "Public Codex developer documentation must not be treated as verification of authenticated Codex Enterprise Analytics routes, credential type, request schemas, or metric semantics."
+  }
+}
