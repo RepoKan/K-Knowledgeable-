@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Preserve existing review settings; correct only the title requirement.
+inheritance: true
+reviews:
+  pre_merge_checks:
+    title:
+      mode: error
+      requirements: >-
+        Use a descriptive Conventional Commits title under 80 characters in total.
+        End the title with the exact suffix "Kantapon Meesongnuen Comments".
+        Count the suffix and separating space within the 80-character limit.
