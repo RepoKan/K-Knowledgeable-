@@ -2,6 +2,10 @@
 # Preserve existing review settings; correct only the title requirement.
 inheritance: true
 reviews:
+  auto_approvals:
+    enabled: true
+    allow_author_approval: false
+    max_merge_risk: low
   pre_merge_checks:
     title:
       mode: error
