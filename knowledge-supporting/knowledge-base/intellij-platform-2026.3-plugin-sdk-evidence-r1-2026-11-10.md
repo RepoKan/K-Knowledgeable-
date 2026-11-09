@@ -8,6 +8,10 @@ Status: `REFERENCE EVIDENCE - NOT PRODUCTION APPROVAL`
 
 This record is derived from the IntelliJ Platform Plugin SDK guide excerpt supplied by the user in the K Knowledge Supporting project.
 
+- Supplied excerpt locator: "About This Guide" section from the user-pasted Plugin SDK guide; a stable snapshot identifier was not provided.
+- Exact excerpt revision / immutable byte-level digest: NOT AVAILABLE; the quoted excerpt has no authenticated original-file hash or publisher revision in this evidence set.
+- Excerpt publication date: NOT PROVIDED; 2026.3 is the stated target platform version, not proof of a source-snapshot revision.
+
 Primary references explicitly supplied by the source:
 
 - Documentation index: https://plugins.jetbrains.com/docs/intellij/llms.txt
