@@ -3,7 +3,7 @@
 inheritance: true
 reviews:
   auto_approvals:
-    enabled: true
+    enabled: false
     allow_author_approval: false
     max_merge_risk: low
   pre_merge_checks:
