@@ -25,6 +25,7 @@
     "react-dom": "19.2.0"
   },
   "overrides": {
+    "minimatch": "11.0.9",
     "nodemon": {
       "chokidar": "4.0.3"
     }
