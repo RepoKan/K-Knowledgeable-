@@ -1,10 +1,12 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 # Preserve existing review settings; correct only the title requirement.
+# Approvals are limited to low merge risk and require a completed review of the
+# latest commit; the author cannot trigger approval commands on their own PRs.
 inheritance: true
 reviews:
   auto_approvals:
-    enabled: false
-    allow_author_approval: true
+    enabled: true
+    allow_author_approval: false
     max_merge_risk: low
   pre_merge_checks:
     title:
